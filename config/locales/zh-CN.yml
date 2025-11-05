@@ -841,13 +841,19 @@ zh-CN:
         title: 发现
         trends: 趋势
       domain_blocks:
-        all: 对所有人
+        all: 对每个人
         disabled: 不对任何人
         users: 对已登录的本站用户
       feed_access:
         modes:
           authenticated: 仅已登录用户
-          public: 所有人
+          disabled: 需要特定的用户角色
+          public: 每个人
+      landing_page:
+        values:
+          about: 关于
+          local_feed: 本站动态
+          trends: 热门
       others:
         activitypub: ActivityPub
         preamble: 其它设置，包括自定义行为
