@@ -2028,7 +2028,6 @@ en:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
-    modern-system: Mastodon Modern (auto)
     system: Automatic (use system theme)
   time:
     formats:

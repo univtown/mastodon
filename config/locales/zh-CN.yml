@@ -1982,7 +1982,6 @@ zh-CN:
     contrast: Mastodon (高对比度)
     default: Mastodon (暗色)
     mastodon-light: Mastodon (亮色)
-    modern-system: Mastodon Modern (自动)
     system: 自动 (使用系统主题)
   time:
     formats:
