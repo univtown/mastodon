@@ -86,8 +86,8 @@ RSpec.describe InstancePresenter do
         end
       end
 
-      it 'defaults to the core chuckya repo URL' do
-        expect(instance_presenter.source_url).to eq('https://github.com/uestc-social/mastodon')
+      it 'defaults to the core univtown repo URL' do
+        expect(instance_presenter.source_url).to eq('https://git.univ.town/univtown/mastodon')
       end
     end
 

@@ -1,8 +1,8 @@
-# Security Policy (Chuckya)
+# Security Policy (UnivTown Mastodon)
 
-If you have found a security vulnerability that is not present in the latest `main` branches of either vanilla Mastodon or glitch-soc, you can report it by opening a [GitHub security issue on this repo](https://github.com/TheEssem/mastodon/security/advisories/new) or sending mail to <admin@wetdry.world>. Please do **not** report these issues in public spaces, as this may expose Chuckya users to increased and unnecessary risk.
+If you have found a security vulnerability that is not present in the latest `main` branches of vanilla Mastodon, glitch-soc or Chuckya, you can report it by sending mail to <admin@univ.town>. Please do **not** report these issues in public spaces, as this may expose UnivTown Mastodon users to increased and unnecessary risk.
 
-As Chuckya is purely rolling-release unlike Mastodon or glitch-soc, only the latest commit is actively supported. Please ensure that the vulnerability is present in the latest commit before reporting.
+As UnivTown Mastodon is purely rolling-release unlike Mastodon or glitch-soc, only the latest commit is actively supported. Please ensure that the vulnerability is present in the latest commit before reporting.
 
 The security policy from upstream is reproduced below.
 

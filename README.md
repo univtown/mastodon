@@ -1,10 +1,10 @@
-# Mastodon on uestc.social
+# UnivTown Mastodon
 
-This is a fork of [Mastodon](https://joinmastodon.org), with [Chuckya](TheEssem/mastodon) as its upstream. Chuckya's original README is reproduced below.
+This is a fork of [Mastodon](https://joinmastodon.org), with [Chuckya](https://github.com/TheEssem/mastodon) as its upstream. Chuckya's original README is reproduced below.
 
 ---
 
-# <img src="https://github.com/uestc-social/mastodon/raw/main/public/chuckya.svg" width="128"> Chuckya
+# <img src="https://github.com/TheEssem/mastodon/raw/main/public/chuckya.svg" width="128"> Chuckya
 
 Chuckya is a close-to-upstream soft fork of Mastodon Glitch Edition (more commonly known as glitch-soc) that aims to introduce more experimental features/fixes with the goal of making the overall experience more enjoyable. Although it's mainly developed for and used on the [wetdry.world](https://wetdry.world) instance, it can be deployed by any server admin as a drop-in, backwards-compatible replacement for Mastodon.
 
@@ -26,7 +26,7 @@ Changes previously in Chuckya that made their way into vanilla Mastodon:
 
 - Unicode emojis use [`jdecked/twemoji`](https://github.com/jdecked/twemoji) v15 graphics (mastodon/mastodon#28404)
 
-Setup instructions are the same as [glitch-soc's](https://glitch-soc.github.io/docs); just replace the glitch-soc repo URL with `https://github.com/uestc-social/mastodon`.
+Setup instructions are the same as [glitch-soc's](https://glitch-soc.github.io/docs); just replace the glitch-soc repo URL with `https://git.univ.town/univtown/mastodon`.
 
 Original glitch-soc readme is below.
 
