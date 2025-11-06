@@ -298,15 +298,14 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
           <ColumnLink
             transparent
             to={
-              (signedIn && canViewFeed(signedIn, permissions, remoteLiveFeedAccess))
+              signedIn &&
+              canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
                 ? '/public'
-                : (
-                  canViewFeed(signedIn, permissions, localLiveFeedAccess)
-                    ? '/public/local'
-                    : canViewFeed(signedIn, permissions, bubbleLiveFeedAccess)
-                      ? '/public/bubble'
-                      : '/public/remote'
-                )
+                : canViewFeed(signedIn, permissions, localLiveFeedAccess)
+                  ? '/public/local'
+                  : canViewFeed(signedIn, permissions, bubbleLiveFeedAccess)
+                    ? '/public/bubble'
+                    : '/public/remote'
             }
             icon='globe'
             iconComponent={PublicIcon}
