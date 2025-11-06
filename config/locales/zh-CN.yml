@@ -641,6 +641,7 @@ zh-CN:
       save_and_enable: 保存并启用
       setup: 设置中继连接
       signatures_not_enabled: 启用安全模式或白名单联合模式时，中继可能无法正常工作
+      limited_mode_warning: 本实例已经启用白名单联合模式。不当配置中继将可能导致贴文外泄
       status: 状态
       title: 中继
     report_notes:

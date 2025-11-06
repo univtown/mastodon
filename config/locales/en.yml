@@ -652,6 +652,7 @@ en:
       save_and_enable: Save and enable
       setup: Setup a relay connection
       signatures_not_enabled: Relays may not work correctly while secure mode or limited federation mode is enabled
+      limited_mode_warning: Limited federation mode is enabled. Misconfigured relay settings may cause unintended federation and information exposure.
       status: Status
       title: Relays
     report_notes:
