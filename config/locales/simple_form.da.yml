@@ -5,7 +5,7 @@ da:
       account:
         attribution_domains: Ét pr. linje. Beskytter mod falske tilskrivninger.
         discoverable: Dine offentlige indlæg og profil kan blive fremhævet eller anbefalet i forskellige områder af Mastodon, og profilen kan blive foreslået til andre brugere.
-        display_name: Dit fulde navn eller dit sjove navn.
+        display_name: Dit fulde navn eller et kaldenavn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
         indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
         note: 'Du kan @omtale andre personer eller #hashtags.'
@@ -111,6 +111,7 @@ da:
         thumbnail: Et ca. 2:1 billede vist sammen med serveroplysningerne.
         trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
         trends: Tendenser viser, hvilke indlæg, hashtags og nyheder opnår momentum på serveren.
+        wrapstodon: Tilbyd lokale brugere at generere en sjov oversigt over deres brug af Mastodon i løbet af året. Denne funktion er tilgængelig mellem den 10. og 31. december hvert år og tilbydes til brugere, der har lavet mindst ét offentligt eller stille offentligt indlæg og brugt mindst ét hashtag i løbet af året.
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
@@ -179,7 +180,7 @@ da:
           name: Etiket
           value: Indhold
         indexable: Medtag offentlige indlæg i søgeresultater
-        show_collections: Vis følger og følgere på profil
+        show_collections: Vis fulgte og følgere på profil
         unlocked: Acceptér automatisk nye følgere
       account_alias:
         acct: Brugernavn på den gamle konto
@@ -227,7 +228,7 @@ da:
         inbox_url: URL til videreformidlingsindbakken
         irreversible: Fjern istedet for skjul
         locale: Grænsefladesprog
-        max_uses: Maks. antal afbenyttelser
+        max_uses: Maks. antal anvendelser
         new_password: Ny adgangskode
         note: Biografi
         otp_attempt: Tofaktorkode
@@ -312,6 +313,7 @@ da:
         thumbnail: Serverminiaturebillede
         trendable_by_default: Tillad ikke-reviderede trends
         trends: Aktivér trends
+        wrapstodon: Aktivér Wrapstodon
       interactions:
         must_be_follower: Blokér notifikationer fra bruger, der ikke følger dig
         must_be_following: Blokér notifikationer fra brugere, du ikke følger

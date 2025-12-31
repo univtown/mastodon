@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe '/api/v1/statuses' do
   context 'with an oauth token' do
-    let(:user)  { Fabricate(:user) }
+    include_context 'with API authentication'
+
     let(:client_app) { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
     let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: client_app, scopes: scopes) }
-    let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
     describe 'GET /api/v1/statuses?id[]=:id' do
       let(:status) { Fabricate(:status) }
@@ -264,7 +264,7 @@ RSpec.describe '/api/v1/statuses' do
       end
 
       context 'with a quote to a non-mentioned user in a Private Mention' do
-        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
         let(:params) do
           {
             status: 'Hello, this is a quote',
@@ -283,7 +283,7 @@ RSpec.describe '/api/v1/statuses' do
       end
 
       context 'with a quote to a mentioned user in a Private Mention' do
-        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
         let(:params) do
           {
             status: "Hello @#{quoted_status.account.acct}, this is a quote",
@@ -305,7 +305,7 @@ RSpec.describe '/api/v1/statuses' do
       end
 
       context 'with a quote of a reblog' do
-        let(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
         let(:reblog) { Fabricate(:status, reblog: quoted_status) }
         let(:params) do
           {
@@ -501,7 +501,7 @@ RSpec.describe '/api/v1/statuses' do
 
         it 'updates the status', :aggregate_failures do
           expect { subject }
-            .to change { status.reload.quote_approval_policy }.to(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16)
+            .to change { status.reload.quote_approval_policy }.to(InteractionPolicy::POLICY_FLAGS[:public] << 16)
 
           expect(response).to have_http_status(200)
           expect(response.content_type)

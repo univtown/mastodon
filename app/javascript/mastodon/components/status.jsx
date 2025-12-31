@@ -117,6 +117,7 @@ class Status extends ImmutablePureComponent {
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
     showThread: PropTypes.bool,
+    showActions: PropTypes.bool,
     isQuotedPost: PropTypes.bool,
     shouldHighlightOnMount: PropTypes.bool,
     getScrollPosition: PropTypes.func,
@@ -381,7 +382,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, hidden, featured, unfocusable, unread, showThread, isQuotedPost = false, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46, children } = this.props;
+    const { intl, hidden, featured, unfocusable, unread, showThread, showActions = true, isQuotedPost = false, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46, children } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -538,9 +539,8 @@ class Status extends ImmutablePureComponent {
     } else if (status.get('card') && !status.get('quote')) {
       media = (
         <Card
-          onOpenMedia={this.handleOpenMedia}
+          key={`${status.get('id')}-${status.get('edited_at')}`}
           card={status.get('card')}
-          compact
           sensitive={status.get('sensitive')}
         />
       );
@@ -619,7 +619,7 @@ class Status extends ImmutablePureComponent {
               </>
             )}
 
-            {!isQuotedPost &&
+            {(showActions && !isQuotedPost) &&
               <StatusActionBar scrollKey={scrollKey} status={status} account={account}  {...other} />
             }
           </div>
