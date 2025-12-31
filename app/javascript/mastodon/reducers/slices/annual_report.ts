@@ -110,12 +110,15 @@ export const generateReport = createDataLoadingThunk(
 
 export const getReport = createDataLoadingThunk(
   `${annualReportSlice.name}/getReport`,
-  async (_arg: unknown, { getState }) => {
+  async (yearOverride: number | undefined, { getState }) => {
     const { year } = getState().annualReport;
-    if (!year) {
+    const effectiveYear = yearOverride ?? year;
+
+    if (!effectiveYear) {
       throw new Error('Year is not set');
     }
-    return apiGetAnnualReport(year);
+
+    return apiGetAnnualReport(effectiveYear);
   },
   (data, { dispatch }) => {
     dispatch(importFetchedStatuses(data.statuses));

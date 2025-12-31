@@ -13,14 +13,24 @@ import styles from './index.module.scss';
 
 const AnnualReportModal: React.FC<{
   onChangeBackgroundColor: (color: string) => void;
-}> = ({ onChangeBackgroundColor }) => {
+  year?: string | number;
+}> = ({ onChangeBackgroundColor, year: modalYear }) => {
   useEffect(() => {
     onChangeBackgroundColor('var(--color-bg-media-base)');
   }, [onChangeBackgroundColor]);
 
-  const { state, year } = useAppSelector((state) => state.annualReport);
+  const { state, year: campaignYear } = useAppSelector(
+    (state) => state.annualReport,
+  );
 
-  const showAnnouncement = year && state && state !== 'available';
+  const yearOverride =
+    modalYear === undefined
+      ? undefined
+      : typeof modalYear === 'number'
+        ? modalYear
+        : Number.parseInt(modalYear, 10);
+
+  const showAnnouncement = campaignYear && state && state !== 'available';
 
   const dispatch = useAppDispatch();
 
@@ -68,10 +78,10 @@ const AnnualReportModal: React.FC<{
       onClick={handleCloseModal}
     >
       {!showAnnouncement ? (
-        <AnnualReport context='modal' />
+        <AnnualReport context='modal' yearOverride={yearOverride} />
       ) : (
         <AnnualReportAnnouncement
-          year={year.toString()}
+          year={campaignYear.toString()}
           state={state}
           onDismiss={handleClose}
           onRequestBuild={handleBuildRequest}

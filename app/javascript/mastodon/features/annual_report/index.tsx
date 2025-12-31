@@ -37,20 +37,21 @@ export const accountSelector = createAppSelector(
   },
 );
 
-export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
-  context = 'standalone',
-}) => {
+export const AnnualReport: FC<{
+  context?: 'modal' | 'standalone';
+  yearOverride?: number;
+}> = ({ context = 'standalone', yearOverride }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const report = useAppSelector((state) => state.annualReport.report);
   const account = useAppSelector(accountSelector);
-  const needsReport = !report; // Make into boolean to avoid object comparison in deps.
+  const needsReport = !report || (yearOverride && report.year !== yearOverride);
 
   useEffect(() => {
     if (needsReport) {
-      void dispatch(getReport());
+      void dispatch(getReport(yearOverride));
     }
-  }, [dispatch, needsReport]);
+  }, [dispatch, needsReport, yearOverride]);
 
   const close = useCallback(() => {
     dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
