@@ -8,13 +8,13 @@ zh-CN:
     failure:
       already_authenticated: 你已登录。
       closed_registrations: 你的注册因网络政策已被阻止。若你认为此结果有误，请联系 %{email}。
-      inactive: 你的帐户尚未激活。
+      inactive: 你的账户尚未激活。
       invalid: 无效的 %{authentication_keys} 或密码。
-      last_attempt: 在你的帐户被锁定前，你还有一次尝试机会。
-      locked: 你的帐户已被锁定。
+      last_attempt: 在你的账户被锁定前，你还有一次尝试机会。
+      locked: 你的账户已被锁定。
       not_found_in_database: 无效的 %{authentication_keys} 或密码。
       omniauth_user_creation_failure: 为此身份创建账户时出错。
-      pending: 你的帐户仍在审核中。
+      pending: 你的账户仍在审核中。
       timeout: 你的会话已过期。请重新登录以继续。
       unauthenticated: 你需要先登录或注册才可继续。
       unconfirmed: 你必须先确认你的邮件地址才可继续。
@@ -22,52 +22,52 @@ zh-CN:
       confirmation_instructions:
         action: 验证邮件地址
         action_with_app: 确认并返回 %{app}
-        explanation: 你已使用此邮箱在 %{host} 上创建了帐户。点击链接即可激活。如果这不是你本人的操作，请忽略此邮件。
-        explanation_when_pending: 你已使用此邮箱申请加入 %{host}。在你确认邮件地址后，我们将审核你的申请。你可以登录以更改详细信息和删除你的帐户，但在帐户获得批准之前，你无法使用大部分功能。如果你的申请被拒绝，你的数据将被删除，因此你无需采取进一步行动。如果这不是你本人的操作，请忽略此邮件。
+        explanation: 你已使用此邮箱在 %{host} 上创建了账户。点击链接即可激活。如果这不是你本人的操作，请忽略此邮件。
+        explanation_when_pending: 你已使用此邮箱申请加入 %{host}。在你确认邮件地址后，我们将审核你的申请。你可以登录以更改详细信息和删除你的账户，但在账户获得批准之前，你无法使用大部分功能。如果你的申请被拒绝，你的数据将被删除，因此你无需采取进一步行动。如果这不是你本人的操作，请忽略此邮件。
         extra_html: 另请查阅<a href="%{terms_path}">本站规则</a>与我们的<a href="%{policy_path}">服务条款</a>。
         subject: 'Mastodon：%{instance} 的确认指引'
         title: 验证邮件地址
       email_changed:
-        explanation: '你帐号的邮件地址正在被更改为：'
-        extra: 若你未曾更改过你的邮件，则很有可能代表有人取得了你帐号的访问权限。请立刻更改你的密码。如果你无法登入帐号，请联系站点管理员。
+        explanation: '你账户的邮件地址正在被更改为：'
+        extra: 若你未曾更改过你的邮件，则很有可能代表有人取得了你账户的访问权限。请立刻更改你的密码。如果你无法登入账户，请联系站点管理员。
         subject: 'Mastodon：邮件地址已被更改'
         title: 新的邮件地址
       password_change:
-        explanation: 你帐号的密码已被更改。
-        extra: 如果你未曾更改过你的密码，则很有可能代表有人取得了你帐号的访问权限。请立刻更改你的密码。如果你无法登入帐号，请联系站点管理员。
+        explanation: 你的账户密码已被更改。
+        extra: 如果你未曾更改过你的密码，则很有可能代表有人取得了你账户的访问权限。请立刻更改你的密码。如果你无法登入账户，请联系站点管理员。
         subject: 'Mastodon：密码已更改'
         title: 密码已更改
       reconfirmation_instructions:
         explanation: 确认新地址以更改你的邮箱。
-        extra: 如果更改并非由你发起，请忽略这封邮件。只有在你访问上面的链接后，此 Mastodon 帐户的邮件地址才会更改。
+        extra: 如果更改并非由你发起，请忽略这封邮件。只有在你访问上面的链接后，此 Mastodon 账户的邮件地址才会更改。
         subject: 'Mastodon：%{instance} 的确认邮件'
         title: 验证邮件地址
       reset_password_instructions:
         action: 修改密码
-        explanation: 你已申请为你的帐户重置新密码。
+        explanation: 你已申请为你的账户重置新密码。
         extra: 如果你没有请求此项操作，请忽略本邮件。你的密码只有在你访问以上链接并创建新密码后才会被更改。
         subject: 'Mastodon：密码重置指引'
         title: 重置密码
       two_factor_disabled:
         explanation: 现在仅使用邮件地址和密码即可登录。
         subject: 'Mastodon：双因素身份验证已禁用'
-        subtitle: 你帐户的双因素身份验证已被禁用。
+        subtitle: 你账户的双因素身份验证已被禁用。
         title: 双因素验证已停用
       two_factor_enabled:
         explanation: 登录时将需要输入已配对的 TOTP 应用所生成的令牌。
         subject: 'Mastodon：双因素验证已启用'
-        subtitle: 你的帐户已启用双因素验证。
+        subtitle: 你的账户已启用双因素验证。
         title: 双因素验证已启用
       two_factor_recovery_codes_changed:
-        explanation: 新恢复代码已声称，之前的恢复代码已失效。
+        explanation: 新恢复代码已生成，之前的恢复代码已失效。
         subject: 'Mastodon：已重新生成双因素验证恢复代码'
-        subtitle: 新恢复代码已声称，之前的恢复代码已失效。
+        subtitle: 新恢复代码已生成，之前的恢复代码已失效。
         title: 双因素验证恢复代码已更改
       unlock_instructions:
         subject: 'Mastodon：解除锁定指引'
       webauthn_credential:
         added:
-          explanation: 以下安全密钥已被添加到你的帐户
+          explanation: 以下安全密钥已被添加到你的账户
           subject: 'Mastodon：新安全密钥'
           title: 已添加新安全密钥
         deleted:
@@ -80,13 +80,13 @@ zh-CN:
         subject: 'Mastodon：安全密钥身份验证已被禁用'
         title: 安全密钥已被禁用
       webauthn_enabled:
-        explanation: 你的帐户已启用安全密钥身份验证。
+        explanation: 你的账户已启用安全密钥身份验证。
         extra: 你的安全密钥现在可用于登录。
         subject: 'Mastodon：安全密钥身份验证已被启用'
         title: 安全密钥已被启用
     omniauth_callbacks:
       failure: 无法从 %{kind} 为你进行身份验证，因为“%{reason}”。
-      success: 已成功从 %{kind} 帐户进行身份验证。
+      success: 已成功从 %{kind} 账户进行身份验证。
     passwords:
       no_token: 你必须通过密码重置邮件中的链接才能访问此页面。如果你确实是通过密码重置邮件访问此页面，请确保你使用了邮件中提供的完整 URL。
       send_instructions: 如果你的邮件地址存在于我们的数据库中，你将在几分钟内收到一封包含密码恢复链接的邮件。如果你没有收到此邮件，请检查你的垃圾邮件文件夹。
@@ -94,17 +94,17 @@ zh-CN:
       updated: 你的密码已被成功更改。你现在已经登录。
       updated_not_active: 你的密码已被成功更改。
     registrations:
-      destroyed: 再见！你的帐户已成功注销。希望之后还可以再见到你。
-      update_needs_confirmation: 你的帐户已成功更新，但我们需要验证你的新邮件地址。请检查你的邮箱并点击确认链接，以确认你的新邮件地址。如果你没有收到邮件，请检查垃圾邮件文件夹。
-      updated: 你的帐户已成功更新。
+      destroyed: 再见！你的账户已成功注销。希望之后还可以再见到你。
+      update_needs_confirmation: 你的账户已成功更新，但我们需要验证你的新邮件地址。请检查你的邮箱并点击确认链接，以确认你的新邮件地址。如果你没有收到邮件，请检查垃圾邮件文件夹。
+      updated: 你的账户已成功更新。
     sessions:
       already_signed_out: 已成功退出登录。
       signed_in: 已成功登录。
       signed_out: 已成功退出登录。
     unlocks:
       send_instructions: 几分钟后，你将收到一封包含解除账户锁定指引的邮件。如果你没有收到这封邮件，请检查你的垃圾邮件文件夹。
-      send_paranoid_instructions: 如果你的帐户存在，你将在几分钟后收到一封包含解除账户锁定指引的邮件。如果你没有收到这封邮件，请检查你的垃圾邮件文件夹。
-      unlocked: 你的帐户已成功解锁。请登录以继续。
+      send_paranoid_instructions: 如果你的账户存在，你将在几分钟后收到一封包含解除账户锁定指引的邮件。如果你没有收到这封邮件，请检查你的垃圾邮件文件夹。
+      unlocked: 你的账户已成功解锁。请登录以继续。
   errors:
     messages:
       already_confirmed: 已被确认，请尝试登录
