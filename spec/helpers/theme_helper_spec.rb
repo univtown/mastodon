@@ -105,7 +105,7 @@ RSpec.describe ThemeHelper do
 
     context 'when user is not signed in' do
       context 'when theme was not changed in settings' do
-        it { is_expected.to eq(['glitch', 'default']) }
+        it { is_expected.to eq(['glitch', 'modern']) }
       end
     end
 
@@ -115,7 +115,7 @@ RSpec.describe ThemeHelper do
       let(:current_user) { Fabricate :user }
 
       context 'when user did not set theme' do
-        it { is_expected.to eq(['glitch', 'default']) }
+        it { is_expected.to eq(['glitch', 'modern']) }
       end
 
       context 'when user set theme' do
