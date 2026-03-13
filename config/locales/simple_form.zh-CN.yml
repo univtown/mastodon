@@ -163,7 +163,7 @@ zh-CN:
         name: 身份组的公开名称，用于在启用相应设置时外显为徽章
         permissions_as_keys: 此身份组中的用户将有权访问…...
         position: 在某些情况下，由较高优先级的身份组决定冲突的解决方式。某些操作只能对优先级较低的身份组执行
-        require_2fa: Users with this role will be required to set up two-factor authentication to use Mastodon
+        require_2fa: 具有此身份组的用户必须设置双因素身份验证才能使用 Mastodon
       username_block:
         allow_with_approval: 不直接禁止注册，而是要求符合规则的新注册经过你的手动批准
         comparison: 屏蔽部分匹配时请注意潜在的Scunthorpe问题（正常单词因内部包含被屏蔽的部分而被屏蔽）
@@ -180,7 +180,7 @@ zh-CN:
           name: 标签
           value: 内容
         indexable: 在搜索结果中包含公开贴文
-        show_collections: 在账户页显示关注和被关注列表
+        show_collections: 在账户页显示关注和粉丝列表
         unlocked: 自动接受新的粉丝
       account_alias:
         acct: 旧账户的用户名
@@ -223,7 +223,7 @@ zh-CN:
         email: 邮件地址
         expires_in: 剩余时间
         fields: 额外属性
-        filter_action: Filter action
+        filter_action: 过滤规则操作
         header: 账户页背景图
         honeypot: "%{label}（请勿填写）"
         inbox_url: 中继收件箱 URL
@@ -240,7 +240,7 @@ zh-CN:
         setting_always_send_emails: 总是发送邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转发前显示确认对话框
-        setting_color_scheme: Color scheme
+        setting_color_scheme: 配色方案
         setting_contrast: 对比度
         setting_default_language: 贴文语言
         setting_default_privacy: 贴文可见性
@@ -388,7 +388,7 @@ zh-CN:
         name: 名称
         permissions_as_keys: 权限
         position: 优先级
-        require_2fa: Require two-factor authentication
+        require_2fa: 需要双因素身份验证
       username_block:
         allow_with_approval: 允许注册但需要审核
         comparison: 比较方法
