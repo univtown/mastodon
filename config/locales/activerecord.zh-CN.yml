@@ -32,6 +32,12 @@ zh-CN:
           attributes:
             url:
               invalid: 不是合法 URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: 数量过多，最多允许 %{count} 个
+            tag:
+              unusable: 不得使用
         doorkeeper/application:
           attributes:
             website:
@@ -44,7 +50,7 @@ zh-CN:
           attributes:
             account_id:
               taken: 已在列表中
-          must_be_following: 必须是已关注的帐户
+          must_be_following: 必须是已关注的账户
         status:
           attributes:
             reblog:
