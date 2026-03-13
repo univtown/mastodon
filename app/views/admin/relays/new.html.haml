@@ -6,7 +6,7 @@
     .flash-message.warning
       = t('admin.relays.limited_mode_warning')
 
-= simple_form_for @relay, url: admin_relays_path do |f|
+= simple_form_for [:admin, @relay] do |f|
   = render 'shared/error_messages', object: @relay
 
   .field-group

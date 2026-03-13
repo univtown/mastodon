@@ -8,7 +8,7 @@ zh-CN:
     title: 关于
   accounts:
     errors:
-      cannot_be_added_to_collections: 此账号无法被添加到关注列表内。
+      cannot_be_added_to_collections: 此账号无法被添加到收藏列表内。
     followers:
       other: 粉丝
     following: 关注
@@ -300,6 +300,7 @@ zh-CN:
         unsilence_account_html: "%{name} 解除了 %{target} 账户的限制"
         unsuspend_account_html: "%{name} 解除了 %{target} 账户的封禁"
         update_announcement_html: "%{name} 更新了公告 %{target}"
+        update_collection_html: "%{name} 更新了 %{target} 的收藏列表"
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名封锁"
         update_ip_block_html: "%{name} 更改了 IP %{target} 的规则"

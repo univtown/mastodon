@@ -382,6 +382,7 @@ zh-CN:
         name: 名称
         permissions_as_keys: 权限
         position: 优先级
+        require_2fa: 需要双因素认证
       username_block:
         allow_with_approval: 允许注册但需要审核
         comparison: 比较方法
