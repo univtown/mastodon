@@ -5,8 +5,8 @@ zh-CN:
     glitch_only: glitch-soc
     hints:
       defaults:
-        avatar_description: 为盲人或低视力人群提供的头像描述。
-        header_description: 为盲人或低视力人群提供的资料卡头图描述。
+        avatar_description: 为盲人或低视力人群提供你的头像描述。
+        header_description: 为盲人或低视力人群提供你的账户页背景图描述。
         setting_default_content_type_html: 在发贴时默认使用原始 HTML 格式，除非另外指定
         setting_default_content_type_markdown: 在发帖时默认使用 Markdown 进行富文本格式化，除非另外指定
         setting_default_content_type_plain: 在发帖时默认使用无特殊格式的纯文本，除非另外指定（这是 Mastodon 的默认行为）
@@ -16,7 +16,7 @@ zh-CN:
     labels:
       defaults:
         avatar_description: 头像描述
-        header_description: 资料卡头图描述
+        header_description: 账户页背景图描述
         setting_default_content_type: 贴文的默认格式
         setting_default_content_type_html: HTML
         setting_default_content_type_markdown: Markdown
@@ -27,7 +27,8 @@ zh-CN:
         setting_system_emoji_font: 为表情使用系统默认字体（仅适用于 Glitch 界面）
         setting_visible_reactions: 可见回应的数量
       form_admin_settings:
-        bubble_live_feed_access: 展示来自精选实例的嘟文的实时动态访问权限
+        bubble_live_feed_access: 展示来自精选实例的贴文的实时动态访问权限
+        bubble_topic_feed_access: 精选站点贴文的话题与链接列表的公开范围
       notification_emails:
         reaction: 有人回应了你的贴文
         trending_link: 有新的热门链接需要审核
