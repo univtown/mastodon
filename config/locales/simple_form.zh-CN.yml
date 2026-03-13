@@ -14,17 +14,17 @@ zh-CN:
       account_alias:
         acct: 指定你要从中迁出的账户的 用户名@域名
       account_migration:
-        acct: 指定你要转移到的帐户的 用户名@域名
+        acct: 指定你要转移到的账户的 用户名@域名
       account_warning_preset:
         text: 你可以使用贴文中的语法，例如 URL、话题和提及
         title: 可选。不会向接收者显示
       admin_account_action:
         include_statuses: 用户将看到哪些贴文导致了管理操作或警告
-        send_email_notification: 用户将收到关于其帐户发生情况的解释
+        send_email_notification: 用户将收到关于其账户发生情况的解释
         text_html: 可选。你可以使用贴文语法。你也可以<a href="%{path}">添加警告预设</a>以节省时间
         type_html: 选择要如何处理 <strong>%{acct}</strong>
         types:
-          disable: 阻止用户使用其帐户，但不会删除或隐藏其内容。
+          disable: 阻止用户使用其账户，但不会删除或隐藏其内容。
           none: 使用此选项向用户发送警告，不会触发任何其它操作。
           sensitive: 将该用户的所有媒体强制标记为敏感。
           silence: 阻止该用户发布公开可见的贴文，并向未关注该用户的人隐藏其贴文和通知。关闭所有针对该账户的举报。
@@ -41,10 +41,10 @@ zh-CN:
       defaults:
         autofollow: 通过邀请注册的用户将自动关注你
         avatar: 支持 WEBP、PNG、GIF 或 JPG 格式。最大 %{size}。将缩小至 %{dimensions} 像素
-        bot: 向它人表明该帐户主要执行自动化操作，可能无人监控
+        bot: 向它人表明该账户主要执行自动化操作，可能无人监控
         context: 过滤规则将生效的一个或多个情景
-        current_password: 为安全起见，请输入当前帐户的密码
-        current_username: 为进行确认，请输入当前帐户的用户名
+        current_password: 为安全起见，请输入当前账户的密码
+        current_username: 为进行确认，请输入当前账户的用户名
         digest: 仅在你长时间不活跃并且在你离开期间收到任何私信时发送
         email: 你将收到一封确认邮件
         header: 支持 WEBP、PNG、GIF 或 JPG 格式。最大 %{size}。将缩小至 %{dimensions} 像素
@@ -54,18 +54,18 @@ zh-CN:
         password: 请使用至少 8 个字符
         phrase: 无论贴文文本或内容警告中的大小写如何，都将进行匹配
         scopes: 该应用将被允许访问哪些 API。如果你选择了一个顶层作用域，则无需选择单个作用域。
-        setting_advanced_layout: 将 Mastodon 的界面以多列布局显示，允许您同时查看时间线、通知及可自主选择的第三列。屏幕尺寸较小的情况下不推荐使用。
+        setting_advanced_layout: 将 Mastodon 的界面以多列布局显示，允许你同时查看时间线、通知及可自主选择的第三列。屏幕尺寸较小的情况下不推荐使用。
         setting_aggregate_reblogs: 对于近期被转发过的贴文，不再显示新的转发（仅影响新收到的转发）
         setting_always_send_emails: 当你活跃使用 Mastodon 时，通常不会发送邮件通知
-        setting_boost_modal: 若启用，转嘟前将会先弹出确认对话框，以便更改转嘟的可见性。
-        setting_default_quote_policy_private: 在 Mastodon 发布的仅粉丝可见的嘟文无法被他人引用。
-        setting_default_quote_policy_unlisted: 当有人引用你时，ta 的嘟文也会从热门时间线上隐藏。
+        setting_boost_modal: 若启用，转发前将会先弹出确认对话框，以便更改转发的可见性。
+        setting_default_quote_policy_private: 在 Mastodon 发布的仅粉丝可见的贴文无法被他人引用。
+        setting_default_quote_policy_unlisted: 当有人引用你时，ta 的贴文也会从热门时间线上隐藏。
         setting_default_sensitive: 敏感内容默认隐藏，点击即可显示
         setting_display_media_default: 隐藏被标为敏感的内容
         setting_display_media_hide_all: 始终隐藏媒体内容
         setting_display_media_show_all: 始终显示媒体内容
         setting_emoji_style: 如何显示表情。“自动”会尝试使用系统原生表情，但对于旧版浏览器会回退到 Twemoji。
-        setting_quick_boosting_html: 启用后，点击 %{boost_icon} 转嘟按钮将立即进行转嘟，而不是弹出转嘟/引用下拉菜单。这会将引用操作移至 %{options_icon} 更多选项菜单。
+        setting_quick_boosting_html: 启用后，点击 %{boost_icon} 转发按钮将立即进行转发，而不是弹出转发/引用下拉菜单。这会将引用操作移至 %{options_icon} 更多选项菜单。
         setting_system_scrollbars_ui: 仅适用于基于 Safari 和 Chrome 的桌面浏览器
         setting_use_blurhash: 渐变效果基于被隐藏视觉元素的颜色，但会模糊掉所有细节
         setting_use_pending_items: 时间线的更新内容将需要点击才会显示，而不会自动滚动
@@ -88,11 +88,12 @@ zh-CN:
         activity_api_enabled: 以周为单位统计的本站贴文数、活跃用户数和新注册数
         app_icon: 支持 WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖移动设备上的默认应用图标。
         backups_retention_period: 用户可以生成其贴文的存档供日后下载。当设置为正值时，这些存档将在指定天数后自动从你的存储中删除。
-        bootstrap_timeline_accounts: 这些帐户将在新用户关注推荐列表中置顶。
+        bootstrap_timeline_accounts: 这些账户将在新用户关注推荐列表中置顶。提供的账户列表需以英文逗号分隔不同用户名。
         closed_registrations_message: 在注册关闭时显示
         content_cache_retention_period: 来自其它站点的所有贴文（包括转发和回复）都将在指定的天数后被删除，无论本站用户与这些贴文有何互动都会如此。这包括本站用户已收藏或点赞的贴文。不同站点的用户之间的私信也将丢失且无法恢复。此设置旨在用于特殊用途的实例，在用于通用目的时会打破许多用户的期望。
         custom_css: 你可以在网页版Mastodon上应用自定义样式。
         favicon: 支持 WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖默认的 Mastodon 网站图标。
+        landing_page: 选择新访客首次访问你的站点时看到的页面。如果你选择 "热门"，则需要在发现设置中启用热门。如果您选择 "本站动态"，则需要在发现设置中将 "本站贴文时间线的公开范围" 设置为 "所有人"。
         mascot: 覆盖高级 Web 界面中的插图。
         media_cache_retention_period: 外站用户贴文中的媒体文件会缓存在你的站点上。当设置为正值时，媒体将在指定天数后被删除。如果媒体数据在删除后被请求，并且来源仍然可用，它将被重新下载。由于生成链接预览卡时轮询第三方网站的频率有限制，建议将此值设置为至少 14 天，否则链接预览卡在此之前将不会按需更新。
         min_age: 用户在注册时将被要求确认其出生日期
@@ -110,7 +111,7 @@ zh-CN:
         thumbnail: 与你的站点信息一同显示的图片，比例大致为 2:1。
         trendable_by_default: 跳过对热门内容的人工审核。单个热门项目仍然可以从热门中移除。
         trends: 热门会显示哪些贴文、话题和新闻故事正在你的站点上获得关注。
-        trends_as_landing_page: 向未登录的用户和访客显示热门内容，而非本站点的描述。需要启用热门功能。
+        wrapstodon: 为本地用户提供一份有趣的年度 Mastodon 使用情况总结。该功能在每年的 12 月 10 日至 31 日期间可用，提供给当年至少发布过一条 "公开" 或 "不公开" 贴文，且至少使用过一个话题的用户。
       form_challenge:
         current_password: 你正在进入安全区
       imports:
@@ -160,11 +161,11 @@ zh-CN:
         color: 在整个用户界面中用于该身份组的颜色，为十六进制格式的 RGB 值
         highlighted: 这将使该身份组公开可见
         name: 身份组的公开名称，用于在启用相应设置时外显为徽章
-        permissions_as_keys: 此身份组中的用户将有权访问…
+        permissions_as_keys: 此身份组中的用户将有权访问…...
         position: 在某些情况下，由较高优先级的身份组决定冲突的解决方式。某些操作只能对优先级较低的身份组执行
       username_block:
         allow_with_approval: 不直接禁止注册，而是要求符合规则的新注册经过你的手动批准
-        comparison: 屏蔽部分匹配时请注意潜在的Scunthrope问题（正常单词因内部包含被屏蔽的部分而被屏蔽）
+        comparison: 屏蔽部分匹配时请注意潜在的Scunthorpe问题（正常单词因内部包含被屏蔽的部分而被屏蔽）
         username: 匹配不限大小写及常见同形异义字符，如“4”和“a”及“3”和“e”等
       webhook:
         events: 选择要发送的事件
@@ -181,9 +182,9 @@ zh-CN:
         show_collections: 在账户页显示关注和被关注列表
         unlocked: 自动接受新的粉丝
       account_alias:
-        acct: 旧帐户的用户名
+        acct: 旧账户的用户名
       account_migration:
-        acct: 新帐户的用户名
+        acct: 新账户的用户名
       account_warning_preset:
         text: 预设文本
         title: 标题
@@ -221,7 +222,7 @@ zh-CN:
         email: 邮件地址
         expires_in: 剩余时间
         fields: 额外属性
-        header: 资料卡头图
+        header: 账户页背景图
         honeypot: "%{label}（请勿填写）"
         inbox_url: 中继收件箱 URL
         irreversible: 丢弃而非隐藏
@@ -236,12 +237,14 @@ zh-CN:
         setting_aggregate_reblogs: 在时间线中将转发单独分组
         setting_always_send_emails: 总是发送邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
-        setting_boost_modal: 在转嘟前显示确认对话框
+        setting_boost_modal: 在转发前显示确认对话框
+        setting_color_scheme: 模式
+        setting_contrast: 对比度
         setting_default_language: 贴文语言
-        setting_default_privacy: 嘟文可见性
+        setting_default_privacy: 贴文可见性
         setting_default_quote_policy: 谁可以引用
         setting_default_sensitive: 总是将媒体标记为敏感
-        setting_delete_modal: 在删除嘟文前显示确认对话框
+        setting_delete_modal: 在删除贴文前显示确认对话框
         setting_disable_hover_cards: 鼠标悬停时不显示账户卡片
         setting_disable_swiping: 禁用滑动手势
         setting_display_media: 显示媒体
@@ -252,7 +255,7 @@ zh-CN:
         setting_expand_spoilers: 总是展开有内容警告的贴文
         setting_hide_network: 隐藏你的社交关系
         setting_missing_alt_text_modal: 在发布没有替代文本的媒体前显示确认对话框
-        setting_quick_boosting: 启用快速转嘟
+        setting_quick_boosting: 启用快速转发
         setting_reduce_motion: 减少动画中的动态效果
         setting_system_font_ui: 使用系统默认字体
         setting_system_scrollbars_ui: 使用系统默认滚动条
@@ -286,16 +289,17 @@ zh-CN:
         content_cache_retention_period: 外站内容保留期限
         custom_css: 自定义 CSS
         favicon: 站点图标
-        local_live_feed_access: 展示本站嘟文的实时动态访问权限
-        local_topic_feed_access: 展示本站嘟文的话题标签及实时动态访问权限
+        landing_page: 新访客的落地页
+        local_live_feed_access: 展示本站贴文的实时动态访问权限
+        local_topic_feed_access: 展示本站贴文的话题与链接的列表的公开范围
         mascot: 自定义吉祥物（旧版）
         media_cache_retention_period: 媒体缓存留存期限
         min_age: 最低年龄要求
         peers_api_enabled: 通过 API 发布已发现的站点列表
         profile_directory: 启用账户目录
         registrations_mode: 谁可以注册
-        remote_live_feed_access: 展示外站嘟文的实时动态访问权限
-        remote_topic_feed_access: 展示外站嘟文的话题标签及实时动态访问权限
+        remote_live_feed_access: 展示外站贴文的实时动态访问权限
+        remote_topic_feed_access: 展示外站贴文的话题与链接的列表的公开范围
         require_invite_text: 需要注册理由
         show_domain_blocks: 显示站点屏蔽条目
         show_domain_blocks_rationale: 显示站点屏蔽原因
@@ -310,7 +314,7 @@ zh-CN:
         thumbnail: 站点缩略图
         trendable_by_default: 允许话题不经审核进入热门
         trends: 启用热门
-        trends_as_landing_page: 将热门作为首页
+        wrapstodon: 启用 Wrapstodon 年度回顾
       interactions:
         must_be_follower: 屏蔽来自非粉丝的通知
         must_be_following: 屏蔽来自你未关注的人的通知
@@ -334,8 +338,8 @@ zh-CN:
         follow: 有人关注了你
         follow_request: 有人请求关注你
         mention: 有人提到了你
-        pending_account: 有新帐户需要审核
-        quote: 有人引用了我的嘟文
+        pending_account: 有新账户需要审核
+        quote: 有人引用了你的贴文
         reblog: 有人转发了你的贴文
         report: 有新举报提交
         software_updates:
@@ -373,7 +377,7 @@ zh-CN:
       user:
         date_of_birth_1i: 年
         date_of_birth_2i: 月
-        date_of_birth_3i: 年
+        date_of_birth_3i: 日
         role: 身份组
         time_zone: 时区
       user_role:
@@ -395,7 +399,7 @@ zh-CN:
     overridden: 已覆盖
     recommended: 推荐
     required:
-      mark: " * "
+      mark: "*"
       text: 必填
     title:
       sessions:
