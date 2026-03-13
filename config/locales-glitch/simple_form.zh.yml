@@ -5,32 +5,32 @@ zh-CN:
     glitch_only: glitch-soc
     hints:
       defaults:
-        avatar_description: A description of your profile picture for people who are blind or have low vision.
-        header_description: A description of your header picture for people who are blind or have low vision.
-        setting_default_content_type_html: When writing toots, assume they are written in raw HTML, unless specified otherwise
-        setting_default_content_type_markdown: When writing toots, assume they are using Markdown for rich text formatting, unless specified otherwise
-        setting_default_content_type_plain: When writing toots, assume they are plain text with no special formatting, unless specified otherwise (default Mastodon behavior)
-        setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
-        setting_show_followers_count: Show your followers count on your profile. If you hide your followers count, it will be hidden even from yourself, and some applications may display a negative followers count.
-        setting_skin: Reskins the selected Mastodon flavour
+        avatar_description: 为盲人或低视力人群提供你的头像描述。
+        header_description: 为盲人或低视力人群提供你的账户页背景图描述。
+        setting_default_content_type_html: 在发贴时默认使用原始 HTML 格式，除非另外指定
+        setting_default_content_type_markdown: 在发帖时默认使用 Markdown 进行富文本格式化，除非另外指定
+        setting_default_content_type_plain: 在发帖时默认使用无特殊格式的纯文本，除非另外指定（这是 Mastodon 的默认行为）
+        setting_default_language: 系统可以自动检测你贴文的语言，但结果可能不一定准确
+        setting_show_followers_count: 在你的账户页显示粉丝数量。如果你隐藏粉丝数量，该数字对自己也将不可见，并且某些应用可能会将粉丝数显示为负数。
+        setting_skin: 为所选的 Mastodon 界面更换皮肤
     labels:
       defaults:
-        avatar_description: Profile picture description
-        header_description: Header picture description
-        setting_default_content_type: Default format for toots
+        avatar_description: 头像描述
+        header_description: 账户页背景图描述
+        setting_default_content_type: 贴文的默认格式
         setting_default_content_type_html: HTML
         setting_default_content_type_markdown: Markdown
-        setting_default_content_type_plain: Plain text
-        setting_favourite_modal: Show confirmation dialog before favouriting (applies to Glitch flavour only)
-        setting_show_followers_count: Show your followers count
-        setting_skin: Skin
-        setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
-        setting_visible_reactions: Number of visible emoji reactions
+        setting_default_content_type_plain: 纯文本
+        setting_favourite_modal: 在点赞前显示确认对话框（仅适用于 Glitch 界面）
+        setting_show_followers_count: 显示粉丝数
+        setting_skin: 皮肤
+        setting_system_emoji_font: 为表情使用系统默认字体（仅适用于 Glitch 界面）
+        setting_visible_reactions: 可见回应的数量
       form_admin_settings:
-        bubble_live_feed_access: Access to live feeds featuring bubble posts
-        bubble_topic_feed_access: Access to hashtag and link feeds featuring bubble posts
+        bubble_live_feed_access: 展示来自精选实例的贴文的实时动态访问权限
+        bubble_topic_feed_access: 精选站点贴文的话题与链接列表的公开范围
       notification_emails:
-        reaction: Someone reacted to your post
-        trending_link: New trending link requires review
-        trending_status: New trending post requires review
-        trending_tag: New trending tag requires review
+        reaction: 有人回应了你的贴文
+        trending_link: 有新的热门链接需要审核
+        trending_status: 有新的热门贴文需要审核
+        trending_tag: 有新的热门话题需要审核
