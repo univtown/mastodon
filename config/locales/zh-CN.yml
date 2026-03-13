@@ -8,10 +8,11 @@ zh-CN:
     title: 关于
   accounts:
     errors:
-      cannot_be_added_to_collections: 此账号无法被添加到收藏列表内。
+      cannot_be_added_to_collections: 此账号无法被添加到关注列表内。
     followers:
       other: 粉丝
-    following: 关注
+    following:
+      other: Following
     instance_actor_flash: 此账户是一个虚拟Actor，用于代表站点本身，而非任何个人用户。它用于联合目的，不应被封禁。
     last_active: 最后活跃
     link_verified_on: 此链接的所有权已于 %{date} 验证
@@ -52,6 +53,7 @@ zh-CN:
         label: 更改身份组
         no_role: 无身份组
         title: 为 %{username} 更改身份组
+      collections: Collections
       confirm: 确认
       confirmed: 已确认
       confirming: 正在确认
@@ -261,6 +263,7 @@ zh-CN:
         demote_user_html: "%{name} 降权了用户 %{target}"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解除了对哈希值为 %{target} 的邮件的屏蔽"
+        destroy_collection_html: "%{name} removed collection by %{target}"
         destroy_custom_emoji_html: "%{name} 删除了表情 %{target}"
         destroy_domain_allow_html: "%{name} 禁止了与实例 %{target} 的联合"
         destroy_domain_block_html: "%{name} 解除了对实例 %{target} 的屏蔽"
@@ -300,7 +303,7 @@ zh-CN:
         unsilence_account_html: "%{name} 解除了 %{target} 账户的限制"
         unsuspend_account_html: "%{name} 解除了 %{target} 账户的封禁"
         update_announcement_html: "%{name} 更新了公告 %{target}"
-        update_collection_html: "%{name} 更新了 %{target} 的收藏列表"
+        update_collection_html: "%{name} updated collection by %{target}"
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名封锁"
         update_ip_block_html: "%{name} 更改了 IP %{target} 的规则"
@@ -346,6 +349,14 @@ zh-CN:
         save: 保存
         title: 添加精选站点
       title: 精选站点
+    collections:
+      accounts: Accounts
+      collection_title: Collection by %{name}
+      contents: Contents
+      number_of_accounts:
+        other: "%{count} accounts"
+      open: Open
+      view_publicly: View publicly
     critical_update_pending: 有紧急更新
     custom_emojis:
       assign_category: 分配类别
@@ -677,6 +688,7 @@ zh-CN:
       cancel: 取消
       category: 类别
       category_description_html: 举报此账户和/或内容的原因将在与被举报账户的沟通中被引用
+      collections: Collections (%{count})
       comment:
         none: 无
       comment_description_html: '为提供更多信息，%{name} 写道：'
@@ -706,12 +718,13 @@ zh-CN:
       report: '举报 #%{id}'
       reported_account: 被举报的账户
       reported_by: 举报人
+      reported_content: Reported content
       reported_with_application: 提交举报的应用
       resolved: 已处理
       resolved_msg: 成功处理举报！
       skip_to_actions: 跳转到操作
       status: 状态
-      statuses: 被举报的内容
+      statuses: Posts (%{count})
       statuses_description_html: 违规内容将在与被举报账户的沟通中被引用
       summary:
         action_preambles:
@@ -798,6 +811,7 @@ zh-CN:
         view_devops_description: 允许用户访问 Sidekiq 和 pgHero 仪表板
         view_feeds: 查看实时动态与话题动态
         view_feeds_description: 允许用户无视站点设置访问实时动态与话题动态
+      requires_2fa: Requires two-factor authentication
       title: 身份组
     rules:
       add_new: 添加规则
@@ -971,6 +985,8 @@ zh-CN:
       elasticsearch_version_check:
         message_html: 'Elasticsearch 版本不兼容: %{value}'
         version_comparison: 正在运行的 Elasticsearch 版本是 %{running_version}，但需要 %{required_version} 版本
+      missing_indexes_check:
+        message_html: 'The following indexes are missing from the database and should be recreated: <code>%{value}</code>.<br> Missing indexes may lead to severely reduced performance and data inconsistencies.'
       rules_check:
         action: 管理站点规则
         message_html: 你尚未定义任何站点规则。
@@ -2000,10 +2016,7 @@ zh-CN:
     review_link: 查阅服务条款
     title: '%{domain} 的服务条款即将变更'
   themes:
-    contrast: Mastodon (高对比度)
-    default: Mastodon (暗色)
-    mastodon-light: Mastodon (亮色)
-    system: 自动 (使用系统主题)
+    default: Mastodon
   time:
     formats:
       default: "%Y年%b月%d日 %H:%M"
@@ -2028,6 +2041,8 @@ zh-CN:
     recovery_codes: 备用恢复代码
     recovery_codes_regenerated: 已重新生成恢复代码
     recovery_instructions_html: 如果你无法访问你的手机，可以使用下方的某个恢复代码来重新访问你的账户。<strong>请妥善保管恢复代码</strong>。例如，你可以将它们打印出来并与其它重要文件一起存放。
+    resume_app_authorization: Resume application authorization
+    role_requirement: "%{domain} requires you to set up Two-Factor Authentication before you can use Mastodon."
     webauthn: 安全密钥
   user_mailer:
     announcement_published:
