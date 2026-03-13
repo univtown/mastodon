@@ -2,8 +2,8 @@
 zh-CN:
   admin:
     custom_emojis:
-      batch_copy_error: 复制部分选定的表情时发生错误：%{message}
-      batch_error: 发生错误：%{message}
+      batch_copy_error: '复制部分选定的表情时发生错误：%{message}'
+      batch_error: '发生错误：%{message}'
     settings:
       bubble_domains:
         all: 对所有人
@@ -11,7 +11,7 @@ zh-CN:
         users: 对已登录的本站用户
       captcha_enabled:
         desc_html: 这依赖于来自 hCaptcha 的外部脚本，这可能会带来安全和隐私问题。此外，<strong>这可能会让注册过程对某些用户（特别是残障人士）的可访问性大大降低</strong>。出于这些原因，请考虑采用其它措施，例如基于申请或基于邀请的注册。
-        title: 要求新用户完成人机验证以确认其帐户
+        title: 要求新用户完成人机验证以确认其账户
       flavour_and_skin:
         title: 界面与皮肤
       hide_followers_count:
@@ -27,7 +27,7 @@ zh-CN:
         desc_html: 在本站时间线和公共时间线上显示对公开贴文的公开转发。
         title: 在公共时间线上显示转发
       show_replies_in_public_timelines:
-        desc_html: 除显示公开的自我回复（贴文串）外，还在本地和公共时间线上显示公开回复。
+        desc_html: 除显示公开的自我回复（贴文串）外，还在本站和跨站时间线上显示公开回复。
         title: 在公共时间线上显示回复
       trending_status_cw:
         desc_html: 启用热门贴文后，允许带有“内容警告”的贴文参与排行。此设置的更改不会追溯生效。
@@ -38,7 +38,7 @@ zh-CN:
       glitch_guide_link_text: glitch-soc 也是如此！
   auth:
     captcha_confirmation:
-      hint_html: 只差最后一步了！为确认你的帐户，本站要求你完成一次人机验证。如果你有任何疑问或在确认帐户时需要帮助，可以<a href="/about/more">联系站点管理员</a>。
+      hint_html: 只差最后一步了！为确认你的账户，本站要求你完成一次人机验证。如果你有任何疑问或在确认账户时需要帮助，可以<a href="/about/more">联系站点管理员</a>。
       title: 用户验证
   generic:
     use_this: 使用此项
