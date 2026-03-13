@@ -3,405 +3,405 @@ zh-CN:
   simple_form:
     hints:
       account:
-        attribution_domains: One per line. Protects from false attributions.
-        discoverable: Your public posts and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
-        display_name: Your full name or your fun name.
-        fields: Your homepage, pronouns, age, anything you want.
-        indexable: Your public posts may appear in search results on Mastodon. People who have interacted with your posts may be able to search them regardless.
-        note: 'You can @mention other people or #hashtags.'
-        show_collections: People will be able to browse through your follows and followers. People that you follow will see that you follow them regardless.
-        unlocked: People will be able to follow you without requesting approval. Uncheck if you want to review follow requests and choose whether to accept or reject new followers.
+        attribution_domains: 每行一个。防止错误归属。
+        discoverable: 你的公开贴文和账户可能会在Mastodon的各个区域被推荐或展示，你的账户也可能会被推荐给其它用户。
+        display_name: 你的全名或有趣的昵称。
+        fields: 你的主页、人称代词、年龄等任何你想填写的信息。
+        indexable: 你的公开贴文可能会出现在 Mastodon 的搜索结果中。无论此处设置如何，与你的贴文互动过的人都可以搜索到它们。
+        note: '你可以 @提及 其它人或使用 #话题。'
+        show_collections: 其它人将能够浏览你的关注和粉丝列表。无论此处设置如何，你关注的人都会看到你关注了他们。
+        unlocked: 其它人将能够直接关注你，而无需请求同意。如果你希望审核关注请求，并决定是接受还是拒绝新的粉丝，请取消勾选此项。
       account_alias:
-        acct: Specify the username@domain of the account you want to move from
+        acct: 指定你要从中迁出的账户的 用户名@域名
       account_migration:
-        acct: Specify the username@domain of the account you want to move to
+        acct: 指定你要转移到的账户的 用户名@域名
       account_warning_preset:
-        text: You can use post syntax, such as URLs, hashtags and mentions
-        title: Optional. Not visible to the recipient
+        text: 你可以使用贴文中的语法，例如 URL、话题和提及
+        title: 可选。不会向接收者显示
       admin_account_action:
-        include_statuses: The user will see which posts have caused the moderation action or warning
-        send_email_notification: The user will receive an explanation of what happened with their account
-        text_html: Optional. You can use post syntax. You can <a href="%{path}">add warning presets</a> to save time
-        type_html: Choose what to do with <strong>%{acct}</strong>
+        include_statuses: 用户将看到哪些贴文导致了管理操作或警告
+        send_email_notification: 用户将收到关于其账户发生情况的解释
+        text_html: 可选。你可以使用贴文语法。你也可以<a href="%{path}">添加警告预设</a>以节省时间
+        type_html: 选择要如何处理 <strong>%{acct}</strong>
         types:
-          disable: Prevent the user from using their account, but do not delete or hide their contents.
-          none: Use this to send a warning to the user, without triggering any other action.
-          sensitive: Force all this user's media attachments to be flagged as sensitive.
-          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
-          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
-        warning_preset_id: Optional. You can still add custom text to end of the preset
+          disable: 阻止用户使用其账户，但不会删除或隐藏其内容。
+          none: 使用此选项向用户发送警告，不会触发任何其它操作。
+          sensitive: 将该用户的所有媒体强制标记为敏感。
+          silence: 阻止该用户发布公开可见的贴文，并向未关注该用户的人隐藏其贴文和通知。关闭所有针对该账户的举报。
+          suspend: 阻止与该账户的任何互动，并删除其内容。可在 30 天内撤销。关闭所有针对该账户的举报。
+        warning_preset_id: 可选。你仍然可以在预设内容的末尾添加自定义文本
       announcement:
-        all_day: When checked, only the dates of the time range will be displayed
-        ends_at: Optional. Announcement will be automatically unpublished at this time
-        scheduled_at: Leave blank to publish the announcement immediately
-        starts_at: Optional. In case your announcement is bound to a specific time range
-        text: You can use post syntax. Please be mindful of the space the announcement will take up on the user's screen
+        all_day: 勾选后，将在对应的时间范围内全天显示
+        ends_at: 可选。公告将在此时间点后自动取消发布
+        scheduled_at: 留空则立即发布公告
+        starts_at: 可选。适用于你的公告有特定时间范围的情况
+        text: 你可以使用贴文语法。请注意公告将在用户屏幕上占用的空间
       appeal:
-        text: You can only appeal a strike once
+        text: 每次违规只能申诉一次
       defaults:
-        autofollow: People who sign up through the invite will automatically follow you
-        avatar: WEBP, PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
-        bot: Signal to others that the account mainly performs automated actions and might not be monitored
-        context: One or multiple contexts where the filter should apply
-        current_password: For security purposes please enter the password of the current account
-        current_username: To confirm, please enter the username of the current account
-        digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
-        email: You will be sent a confirmation e-mail
-        header: WEBP, PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
-        inbox_url: Copy the URL from the frontpage of the relay you want to use
-        irreversible: Filtered posts will disappear irreversibly, even if filter is later removed
-        locale: The language of the user interface, e-mails and push notifications
-        password: Use at least 8 characters
-        phrase: Will be matched regardless of casing in text or content warning of a post
-        scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
-        setting_advanced_layout: Display Mastodon as a multi-column layout, allowing you to view the timeline, notifications, and a third column of your choosing. Not recommended for smaller screens.
-        setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
-        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
-        setting_boost_modal: When enabled, boosting will first open a confirmation dialog in which you can change the visibility of your boost.
-        setting_default_quote_policy_private: Followers-only posts authored on Mastodon can't be quoted by others.
-        setting_default_quote_policy_unlisted: When people quote you, their post will also be hidden from trending timelines.
-        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
-        setting_display_media_default: Hide media marked as sensitive
-        setting_display_media_hide_all: Always hide media
-        setting_display_media_show_all: Always show media
-        setting_emoji_style: How to display emojis. "Auto" will try using native emoji, but falls back to Twemoji for legacy browsers.
-        setting_quick_boosting_html: When enabled, clicking on the %{boost_icon} Boost icon will immediately boost instead of opening the boost/quote dropdown menu. Relocates the quoting action to the %{options_icon} (Options) menu.
-        setting_system_scrollbars_ui: Applies only to desktop browsers based on Safari and Chrome
-        setting_use_blurhash: Gradients are based on the colors of the hidden visuals but obfuscate any details
-        setting_use_pending_items: Hide timeline updates behind a click instead of automatically scrolling the feed
-        username: You can use letters, numbers, and underscores
-        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
+        autofollow: 通过邀请注册的用户将自动关注你
+        avatar: 支持 WEBP、PNG、GIF 或 JPG 格式。最大 %{size}。将缩小至 %{dimensions} 像素
+        bot: 向它人表明该账户主要执行自动化操作，可能无人监控
+        context: 过滤规则将生效的一个或多个情景
+        current_password: 为安全起见，请输入当前账户的密码
+        current_username: 为进行确认，请输入当前账户的用户名
+        digest: 仅在你长时间不活跃并且在你离开期间收到任何私信时发送
+        email: 你将收到一封确认邮件
+        header: 支持 WEBP、PNG、GIF 或 JPG 格式。最大 %{size}。将缩小至 %{dimensions} 像素
+        inbox_url: 从你想使用的中继首页复制 URL
+        irreversible: 被过滤的贴文将不可逆地消失，即使之后过滤规则被移除也是如此
+        locale: 用户界面、邮件和推送通知的语言
+        password: 请使用至少 8 个字符
+        phrase: 无论贴文文本或内容警告中的大小写如何，都将进行匹配
+        scopes: 该应用将被允许访问哪些 API。如果你选择了一个顶层作用域，则无需选择单个作用域。
+        setting_advanced_layout: 将 Mastodon 的界面以多列布局显示，允许你同时查看时间线、通知及可自主选择的第三列。屏幕尺寸较小的情况下不推荐使用。
+        setting_aggregate_reblogs: 对于近期被转发过的贴文，不再显示新的转发（仅影响新收到的转发）
+        setting_always_send_emails: 当你活跃使用 Mastodon 时，通常不会发送邮件通知
+        setting_boost_modal: 若启用，转发前将会先弹出确认对话框，以便更改转发的可见性。
+        setting_default_quote_policy_private: 在 Mastodon 发布的仅粉丝可见的贴文无法被他人引用。
+        setting_default_quote_policy_unlisted: 当有人引用你时，ta 的贴文也会从热门时间线上隐藏。
+        setting_default_sensitive: 敏感内容默认隐藏，点击即可显示
+        setting_display_media_default: 隐藏被标为敏感的内容
+        setting_display_media_hide_all: 始终隐藏媒体内容
+        setting_display_media_show_all: 始终显示媒体内容
+        setting_emoji_style: 如何显示表情。“自动”会尝试使用系统原生表情，但对于旧版浏览器会回退到 Twemoji。
+        setting_quick_boosting_html: 启用后，点击 %{boost_icon} 转发按钮将立即进行转发，而不是弹出转发/引用下拉菜单。这会将引用操作移至 %{options_icon} 更多选项菜单。
+        setting_system_scrollbars_ui: 仅适用于基于 Safari 和 Chrome 的桌面浏览器
+        setting_use_blurhash: 渐变效果基于被隐藏视觉元素的颜色，但会模糊掉所有细节
+        setting_use_pending_items: 时间线的更新内容将需要点击才会显示，而不会自动滚动
+        username: 你可以使用字母、数字和下划线
+        whole_word: 当关键词或短语仅由字母和数字组成时，只有在完全命中整个单词时才会生效
       domain_allow:
-        domain: This domain will be able to fetch data from this server and incoming data from it will be processed and stored
+        domain: 该站点将能够从本站点获取数据，其传入的数据也将被处理和储存
       email_domain_block:
-        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
-        with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
+        domain: 这可以是邮件地址中显示的域名或其使用的 MX 记录。系统将在用户注册时进行检查。
+        with_dns_records: 系统将尝试解析给定域名的 DNS 记录，其解析结果也将被一并屏蔽
       featured_tag:
-        name: 'Here are some of the hashtags you used the most recently:'
+        name: '以下是你最近最常用的一些话题：'
       filters:
-        action: Choose which action to perform when a post matches the filter
+        action: 选择当贴文命中过滤规则时要执行的操作
         actions:
-          blur: Hide media behind a warning, without hiding the text itself
-          hide: Completely hide the filtered content, behaving as if it did not exist
-          warn: Hide the filtered content behind a warning mentioning the filter's title
+          blur: 隐藏媒体并显示内容警告，但不隐藏文本
+          hide: 完全隐藏被过滤的内容，就像它不存在一样
+          warn: 将被过滤的内容隐藏在一条包含过滤规则标题的警告之后
       form_admin_settings:
-        activity_api_enabled: Counts of locally published posts, active users, and new registrations in weekly buckets
-        app_icon: WEBP, PNG, GIF or JPG. Overrides the default app icon on mobile devices with a custom icon.
-        backups_retention_period: Users have the ability to generate archives of their posts to download later. When set to a positive value, these archives will be automatically deleted from your storage after the specified number of days.
-        bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations. Provide a comma-separated list of accounts.
-        closed_registrations_message: Displayed when sign-ups are closed
-        content_cache_retention_period: All posts from other servers (including boosts and replies) will be deleted after the specified number of days, without regard to any local user interaction with those posts. This includes posts where a local user has marked it as bookmarks or favorites. Private mentions between users from different instances will also be lost and impossible to restore. Use of this setting is intended for special purpose instances and breaks many user expectations when implemented for general purpose use.
-        custom_css: You can apply custom styles on the web version of Mastodon.
-        favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
-        landing_page: Selects what page new visitors see when they first arrive on your server. If you select "Trends", then trends needs to be enabled in the Discovery Settings. If you select "Local feed", then "Access to live feeds featuring local posts" needs to be set to "Everyone" in the Discovery Settings.
-        mascot: Overrides the illustration in the advanced web interface.
-        media_cache_retention_period: Media files from posts made by remote users are cached on your server. When set to a positive value, media will be deleted after the specified number of days. If the media data is requested after it is deleted, it will be re-downloaded, if the source content is still available. Due to restrictions on how often link preview cards poll third-party sites, it is recommended to set this value to at least 14 days, or link preview cards will not be updated on demand before that time.
-        min_age: Users will be asked to confirm their date of birth during sign-up
-        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
-        profile_directory: The profile directory lists all users who have opted-in to be discoverable.
-        require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
-        site_contact_email: How people can reach you for legal or support inquiries.
-        site_contact_username: How people can reach you on Mastodon.
-        site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
-        site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
-        site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
-        site_title: How people may refer to your server besides its domain name.
-        status_page_url: URL of a page where people can see the status of this server during an outage
-        theme: Theme that logged out visitors and new users see.
-        thumbnail: A roughly 2:1 image displayed alongside your server information.
-        trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
-        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
-        wrapstodon: Offer local users to generate a playful summary of their Mastodon use during the year. This feature is available between the 10th and 31st of December of each year, and is offered to users who made at least one Public or Quiet Public post and used at least one hashtag within the year.
+        activity_api_enabled: 以周为单位统计的本站贴文数、活跃用户数和新注册数
+        app_icon: 支持 WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖移动设备上的默认应用图标。
+        backups_retention_period: 用户可以生成其贴文的存档供日后下载。当设置为正值时，这些存档将在指定天数后自动从你的存储中删除。
+        bootstrap_timeline_accounts: 这些账户将在新用户关注推荐列表中置顶。提供的账户列表需以英文逗号分隔不同用户名。
+        closed_registrations_message: 在注册关闭时显示
+        content_cache_retention_period: 来自其它站点的所有贴文（包括转发和回复）都将在指定的天数后被删除，无论本站用户与这些贴文有何互动都会如此。这包括本站用户已收藏或点赞的贴文。不同站点的用户之间的私信也将丢失且无法恢复。此设置旨在用于特殊用途的实例，在用于通用目的时会打破许多用户的期望。
+        custom_css: 你可以在网页版Mastodon上应用自定义样式。
+        favicon: 支持 WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖默认的 Mastodon 网站图标。
+        landing_page: 选择新访客首次访问你的站点时看到的页面。如果你选择 "热门"，则需要在发现设置中启用热门。如果您选择 "本站动态"，则需要在发现设置中将 "本站贴文时间线的公开范围" 设置为 "所有人"。
+        mascot: 覆盖高级 Web 界面中的插图。
+        media_cache_retention_period: 外站用户贴文中的媒体文件会缓存在你的站点上。当设置为正值时，媒体将在指定天数后被删除。如果媒体数据在删除后被请求，并且来源仍然可用，它将被重新下载。由于生成链接预览卡时轮询第三方网站的频率有限制，建议将此值设置为至少 14 天，否则链接预览卡在此之前将不会按需更新。
+        min_age: 用户在注册时将被要求确认其出生日期
+        peers_api_enabled: 此站点在联邦宇宙中遇到的站点列表。此处不包含任何关于你是否与给定站点联合的数据，只包含此站点知道该站点存在。这被用于一般意义上收集联邦统计数据的服务。
+        profile_directory: 公开账户目录会列出所有选择可被发现的用户。
+        require_invite_text: 当注册需要手动批准时，将“你为什么想加入？”文本输入设为必填项而非可选项
+        site_contact_email: 人们如何就法律或支持问题与你联系。
+        site_contact_username: 人们如何在 Mastodon 上与你联系。
+        site_extended_description: 任何可能对访客和你的用户有用的附加信息。可以使用 Markdown 语法进行排版。
+        site_short_description: 一段简短描述，以帮助唯一地识别你的站点。它由谁运营，为谁服务？
+        site_terms: 使用你自己的隐私政策，或留空以使用默认政策。可以使用 Markdown 语法进行排版。
+        site_title: 除了域名之外，人们如何称呼你的站点。
+        status_page_url: 一个页面的 URL，人们可以在服务中断期间查看此站点的状态
+        theme: 未登录的访客和新用户看到的主题。
+        thumbnail: 与你的站点信息一同显示的图片，比例大致为 2:1。
+        trendable_by_default: 跳过对热门内容的人工审核。单个热门项目仍然可以从热门中移除。
+        trends: 热门会显示哪些贴文、话题和新闻故事正在你的站点上获得关注。
+        wrapstodon: 为本地用户提供一份有趣的年度 Mastodon 使用情况总结。该功能在每年的 12 月 10 日至 31 日期间可用，提供给当年至少发布过一条 "公开" 或 "不公开" 贴文，且至少使用过一个话题的用户。
       form_challenge:
-        current_password: You are entering a secure area
+        current_password: 你正在进入安全区
       imports:
-        data: CSV file exported from another Mastodon server
+        data: 从另一个 Mastodon 站点导出的 CSV 文件
       invite_request:
-        text: This will help us review your application
+        text: 这将帮助我们审核你的申请
       ip_block:
-        comment: Optional. Remember why you added this rule.
-        expires_in: IP addresses are a finite resource, they are sometimes shared and often change hands. For this reason, indefinite IP blocks are not recommended.
-        ip: Enter an IPv4 or IPv6 address. You can block entire ranges using the CIDR syntax. Be careful not to lock yourself out!
+        comment: 可选。有助于记住你添加此规则的原因。
+        expires_in: IP 地址是有限的资源，有时会被共享，并且经常易手。因此，不建议无限期地封禁 IP 地址。
+        ip: 输入 IPv4 或 IPv6 地址。你可以使用 CIDR 语法封禁整个地址段。注意不要封禁你自己的地址！
         severities:
-          no_access: Block access to all resources
-          sign_up_block: New sign-ups will not be possible
-          sign_up_requires_approval: New sign-ups will require your approval
-        severity: Choose what will happen with requests from this IP
+          no_access: 屏蔽对所有资源的访问
+          sign_up_block: 将无法进行新注册
+          sign_up_requires_approval: 新注册需要你的批准
+        severity: 选择如何处理来自此 IP 的请求
       rule:
-        hint: Optional. Provide more details about the rule
-        text: Describe a rule or requirement for users on this server. Try to keep it short and simple
+        hint: 可选。提供有关该规则的更多详细信息
+        text: 描述此站点上用户的规则或要求。请尽量保持简短
       sessions:
-        otp: 'Enter the two-factor code generated by your phone app or use one of your recovery codes:'
-        webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
+        otp: '输入你的手机应用生成的双因素验证码，或使用你的恢复代码之一：'
+        webauthn: 如果它是一个 USB 密钥，请确保插入它，并在必要时轻触它。
       settings:
-        indexable: Your profile page may appear in search results on Google, Bing, and others.
-        show_application: You will always be able to see which app published your post regardless.
+        indexable: 你的账户可能会出现在 Google、Bing 等搜索引擎的结果中。
+        show_application: 无论如何，你始终可以看到哪个应用发布了你的贴文。
       tag:
-        name: You can only change the casing of the letters, for example, to make it more readable
+        name: 你可以更改字母的大小写，使其更具可读性
       terms_of_service:
-        changelog: Can be structured with Markdown syntax.
-        effective_date: A reasonable timeframe can range anywhere from 10 to 30 days from the date you notify your users.
-        text: Can be structured with Markdown syntax.
+        changelog: 可以使用 Markdown 语法来组织结构。
+        effective_date: 从你通知用户之日起，合理的时间范围通常在 10 到 30 天。
+        text: 可以使用 Markdown 语法来组织结构。
       terms_of_service_generator:
-        admin_email: Legal notices include counternotices, court orders, takedown requests, and law enforcement requests.
-        arbitration_address: Can be the same as Physical address above, or “N/A” if using email.
-        arbitration_website: Can be a web form, or “N/A” if using email.
-        choice_of_law: City, region, territory or state the internal substantive laws of which shall govern any and all claims.
-        dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
-        dmca_email: Can be the same email used for “Email address for legal notices” above.
-        domain: Unique identification of the online service you are providing.
-        jurisdiction: List the country where whoever pays the bills lives. If it’s a company or other entity, list the country where it’s incorporated, and the city, region, territory or state as appropriate.
-        min_age: Should not be below the minimum age required by the laws of your jurisdiction.
+        admin_email: 法律声明包括反通知、法院命令、移除请求和执法部门请求。
+        arbitration_address: 可以与上方的实际地址相同，使用邮件时可填“N/A”。
+        arbitration_website: 可以是网页表单，如果使用邮件则填“N/A”。
+        choice_of_law: 管辖所有主张的内部实体法所属的市、区、领或州。
+        dmca_address: 对于美国运营者，请使用在 DMCA 指派代理目录中注册的地址。你可以直接申请使用邮政信箱地址，要这样做，请通过 DMCA 指派代理邮政信箱豁免请求向版权局发送邮件，并说明你是居家工作的内容审核员，担心因你的行为而遭到报复，需要使用邮政信箱来避免在公开信息中列出你的家庭住址。
+        dmca_email: 可以与上述“法律通知邮件地址”相同。
+        domain: 你所提供的在线服务的唯一标识。
+        jurisdiction: 列出账单支付者居住的国家。如果支付者是公司或其它实体，请列出其注册成立的国家，以及相应的城市、地区、领地或州。
+        min_age: 不应低于你所在司法管辖区法律规定的最低年龄。
       user:
-        chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
+        chosen_languages: 选中后，公共时间线上将只显示所选语言的贴文
         date_of_birth:
-          other: We have to make sure you're at least %{count} to use %{domain}. We won't store this.
-        role: The role controls which permissions the user has.
+          other: 我们必须确认你已年满 %{count} 岁才能使用 %{domain}。我们不会存储此信息。
+        role: 该身份组控制用户拥有的权限。
       user_role:
-        color: Color to be used for the role throughout the UI, as RGB in hex format
-        highlighted: This makes the role publicly visible
-        name: Public name of the role, if role is set to be displayed as a badge
-        permissions_as_keys: Users with this role will have access to...
-        position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+        color: 在整个用户界面中用于该身份组的颜色，为十六进制格式的 RGB 值
+        highlighted: 这将使该身份组公开可见
+        name: 身份组的公开名称，用于在启用相应设置时外显为徽章
+        permissions_as_keys: 此身份组中的用户将有权访问…...
+        position: 在某些情况下，由较高优先级的身份组决定冲突的解决方式。某些操作只能对优先级较低的身份组执行
       username_block:
-        allow_with_approval: Instead of preventing sign-up outright, matching sign-ups will require your approval
-        comparison: Please be mindful of the Scunthorpe Problem when blocking partial matches
-        username: Will be matched regardless of casing and common homoglyphs like "4" for "a" or "3" for "e"
+        allow_with_approval: 不直接禁止注册，而是要求符合规则的新注册经过你的手动批准
+        comparison: 屏蔽部分匹配时请注意潜在的Scunthorpe问题（正常单词因内部包含被屏蔽的部分而被屏蔽）
+        username: 匹配不限大小写及常见同形异义字符，如“4”和“a”及“3”和“e”等
       webhook:
-        events: Select events to send
-        template: Compose your own JSON payload using variable interpolation. Leave blank for default JSON.
-        url: Where events will be sent to
+        events: 选择要发送的事件
+        template: 使用变量插值撰写你自己的 JSON 数据。留空则使用默认 JSON。
+        url: 事件被发送到的位置
     labels:
       account:
-        attribution_domains: Websites allowed to credit you
-        discoverable: Feature profile and posts in discovery algorithms
+        attribution_domains: 允许标记你为来源的网站
+        discoverable: 在发现算法中推荐账户和贴文
         fields:
-          name: Label
-          value: Content
-        indexable: Include public posts in search results
-        show_collections: Show follows and followers on profile
-        unlocked: Automatically accept new followers
+          name: 标签
+          value: 内容
+        indexable: 在搜索结果中包含公开贴文
+        show_collections: 在账户页显示关注和被关注列表
+        unlocked: 自动接受新的粉丝
       account_alias:
-        acct: Handle of the old account
+        acct: 旧账户的用户名
       account_migration:
-        acct: Handle of the new account
+        acct: 新账户的用户名
       account_warning_preset:
-        text: Preset text
-        title: Title
+        text: 预设文本
+        title: 标题
       admin_account_action:
-        include_statuses: Include reported posts in the e-mail
-        send_email_notification: Notify the user per e-mail
-        text: Custom warning
-        type: Action
+        include_statuses: 在邮件中包含被举报的贴文
+        send_email_notification: 通过邮件通知用户
+        text: 自定义警告
+        type: 操作
         types:
-          disable: Freeze
-          none: Send a warning
-          sensitive: Sensitive
-          silence: Limit
-          suspend: Suspend
-        warning_preset_id: Use a warning preset
+          disable: 冻结
+          none: 发送警告
+          sensitive: 敏感
+          silence: 限制
+          suspend: 封禁
+        warning_preset_id: 使用预设警告
       announcement:
-        all_day: All-day event
-        ends_at: End of event
-        scheduled_at: Schedule publication
-        starts_at: Start of event
-        text: Announcement
+        all_day: 全天有效
+        ends_at: 结束时间
+        scheduled_at: 预设发布时间
+        starts_at: 开始时间
+        text: 公告
       appeal:
-        text: Explain why this decision should be reversed
+        text: 说明撤销此决定的原因
       defaults:
-        autofollow: Invite to follow your account
-        avatar: Profile picture
-        bot: This is an automated account
-        chosen_languages: Filter languages
-        confirm_new_password: Confirm new password
-        confirm_password: Confirm password
-        context: Filter contexts
-        current_password: Current password
-        data: Data
-        display_name: Display name
-        email: E-mail address
-        expires_in: Expire after
-        fields: Extra fields
-        header: Header picture
-        honeypot: "%{label} (do not fill in)"
-        inbox_url: URL of the relay inbox
-        irreversible: Drop instead of hide
-        locale: Interface language
-        max_uses: Max number of uses
-        new_password: New password
-        note: Bio
-        otp_attempt: Two-factor code
-        password: Password
-        phrase: Keyword or phrase
-        setting_advanced_layout: Enable advanced web interface
-        setting_aggregate_reblogs: Group boosts in timelines
-        setting_always_send_emails: Always send e-mail notifications
-        setting_auto_play_gif: Auto-play animated GIFs
-        setting_boost_modal: Control boosting visibility
-        setting_color_scheme: Mode
-        setting_contrast: Contrast
-        setting_default_language: Posting language
-        setting_default_privacy: Posting visibility
-        setting_default_quote_policy: Who can quote
-        setting_default_sensitive: Always mark media as sensitive
-        setting_delete_modal: Warn me before deleting a post
-        setting_disable_hover_cards: Disable profile preview on hover
-        setting_disable_swiping: Disable swiping motions
-        setting_display_media: Media display
-        setting_display_media_default: Default
-        setting_display_media_hide_all: Hide all
-        setting_display_media_show_all: Show all
-        setting_emoji_style: Emoji style
-        setting_expand_spoilers: Always expand posts marked with content warnings
-        setting_hide_network: Hide your social graph
-        setting_missing_alt_text_modal: Warn me before posting media without alt text
-        setting_quick_boosting: Enable quick boosting
-        setting_reduce_motion: Reduce motion in animations
-        setting_system_font_ui: Use system's default font
-        setting_system_scrollbars_ui: Use system's default scrollbar
-        setting_theme: Site theme
-        setting_trends: Show today's trends
-        setting_unfollow_modal: Show confirmation dialog before unfollowing someone
-        setting_use_blurhash: Show colorful gradients for hidden media
-        setting_use_pending_items: Slow mode
-        severity: Severity
-        sign_in_token_attempt: Security code
-        title: Title
-        type: Import type
-        username: Username
-        username_or_email: Username or Email
-        whole_word: Whole word
+        autofollow: 让被邀请人关注你的账户
+        avatar: 头像
+        bot: 这是一个无人值守账户
+        chosen_languages: 筛选语言
+        confirm_new_password: 确认新密码
+        confirm_password: 确认密码
+        context: 筛选情景
+        current_password: 当前密码
+        data: 数据
+        display_name: 昵称
+        email: 邮件地址
+        expires_in: 剩余时间
+        fields: 额外属性
+        header: 账户页背景图
+        honeypot: "%{label}（请勿填写）"
+        inbox_url: 中继收件箱 URL
+        irreversible: 丢弃而非隐藏
+        locale: 界面语言
+        max_uses: 最大使用次数
+        new_password: 新密码
+        note: 简介
+        otp_attempt: 双因素验证码
+        password: 密码
+        phrase: 关键词
+        setting_advanced_layout: 启用高级网页界面
+        setting_aggregate_reblogs: 在时间线中将转发单独分组
+        setting_always_send_emails: 总是发送邮件通知
+        setting_auto_play_gif: 自动播放 GIF 动画
+        setting_boost_modal: 在转发前显示确认对话框
+        setting_color_scheme: 模式
+        setting_contrast: 对比度
+        setting_default_language: 贴文语言
+        setting_default_privacy: 贴文可见性
+        setting_default_quote_policy: 谁可以引用
+        setting_default_sensitive: 总是将媒体标记为敏感
+        setting_delete_modal: 在删除贴文前显示确认对话框
+        setting_disable_hover_cards: 鼠标悬停时不显示账户卡片
+        setting_disable_swiping: 禁用滑动手势
+        setting_display_media: 显示媒体
+        setting_display_media_default: 默认
+        setting_display_media_hide_all: 全部隐藏
+        setting_display_media_show_all: 全部显示
+        setting_emoji_style: Emoji 风格
+        setting_expand_spoilers: 总是展开有内容警告的贴文
+        setting_hide_network: 隐藏你的社交关系
+        setting_missing_alt_text_modal: 在发布没有替代文本的媒体前显示确认对话框
+        setting_quick_boosting: 启用快速转发
+        setting_reduce_motion: 减少动画中的动态效果
+        setting_system_font_ui: 使用系统默认字体
+        setting_system_scrollbars_ui: 使用系统默认滚动条
+        setting_theme: 站点主题
+        setting_trends: 显示今日热门
+        setting_unfollow_modal: 在取关前显示确认对话框
+        setting_use_blurhash: 为隐藏的媒体文件显示彩色渐变
+        setting_use_pending_items: 慢速模式
+        severity: 严重程度
+        sign_in_token_attempt: 安全码
+        title: 标题
+        type: 导入类型
+        username: 用户名
+        username_or_email: 用户名或邮箱
+        whole_word: 整词匹配
       email_domain_block:
-        with_dns_records: Include MX records and IPs of the domain
+        with_dns_records: 包含该域名的 MX 记录和 IP
       featured_tag:
-        name: Hashtag
+        name: 话题
       filters:
         actions:
-          blur: Hide media with a warning
-          hide: Hide completely
-          warn: Hide with a warning
+          blur: 隐藏媒体并显示警告
+          hide: 完全隐藏
+          warn: 隐藏并显示警告
       form_admin_settings:
-        activity_api_enabled: Publish aggregate statistics about user activity in the API
-        app_icon: App icon
-        backups_retention_period: User archive retention period
-        bootstrap_timeline_accounts: Always recommend these accounts to new users
-        closed_registrations_message: Custom message when sign-ups are not available
-        content_cache_retention_period: Remote content retention period
-        custom_css: Custom CSS
-        favicon: Favicon
-        landing_page: Landing page for new visitors
-        local_live_feed_access: Access to live feeds featuring local posts
-        local_topic_feed_access: Access to hashtag and link feeds featuring local posts
-        mascot: Custom mascot (legacy)
-        media_cache_retention_period: Media cache retention period
-        min_age: Minimum age requirement
-        peers_api_enabled: Publish list of discovered servers in the API
-        profile_directory: Enable profile directory
-        registrations_mode: Who can sign-up
-        remote_live_feed_access: Access to live feeds featuring remote posts
-        remote_topic_feed_access: Access to hashtag and link feeds featuring remote posts
-        require_invite_text: Require a reason to join
-        show_domain_blocks: Show domain blocks
-        show_domain_blocks_rationale: Show why domains were blocked
-        site_contact_email: Contact e-mail
-        site_contact_username: Contact username
-        site_extended_description: Extended description
-        site_short_description: Server description
-        site_terms: Privacy Policy
-        site_title: Server name
-        status_page_url: Status page URL
-        theme: Default theme
-        thumbnail: Server thumbnail
-        trendable_by_default: Allow trends without prior review
-        trends: Enable trends
-        wrapstodon: Enable Wrapstodon
+        activity_api_enabled: 在 API 中发布用户活动的汇总统计信息
+        app_icon: 应用图标
+        backups_retention_period: 用户归档保留期限
+        bootstrap_timeline_accounts: 始终向新用户推荐以下账户
+        closed_registrations_message: 注册服务关闭时的自定义消息
+        content_cache_retention_period: 外站内容保留期限
+        custom_css: 自定义 CSS
+        favicon: 站点图标
+        landing_page: 新访客的落地页
+        local_live_feed_access: 展示本站贴文的实时动态访问权限
+        local_topic_feed_access: 展示本站贴文的话题与链接的列表的公开范围
+        mascot: 自定义吉祥物（旧版）
+        media_cache_retention_period: 媒体缓存留存期限
+        min_age: 最低年龄要求
+        peers_api_enabled: 通过 API 发布已发现的站点列表
+        profile_directory: 启用账户目录
+        registrations_mode: 谁可以注册
+        remote_live_feed_access: 展示外站贴文的实时动态访问权限
+        remote_topic_feed_access: 展示外站贴文的话题与链接的列表的公开范围
+        require_invite_text: 需要注册理由
+        show_domain_blocks: 显示站点屏蔽条目
+        show_domain_blocks_rationale: 显示站点屏蔽原因
+        site_contact_email: 联系邮箱
+        site_contact_username: 联系账户
+        site_extended_description: 扩展描述
+        site_short_description: 站点描述
+        site_terms: 隐私政策
+        site_title: 站点名称
+        status_page_url: 状态页 URL
+        theme: 默认主题
+        thumbnail: 站点缩略图
+        trendable_by_default: 允许话题不经审核进入热门
+        trends: 启用热门
+        wrapstodon: 启用 Wrapstodon 年度回顾
       interactions:
-        must_be_follower: Block notifications from non-followers
-        must_be_following: Block notifications from people you don't follow
-        must_be_following_dm: Block direct messages from people you don't follow
+        must_be_follower: 屏蔽来自非粉丝的通知
+        must_be_following: 屏蔽来自你未关注的人的通知
+        must_be_following_dm: 屏蔽来自你未关注的人的私信
       invite:
-        comment: Comment
+        comment: 评论
       invite_request:
-        text: Why do you want to join?
+        text: 你为什么想加入这里？
       ip_block:
-        comment: Comment
+        comment: 评论
         ip: IP
         severities:
-          no_access: Block access
-          sign_up_block: Block sign-ups
-          sign_up_requires_approval: Limit sign-ups
-        severity: Rule
+          no_access: 阻止访问
+          sign_up_block: 阻止注册
+          sign_up_requires_approval: 限制注册
+        severity: 规则
       notification_emails:
-        appeal: Someone appeals a moderator decision
-        digest: Send digest e-mails
-        favourite: Someone favourited your post
-        follow: Someone followed you
-        follow_request: Someone requested to follow you
-        mention: Someone mentioned you
-        pending_account: New account needs review
-        quote: Someone quoted you
-        reblog: Someone boosted your post
-        report: New report is submitted
+        appeal: 有人对管理员的决定提出申诉
+        digest: 发送摘要邮件
+        favourite: 有人点赞了你的贴文
+        follow: 有人关注了你
+        follow_request: 有人请求关注你
+        mention: 有人提到了你
+        pending_account: 有新账户需要审核
+        quote: 有人引用了你的贴文
+        reblog: 有人转发了你的贴文
+        report: 有新举报提交
         software_updates:
-          all: Notify on all updates
-          critical: Notify on critical updates only
-          label: A new Mastodon version is available
-          none: Never notify of updates (not recommended)
-          patch: Notify on bugfix updates
-        trending_tag: New trend requires review
+          all: 所有更新都通知
+          critical: 仅在有重要更新时通知
+          label: 有新的 Mastodon 版本可用
+          none: 从不通知更新（不推荐）
+          patch: 在有漏洞修复更新时通知
+        trending_tag: 有新热门话题需要审核
       rule:
-        hint: Additional information
-        text: Rule
+        hint: 附加信息
+        text: 规则
       settings:
-        indexable: Include profile page in search engines
-        show_application: Display from which app you sent a post
+        indexable: 在搜索引擎中显示账户页
+        show_application: 显示你发送贴文所使用的应用
       tag:
-        listable: Allow this hashtag to appear in searches and suggestions
-        name: Hashtag
-        trendable: Allow this hashtag to appear under trends
-        usable: Allow posts to use this hashtag locally
+        listable: 允许话题出现在搜索和推荐中
+        name: 话题
+        trendable: 允许话题出现在热门中
+        usable: 允许本站贴文使用此话题
       terms_of_service:
-        changelog: What's changed?
-        effective_date: Effective date
-        text: Terms of Service
+        changelog: 内容变更
+        effective_date: 生效日期
+        text: 服务条款
       terms_of_service_generator:
-        admin_email: Email address for legal notices
-        arbitration_address: Physical address for arbitration notices
-        arbitration_website: Website for submitting arbitration notices
-        choice_of_law: Choice of Law
-        dmca_address: Physical address for DMCA/copyright notices
-        dmca_email: Email address for DMCA/copyright notices
-        domain: Domain
-        jurisdiction: Legal jurisdiction
-        min_age: Minimum age
+        admin_email: 用于接收法律通知的邮件地址
+        arbitration_address: 用于接收仲裁通知的实体地址
+        arbitration_website: 提交仲裁通知的站点
+        choice_of_law: 法律选择
+        dmca_address: 用于接收DMCA/版权声明的实体地址
+        dmca_email: 用于接收DMCA/版权通知的邮件地址
+        domain: 域名
+        jurisdiction: 法律管辖区
+        min_age: 最低年龄
       user:
-        date_of_birth_1i: Year
-        date_of_birth_2i: Month
-        date_of_birth_3i: Day
-        role: Role
-        time_zone: Time zone
+        date_of_birth_1i: 年
+        date_of_birth_2i: 月
+        date_of_birth_3i: 日
+        role: 身份组
+        time_zone: 时区
       user_role:
-        color: Badge color
-        highlighted: Display role as badge on user profiles
-        name: Name
-        permissions_as_keys: Permissions
-        position: Priority
+        color: 徽章颜色
+        highlighted: 在账户页上以徽章形式显示身份组
+        name: 名称
+        permissions_as_keys: 权限
+        position: 优先级
       username_block:
-        allow_with_approval: Allow registrations with approval
-        comparison: Method of comparison
-        username: Word to match
+        allow_with_approval: 允许注册但需要审核
+        comparison: 比较方法
+        username: 要匹配的关键词
       webhook:
-        events: Enabled events
-        template: Payload template
-        url: Endpoint URL
-    'no': 'No'
-    not_recommended: Not recommended
-    overridden: Overridden
-    recommended: Recommended
+        events: 已启用的事件
+        template: 内容模板
+        url: 端点 URL
+    'no': '否'
+    not_recommended: 不推荐
+    overridden: 已覆盖
+    recommended: 推荐
     required:
       mark: "*"
-      text: required
+      text: 必填
     title:
       sessions:
-        webauthn: Use one of your security keys to sign in
-    'yes': 'Yes'
+        webauthn: 使用你的安全密钥登录
+    'yes': '是'
