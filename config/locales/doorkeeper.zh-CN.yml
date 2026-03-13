@@ -83,7 +83,8 @@ zh-CN:
         access_denied: 资源所有者或授权站点拒绝了该请求。
         credential_flow_not_configured: 资源所有者的密码凭据流程失败，因为尚未配置 Doorkeeper.configure.resource_owner_from_credentials 。
         invalid_client: 客户端认证失败，原因为客户端未知、未包含客户端认证或认证方法不被支持。
-        invalid_code_challenge_method: 代码质询方法必须为 S256，不支持 plain。
+        invalid_code_challenge_method:
+          other: The code_challenge_method must be one of %{challenge_methods}.
         invalid_grant: 提供的授权许可无效、已过期、已被撤销、与授权请求中使用的重定向 URI不匹配，或已颁发给其它客户端。
         invalid_redirect_uri: 提供的重定向 URI 无效。
         invalid_request:
