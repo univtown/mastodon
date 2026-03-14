@@ -648,7 +648,7 @@ zh-CN:
       disable: 禁用
       disabled: 已禁用
       enable: 启用
-      enable_hint: 启用后，你的站点将订阅来自此中继的所有公开贴文，并开始将本站点的公开贴文发送给它。
+      enable_hint: 启用后，你的站点将订阅来自此中继的所有公开贴文，并开始将本站的公开贴文发送给它。
       enabled: 已启用
       inbox_url: 中继 URL
       pending: 等待中继批准
@@ -1189,7 +1189,7 @@ zh-CN:
       next_steps: 你可以批准申诉以撤销管理措施，或忽略此申诉。
       subject: "%{username} 正在对 %{instance} 的管理措施提出申诉"
     new_critical_software_updates:
-      body: Mastodon已发布新的紧急更新，建议你尽快更新！
+      body: Mastodon 已发布新的紧急更新，建议你尽快更新！
       subject: '%{instance} 有可用的 Mastodon 紧急更新！'
     new_pending_account:
       body: 新账户的详细信息如下。你可以批准或拒绝此申请。
@@ -1579,7 +1579,7 @@ zh-CN:
       muting: 导入账户隐藏列表
     type: 导入类型
     type_groups:
-      constructive: 关注与书签
+      constructive: 关注与收藏
       destructive: 屏蔽和隐藏
     types:
       blocking: 屏蔽列表
@@ -1761,7 +1761,7 @@ zh-CN:
     wrong_code: 输入的验证码无效！站点时间与设备时间是否一致？
   pagination:
     newer: 较新
-    next: 下一个
+    next: 下一页
     older: 较旧
     prev: 上一页
     truncate: "&hellip;"
@@ -1958,7 +1958,7 @@ zh-CN:
       nobody: 仅自己
       public: 任何人
     quote_post_author: 引用了 %{acct} 的贴文
-    title: '%{name}：「%{quote}」'
+    title: '%{name}：“%{quote}”'
     visibilities:
       direct: 私信
       private: 仅粉丝
