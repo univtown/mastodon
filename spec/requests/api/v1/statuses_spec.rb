@@ -416,17 +416,13 @@ RSpec.describe '/api/v1/statuses' do
           Rails.configuration.x.anon.enabled = true
           Rails.configuration.x.anon.account_username = proxy_user.account.username
           Rails.configuration.x.anon.tag = '匿了'
-          Rails.configuration.x.anon.name_list = ['Anon']
+          Rails.configuration.x.anon.name_list = ["Anon\n"]
           Rails.configuration.x.anon.period_hours = 24
           Rails.configuration.x.anon.salt = 'test-salt'
 
           example.run
         ensure
           Rails.configuration.x.anon = original_anon_config
-        end
-
-        before do
-          allow_any_instance_of(Api::V1::StatusesController).to receive(:generate_anonymous_name).and_return("Anon\n")
         end
 
         context 'with markdown content' do
@@ -438,7 +434,7 @@ RSpec.describe '/api/v1/statuses' do
             expect(response).to have_http_status(200)
             expect(response.parsed_body[:content]).to include('Anon:')
             expect(response.parsed_body[:content]).to include('hello world')
-            expect(response.parsed_body[:content]).not_to include('[Anon]')
+            expect(response.parsed_body[:content]).to_not include('[Anon]')
           end
         end
 
@@ -474,7 +470,7 @@ RSpec.describe '/api/v1/statuses' do
           let(:params) { { status: 'hello world 匿了', scheduled_at: 10.minutes.from_now } }
 
           it 'returns 422 and does not create a scheduled status', :aggregate_failures do
-            expect { subject }.not_to change { proxy_user.account.scheduled_statuses.count }
+            expect { subject }.to_not(change { proxy_user.account.scheduled_statuses.count })
 
             expect(response).to have_http_status(422)
             expect(response.content_type)
@@ -491,7 +487,7 @@ RSpec.describe '/api/v1/statuses' do
 
           it 'returns 422 and does not create a regular post', :aggregate_failures do
             expect { subject }
-              .not_to change(Status, :count)
+              .to_not change(Status, :count)
 
             expect(response).to have_http_status(422)
             expect(response.parsed_body[:error]).to eq('Anonymous posting is temporarily unavailable')
@@ -500,14 +496,14 @@ RSpec.describe '/api/v1/statuses' do
 
         context 'when the anonymous name cannot be generated' do
           before do
-            allow_any_instance_of(Api::V1::StatusesController).to receive(:generate_anonymous_name).and_return(nil)
+            Rails.configuration.x.anon.name_list = []
           end
 
           let(:params) { { status: 'hello world 匿了' } }
 
           it 'returns 422 and does not create a regular post', :aggregate_failures do
             expect { subject }
-              .not_to change(Status, :count)
+              .to_not change(Status, :count)
 
             expect(response).to have_http_status(422)
             expect(response.parsed_body[:error]).to eq('Anonymous posting is temporarily unavailable')
@@ -519,7 +515,7 @@ RSpec.describe '/api/v1/statuses' do
 
           it 'returns 422 and does not create a regular post', :aggregate_failures do
             expect { subject }
-              .not_to change(Status, :count)
+              .to_not change(Status, :count)
 
             expect(response).to have_http_status(422)
             expect(response.parsed_body[:error]).to eq('Anonymous post content cannot be empty')

@@ -126,9 +126,9 @@ class Api::V1::StatusesController < Api::BaseController
     begin
       if sender_account != current_user.account && status_params[:media_ids].present?
         transferred_media = current_user.account.media_attachments
-                                        .where(status_id: nil)
-                                        .where(id: status_params[:media_ids])
-                                        .to_a
+          .where(status_id: nil)
+          .where(id: status_params[:media_ids])
+          .to_a
 
         transferred_media.each do |media|
           media.update!(account_id: sender_account.id)

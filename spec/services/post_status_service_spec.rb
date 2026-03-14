@@ -344,7 +344,7 @@ RSpec.describe PostStatusService do
     first_status = subject.call(posting_account, text: 'test', idempotency: 'meepmeep', idempotency_account: first_account)
     second_status = subject.call(posting_account, text: 'test', idempotency: 'meepmeep', idempotency_account: second_account)
 
-    expect(second_status.id).not_to eq first_status.id
+    expect(second_status.id).to_not eq first_status.id
   end
 
   def create_status_with_options(**options)
