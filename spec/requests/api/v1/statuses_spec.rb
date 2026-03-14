@@ -392,6 +392,141 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'when posting anonymously' do
+        let(:user) do
+          Fabricate(:user, settings: {
+            default_content_type: 'text/markdown',
+            default_privacy: 'unlisted',
+            default_language: 'zh-CN',
+            default_sensitive: true,
+          })
+        end
+        let!(:proxy_user) do
+          Fabricate(:user, account_attributes: { username: 'anonproxy' }, settings: {
+            default_content_type: 'text/plain',
+            default_privacy: 'private',
+            default_language: 'en',
+            default_sensitive: false,
+          })
+        end
+
+        around do |example|
+          original_anon_config = Rails.configuration.x.anon
+          Rails.configuration.x.anon = ActiveSupport::OrderedOptions.new
+          Rails.configuration.x.anon.enabled = true
+          Rails.configuration.x.anon.account_username = proxy_user.account.username
+          Rails.configuration.x.anon.tag = '匿了'
+          Rails.configuration.x.anon.name_list = ['Anon']
+          Rails.configuration.x.anon.period_hours = 24
+          Rails.configuration.x.anon.salt = 'test-salt'
+
+          example.run
+        ensure
+          Rails.configuration.x.anon = original_anon_config
+        end
+
+        before do
+          allow_any_instance_of(Api::V1::StatusesController).to receive(:generate_anonymous_name).and_return("Anon\n")
+        end
+
+        context 'with markdown content' do
+          let(:params) { { status: 'hello world 匿了' } }
+
+          it 'renders non-empty content with normalized anonymous name', :aggregate_failures do
+            expect { subject }.to change { proxy_user.account.statuses.count }.by(1)
+
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body[:content]).to include('Anon:')
+            expect(response.parsed_body[:content]).to include('hello world')
+            expect(response.parsed_body[:content]).not_to include('[Anon]')
+          end
+        end
+
+        context 'with markdown content containing a link' do
+          let(:params) { { status: 'https://example.com 匿了' } }
+
+          it 'keeps rendered content non-empty', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body[:content]).to include('Anon:')
+            expect(response.parsed_body[:content]).to include('href=')
+          end
+        end
+
+        context 'without explicit posting options' do
+          let(:params) { { status: 'hello world 匿了' } }
+
+          it 'uses the requesting user defaults instead of the proxy defaults', :aggregate_failures do
+            subject
+
+            status = proxy_user.account.statuses.order(id: :desc).first
+
+            expect(response).to have_http_status(200)
+            expect(status.content_type).to eq 'text/markdown'
+            expect(status.visibility).to eq 'unlisted'
+            expect(status.language).to eq 'zh-CN'
+            expect(status.sensitive).to be true
+          end
+        end
+
+        context 'when scheduling an anonymous post' do
+          let(:params) { { status: 'hello world 匿了', scheduled_at: 10.minutes.from_now } }
+
+          it 'returns 422 and does not create a scheduled status', :aggregate_failures do
+            expect { subject }.not_to change { proxy_user.account.scheduled_statuses.count }
+
+            expect(response).to have_http_status(422)
+            expect(response.content_type)
+              .to start_with('application/json')
+          end
+        end
+
+        context 'when the proxy account cannot be found' do
+          before do
+            Rails.configuration.x.anon.account_username = 'missing-proxy'
+          end
+
+          let(:params) { { status: 'hello world 匿了' } }
+
+          it 'returns 422 and does not create a regular post', :aggregate_failures do
+            expect { subject }
+              .not_to change(Status, :count)
+
+            expect(response).to have_http_status(422)
+            expect(response.parsed_body[:error]).to eq('Anonymous posting is temporarily unavailable')
+          end
+        end
+
+        context 'when the anonymous name cannot be generated' do
+          before do
+            allow_any_instance_of(Api::V1::StatusesController).to receive(:generate_anonymous_name).and_return(nil)
+          end
+
+          let(:params) { { status: 'hello world 匿了' } }
+
+          it 'returns 422 and does not create a regular post', :aggregate_failures do
+            expect { subject }
+              .not_to change(Status, :count)
+
+            expect(response).to have_http_status(422)
+            expect(response.parsed_body[:error]).to eq('Anonymous posting is temporarily unavailable')
+          end
+        end
+
+        context 'when anonymous content becomes empty after cleaning' do
+          let(:params) { { status: '匿了' } }
+
+          it 'returns 422 and does not create a regular post', :aggregate_failures do
+            expect { subject }
+              .not_to change(Status, :count)
+
+            expect(response).to have_http_status(422)
+            expect(response.parsed_body[:error]).to eq('Anonymous post content cannot be empty')
+          end
+        end
+      end
+
       context 'when exceeding rate limit' do
         before do
           rate_limiter = RateLimiter.new(user.account, family: :statuses)

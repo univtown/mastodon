@@ -81,43 +81,46 @@ class Api::V1::StatusesController < Api::BaseController
   def create
     original_text = status_params[:status]
     transferred_media = []
+    sender_account = current_user.account
+    processed_text = original_text
+    application_to_use = doorkeeper_token.application
+    idempotency_account = current_user.account
+    effective_post_options = resolved_post_options
 
     if should_post_anonymously?(original_text)
-      anon_config = Rails.configuration.x.anon
-      proxy_account = Account.find_by(username: anon_config.account_username)
-
-      if proxy_account
-        anonymous_name = generate_anonymous_name(current_user.account)
-
-        if anonymous_name
-          cleaned_text = Status.new.clean_anonymous_tag(original_text)
-
-          if cleaned_text.blank?
-            Rails.logger.warn('Anonymous post content is empty after cleaning, falling back to normal post')
-            processed_text = original_text
-            sender_account = current_user.account
-            application_to_use = doorkeeper_token.application
-          else
-            processed_text = "[#{anonymous_name}]:\n#{cleaned_text}"
-            sender_account = proxy_account
-            application_to_use = nil
-          end
-        else
-          Rails.logger.warn('Anonymous name generation returned nil, falling back to normal post')
-          processed_text = original_text
-          sender_account = current_user.account
-          application_to_use = doorkeeper_token.application
-        end
-      else
-        Rails.logger.warn('Anonymous proxy account not found, falling back to normal post')
-        processed_text = original_text
-        sender_account = current_user.account
-        application_to_use = doorkeeper_token.application
+      if status_params[:scheduled_at].present?
+        render json: { error: 'Anonymous posts cannot be scheduled' }, status: 422
+        return
       end
-    else
-      sender_account = current_user.account
-      processed_text = original_text
-      application_to_use = doorkeeper_token.application
+
+      anon_config = Rails.configuration.x.anon
+      proxy_account = Account.find_local(anon_config.account_username)
+
+      if proxy_account.nil?
+        Rails.logger.warn('Anonymous proxy account not found, rejecting anonymous post')
+        render json: { error: 'Anonymous posting is temporarily unavailable' }, status: 422
+        return
+      end
+
+      anonymous_name = normalize_anonymous_name(generate_anonymous_name(current_user.account))
+
+      if anonymous_name.blank?
+        Rails.logger.warn('Anonymous name generation returned blank, rejecting anonymous post')
+        render json: { error: 'Anonymous posting is temporarily unavailable' }, status: 422
+        return
+      end
+
+      cleaned_text = Status.new.clean_anonymous_tag(original_text)
+
+      if cleaned_text.blank?
+        Rails.logger.warn('Anonymous post content is empty after cleaning, rejecting anonymous post')
+        render json: { error: 'Anonymous post content cannot be empty' }, status: 422
+        return
+      end
+
+      processed_text = "#{anonymous_name}:\n\n#{cleaned_text}"
+      sender_account = proxy_account
+      application_to_use = nil
     end
 
     begin
@@ -139,17 +142,18 @@ class Api::V1::StatusesController < Api::BaseController
         quoted_status: @quoted_status,
         quote_approval_policy: quote_approval_policy,
         media_ids: status_params[:media_ids],
-        sensitive: status_params[:sensitive],
+        sensitive: effective_post_options[:sensitive],
         spoiler_text: status_params[:spoiler_text],
-        visibility: status_params[:visibility],
-        language: status_params[:language],
+        visibility: effective_post_options[:visibility],
+        language: effective_post_options[:language],
         scheduled_at: status_params[:scheduled_at],
         application: application_to_use,
         poll: status_params[:poll],
-        content_type: status_params[:content_type],
-        local_only: status_params[:local_only],
+        content_type: effective_post_options[:content_type],
+        local_only: effective_post_options[:local_only],
         allowed_mentions: status_params[:allowed_mentions],
         idempotency: request.headers['Idempotency-Key'],
+        idempotency_account: idempotency_account,
         with_rate_limit: true
       )
     rescue => e
@@ -294,9 +298,24 @@ class Api::V1::StatusesController < Api::BaseController
     ActiveModel::Serializer::CollectionSerializer.new(accounts, serializer: REST::AccountSerializer)
   end
 
+  def resolved_post_options
+    {
+      content_type: status_params[:content_type].presence || current_user.setting_default_content_type,
+      visibility: status_params[:visibility].presence || current_user.setting_default_privacy,
+      language: status_params[:language].presence || current_user.preferred_posting_language,
+      sensitive: status_params[:sensitive].nil? ? current_user.setting_default_sensitive : status_params[:sensitive],
+      local_only: status_params[:local_only],
+    }
+  end
+
+  def normalize_anonymous_name(name)
+    name.to_s.gsub(/\R+/, ' ').strip
+  end
+
   def should_post_anonymously?(text)
     anon_config = Rails.configuration.x.anon
-    anon_config.enabled &&
+    text.present? &&
+      anon_config.enabled &&
       anon_config.account_username.present? &&
       anon_config.tag.present? &&
       text.strip.match?(/#{Regexp.escape(anon_config.tag)}(?:\s*#{Regexp.escape('👁')}\ufe0f?)?\s*\z/)

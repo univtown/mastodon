@@ -30,6 +30,7 @@ class PostStatusService < BaseService
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
+  # @option [Account] :idempotency_account Optional account used to scope idempotency keys
   # @option [Boolean] :with_rate_limit
   # @option [Enumerable] :allowed_mentions Optional array of expected mentioned account IDs, raises `UnexpectedMentionsError` if unexpected accounts end up in mentions
   # @return [Status]
@@ -204,7 +205,7 @@ class PostStatusService < BaseService
   end
 
   def idempotency_key
-    "idempotency:status:#{@account.id}:#{@options[:idempotency]}"
+    "idempotency:status:#{idempotency_account.id}:#{@options[:idempotency]}"
   end
 
   def idempotency_given?
@@ -226,13 +227,20 @@ class PostStatusService < BaseService
   def with_idempotency
     return yield unless idempotency_given?
 
-    with_redis_lock("idempotency:lock:status:#{@account.id}:#{@options[:idempotency]}") do
-      return idempotency_duplicate if idempotency_duplicate?
+    with_redis_lock("idempotency:lock:status:#{idempotency_account.id}:#{@options[:idempotency]}") do
+      if idempotency_duplicate?
+        @status = idempotency_duplicate
+        return @status
+      end
 
       yield
 
       redis.setex(idempotency_key, 3_600, @status.id)
     end
+  end
+
+  def idempotency_account
+    @options[:idempotency_account] || @account
   end
 
   def scheduled_in_the_past?
@@ -285,6 +293,7 @@ class PostStatusService < BaseService
       options_hash[:quoted_status_id] = options_hash.delete(:quoted_status)&.id
       options_hash[:scheduled_at]    = nil
       options_hash[:idempotency]     = nil
+      options_hash[:idempotency_account] = nil
       options_hash[:with_rate_limit] = false
     end
   end

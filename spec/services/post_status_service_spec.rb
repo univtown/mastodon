@@ -336,6 +336,17 @@ RSpec.describe PostStatusService do
     expect(status2.id).to eq status1.id
   end
 
+  it 'scopes idempotency keys by idempotency_account when provided' do
+    posting_account = Fabricate(:account)
+    first_account = Fabricate(:account)
+    second_account = Fabricate(:account)
+
+    first_status = subject.call(posting_account, text: 'test', idempotency: 'meepmeep', idempotency_account: first_account)
+    second_status = subject.call(posting_account, text: 'test', idempotency: 'meepmeep', idempotency_account: second_account)
+
+    expect(second_status.id).not_to eq first_status.id
+  end
+
   def create_status_with_options(**options)
     subject.call(Fabricate(:account), options.merge(text: 'test'))
   end
