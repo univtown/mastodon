@@ -968,6 +968,7 @@
   "onboarding.profile.discoverable_hint": "当你选择在 Mastodon 上可被发现时，你的贴文可能会出现在搜索结果和热门中，你的账户也可能会被推荐给与你有相似兴趣的人。",
   "onboarding.profile.display_name": "昵称",
   "onboarding.profile.display_name_hint": "你的全名或昵称…",
+  "onboarding.profile.finish": "完成",
   "onboarding.profile.note": "简介",
   "onboarding.profile.note_hint": "你可以在此 @提及他人或 #话题…",
   "onboarding.profile.save_and_continue": "保存并继续",

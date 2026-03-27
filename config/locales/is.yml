@@ -1283,6 +1283,7 @@ is:
     progress:
       confirm: Staðfesta tölvupóstfang
       details: Nánari upplýsingar þínar
+      list: Nýskráningarferli
       review: Yfirferð okkar
       rules: Samþykkja reglur
     providers:
@@ -1298,6 +1299,7 @@ is:
       invited_by: 'Þú getur tekið þátt í %{domain} þökk sé boði sem þú fékkst frá:'
       preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
       preamble_invited: Áður en haldið er lengra, vinsamlegast kynntu þér reglurnar sem stjórnendur %{domain} hafa sett.
+      read_more: Lesa meira
       title: Nokkrar grunnreglur.
       title_invited: Þér hefur verið boðið.
     security: Öryggi
