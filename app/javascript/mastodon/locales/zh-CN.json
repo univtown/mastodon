@@ -167,6 +167,8 @@
   "account_edit.field_delete_modal.delete_button": "删除",
   "account_edit.field_delete_modal.title": "是否删除自定义字段？",
   "account_edit.field_edit_modal.add_title": "添加自定义字段",
+  "account_edit.field_edit_modal.discard_confirm": "丢弃",
+  "account_edit.field_edit_modal.discard_message": "你有尚未保存的更改。确定要丢弃这些更改吗？",
   "account_edit.field_edit_modal.edit_title": "编辑自定义字段",
   "account_edit.field_edit_modal.limit_header": "超出推荐字符限制",
   "account_edit.field_edit_modal.limit_message": "移动端用户可能无法完整看到你的字段。",
