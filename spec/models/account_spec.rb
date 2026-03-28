@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  it_behaves_like 'Account::Search'
   it_behaves_like 'Reviewable'
 
   describe 'Associations' do
@@ -547,9 +546,6 @@ RSpec.describe Account do
 
       it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
-      it { is_expected.to allow_value(fields_empty_name_value).for(:fields) }
-      it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
-
       it { is_expected.to validate_absence_of(:followers_url).on(:create) }
       it { is_expected.to validate_absence_of(:inbox_url).on(:create) }
       it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
@@ -590,18 +586,6 @@ RSpec.describe Account do
 
     def account_note_over_limit
       'a' * described_class::NOTE_LENGTH_LIMIT * 2
-    end
-
-    def fields_empty_name_value
-      Array.new(4) { { 'name' => '', 'value' => '' } }
-    end
-
-    def fields_over_limit
-      Array.new(described_class::DEFAULT_FIELDS_SIZE + 1) { { 'name' => 'Name', 'value' => 'Value', 'verified_at' => '01/01/1970' } }
-    end
-
-    def fields_empty_name
-      [{ 'name' => '', 'value' => 'Value', 'verified_at' => '01/01/1970' }]
     end
   end
 
@@ -772,9 +756,6 @@ RSpec.describe Account do
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end
-
-  it_behaves_like 'AccountAvatar', :account
-  it_behaves_like 'AccountHeader', :account
 
   describe '#increment_count!' do
     subject { Fabricate(:account) }

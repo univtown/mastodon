@@ -41,7 +41,7 @@ class Tag < ApplicationRecord
   HASHTAG_LAST_SEQUENCE = '([[:word:]_]*[[:alpha:]][[:word:]_]*)'
   HASHTAG_NAME_PAT = "#{HASHTAG_FIRST_SEQUENCE}|#{HASHTAG_LAST_SEQUENCE}".freeze
 
-  HASHTAG_RE = /(?<=^|\s)[#＃](#{HASHTAG_NAME_PAT})/
+  HASHTAG_RE = /(?<=^|[[:space:]])[#＃](#{HASHTAG_NAME_PAT})/
   HASHTAG_NAME_RE = /\A(#{HASHTAG_NAME_PAT})\z/i
   HASHTAG_INVALID_CHARS_RE = /[^[:alnum:]\u0E47-\u0E4E#{HASHTAG_SEPARATORS}]/
 
@@ -128,7 +128,7 @@ class Tag < ApplicationRecord
     end
 
     def search_for(term, limit = 5, offset = 0, options = {})
-      stripped_term = term.strip
+      stripped_term = term.to_s.strip
       options.reverse_merge!({ exclude_unlistable: true, exclude_unreviewed: false })
 
       query = Tag.matches_name(stripped_term)
