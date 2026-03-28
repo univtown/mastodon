@@ -7,7 +7,7 @@ zh-CN:
       defaults:
         avatar_description: 为盲人或低视力人群提供你的头像描述。
         header_description: 为盲人或低视力人群提供你的账户页背景图描述。
-        setting_default_content_type_html: 在发贴时默认使用原始 HTML 格式，除非另外指定
+        setting_default_content_type_html: 在发贴时默认使用原始 HTML 格式，除非另外指定帖
         setting_default_content_type_markdown: 在发帖时默认使用 Markdown 进行富文本格式化，除非另外指定
         setting_default_content_type_plain: 在发帖时默认使用无特殊格式的纯文本，除非另外指定（这是 Mastodon 的默认行为）
         setting_default_language: 系统可以自动检测你贴文的语言，但结果可能不一定准确

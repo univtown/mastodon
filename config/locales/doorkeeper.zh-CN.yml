@@ -85,7 +85,7 @@ zh-CN:
         invalid_client: 客户端认证失败，原因为客户端未知、未包含客户端认证或认证方法不被支持。
         invalid_code_challenge_method:
           other: code_challenge_method 必须为 %{challenge_methods} 其中之一。
-        invalid_grant: 提供的授权许可无效、已过期、已被撤销、与授权请求中使用的重定向 URI不匹配，或已颁发给其它客户端。
+        invalid_grant: 提供的授权许可无效、已过期、已被撤销、与授权请求中使用的重定向 URI 不匹配，或已颁发给其它客户端。
         invalid_redirect_uri: 提供的重定向 URI 无效。
         invalid_request:
           missing_param: '缺少必需参数：%{value}。'
@@ -184,7 +184,7 @@ zh-CN:
       "read:search": 使用你的账户执行搜索
       "read:statuses": 查看所有贴文
       write: 修改你的所有账户数据
-      "write:accounts": 修改你的账户
+      "write:accounts": 修改你的个人资料
       "write:blocks": 屏蔽账户和站点
       "write:bookmarks": 收藏贴文
       "write:conversations": 静音和删除对话

@@ -4,7 +4,7 @@ zh-CN:
     hints:
       account:
         attribution_domains: 每行一个。防止错误归属。
-        discoverable: 你的公开贴文和账户可能会在Mastodon的各个区域被推荐或展示，你的账户也可能会被推荐给其它用户。
+        discoverable: 你的公开贴文和账户可能会在 Mastodon 的各个区域被推荐或展示，你的账户也可能会被推荐给其它用户。
         display_name: 你的全名或有趣的昵称。
         fields: 你的主页、人称代词、年龄等任何你想填写的信息。
         indexable: 你的公开贴文可能会出现在 Mastodon 的搜索结果中。无论此处设置如何，与你的贴文互动过的人都可以搜索到它们。
@@ -91,7 +91,7 @@ zh-CN:
         bootstrap_timeline_accounts: 这些账户将在新用户关注推荐列表中置顶。提供的账户列表需以英文逗号分隔不同用户名。
         closed_registrations_message: 在注册关闭时显示
         content_cache_retention_period: 来自其它站点的所有贴文（包括转发和回复）都将在指定的天数后被删除，无论本站用户与这些贴文有何互动都会如此。这包括本站用户已收藏或点赞的贴文。不同站点的用户之间的私信也将丢失且无法恢复。此设置旨在用于特殊用途的实例，在用于通用目的时会打破许多用户的期望。
-        custom_css: 你可以在网页版Mastodon上应用自定义样式。
+        custom_css: 你可以在 Mastodon 网页版上应用自定义样式。
         favicon: 支持 WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖默认的 Mastodon 网站图标。
         landing_page: 选择新访客首次访问你的站点时看到的页面。如果你选择 "热门"，则需要在发现设置中启用热门。如果您选择 "本站动态"，则需要在发现设置中将 "本站贴文时间线的公开范围" 设置为 "所有人"。
         mascot: 覆盖高级 Web 界面中的插图。
@@ -134,6 +134,7 @@ zh-CN:
         otp: '输入你的手机应用生成的双因素验证码，或使用你的恢复代码之一：'
         webauthn: 如果它是一个 USB 密钥，请确保插入它，并在必要时轻触它。
       settings:
+        email_subscriptions: 禁用后将保留现有订阅者，但会停止发送电子邮件。
         indexable: 你的账户可能会出现在 Google、Bing 等搜索引擎的结果中。
         show_application: 无论如何，你始终可以看到哪个应用发布了你的贴文。
       tag:
@@ -221,7 +222,7 @@ zh-CN:
         data: 数据
         display_name: 昵称
         email: 邮件地址
-        expires_in: 剩余时间
+        expires_in: 剩余
         fields: 额外属性
         filter_action: 过滤规则操作
         header: 账户页背景图
@@ -355,6 +356,7 @@ zh-CN:
         hint: 附加信息
         text: 规则
       settings:
+        email_subscriptions: 启用邮件订阅
         indexable: 在搜索引擎中显示账户页
         show_application: 显示你发送贴文所使用的应用
       tag:
