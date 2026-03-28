@@ -134,7 +134,7 @@ zh-CN:
         otp: '输入你的手机应用生成的双因素验证码，或使用你的恢复代码之一：'
         webauthn: 如果它是一个 USB 密钥，请确保插入它，并在必要时轻触它。
       settings:
-        email_subscriptions: Disabling retains existing subscribers but stops sending emails.
+        email_subscriptions: 禁用后将保留现有订阅者，但会停止发送电子邮件。
         indexable: 你的账户可能会出现在 Google、Bing 等搜索引擎的结果中。
         show_application: 无论如何，你始终可以看到哪个应用发布了你的贴文。
       tag:
@@ -356,7 +356,7 @@ zh-CN:
         hint: 附加信息
         text: 规则
       settings:
-        email_subscriptions: Enable email sign-ups
+        email_subscriptions: 启用邮件订阅
         indexable: 在搜索引擎中显示账户页
         show_application: 显示你发送贴文所使用的应用
       tag:
