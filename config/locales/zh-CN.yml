@@ -758,6 +758,7 @@ zh-CN:
       categories:
         administration: 管理
         devops: DevOps
+        email: Email
         invites: 邀请
         moderation: 运营
         special: 特殊
@@ -773,6 +774,8 @@ zh-CN:
         administrator_description: 拥有此权限的用户将绕过所有其它权限
         delete_user_data: 删除用户数据
         delete_user_data_description: 允许用户立即删除其它用户的数据
+        invite_bypass_approval: Invite Users without review
+        invite_bypass_approval_description: Allows people invited to the server by these users to bypass moderation approval
         invite_users: 邀请用户
         invite_users_description: 允许用户邀请新用户加入站点
         manage_announcements: 管理公告
@@ -783,6 +786,8 @@ zh-CN:
         manage_blocks_description: 允许用户屏蔽邮件提供者和 IP 地址
         manage_custom_emojis: 管理自定义表情
         manage_custom_emojis_description: 允许用户管理站点上的自定义表情
+        manage_email_subscriptions: Manage Email Subscriptions
+        manage_email_subscriptions_description: Allow users to subscribe to users with this permission by email
         manage_federation: 管理联合
         manage_federation_description: 允许用户阻止或允许与其它域名的联合，并控制投递
         manage_invites: 管理邀请
@@ -1231,7 +1236,6 @@ zh-CN:
   application_mailer:
     notification_preferences: 更改邮件设置
     salutation: "%{name}，"
-    settings: '更改邮件设置：%{link}'
     unsubscribe: 取消订阅
     view: '查看：'
     view_profile: 查看账户页
@@ -1282,6 +1286,7 @@ zh-CN:
     progress:
       confirm: 确认邮件
       details: 你的详细信息
+      list: Sign up progress
       review: 我们的审核
       rules: 接受规则
     providers:
@@ -1297,6 +1302,7 @@ zh-CN:
       invited_by: '你收到了来自以下用户的邀请，因此可以加入%{domain}：'
       preamble: 这些规则由 %{domain} 的管理员制定和执行。
       preamble_invited: 在你继续之前，请仔细阅读由 %{domain} 管理员制定的基本规则。
+      read_more: Read more
       title: 一些基本规则。
       title_invited: 你已被邀请。
     security: 安全
@@ -1418,6 +1424,38 @@ zh-CN:
     basic_information: 基本信息
     hint_html: "<strong>自定义它人在你的公开账户页和你的贴文旁看到的内容。</strong> 当你拥有完整的个人资料和头像时，其他人更有可能关注你并与你互动。"
     other: 其它
+    redesign_body: Profile editing can now be accessed directly from the profile page.
+    redesign_button: Go there
+    redesign_title: There’s a new profile editing experience
+  email_subscription_mailer:
+    confirmation:
+      action: Confirm email address
+      instructions_to_confirm: Confirm you'd like to receive emails from %{name} (@%{acct}) when they publish new posts.
+      instructions_to_ignore: If you're not sure why you received this email, you can delete it. You will not be subscribed if you don't click on the link above.
+      subject: Confirm your email address
+      title: Get email updates from %{name}?
+    notification:
+      create_account: Create a Mastodon account
+      footer:
+        privacy_html: Emails are sent from %{domain}, a server powered by Mastodon. To understand how this server processes your personal data, refer to the <a href="%{privacy_policy_path}">Privacy Policy</a>.
+        reason_for_email_html: You're receiving this email because you opted into email updates from %{name}. Don't want to receive these emails? <a href="%{unsubscribe_path}">Unsubscribe</a>
+      interact_with_this_post:
+        other: Interact with these posts and discover more.
+      subject:
+        other: New posts from %{name}
+      title:
+        other: New posts from %{name}
+  email_subscriptions:
+    active: Active
+    confirmations:
+      show:
+        changed_your_mind: Changed your mind?
+        success_html: You'll now start receiving emails when %{name} publishes new posts. Add %{sender} to your contacts so these posts don't end up in your Spam folder.
+        title: You're signed up
+        unsubscribe: Unsubscribe
+    inactive: Inactive
+    status: Status
+    subscribers: Subscribers
   emoji_styles:
     auto: 自动
     native: 系统
@@ -1632,21 +1670,6 @@ zh-CN:
     failed_sign_in_html: 使用 %{method} 从 %{ip} (%{browser}) 登录失败
     successful_sign_in_html: 使用 %{method} 从 %{ip} (%{browser}) 成功登录
     title: 身份验证历史记录
-  mail_subscriptions:
-    unsubscribe:
-      action: 是，退订
-      complete: 已退订
-      confirmation_html: 你确定要取消订阅发往你邮箱 %{email} 的、来自 %{domain} 上 Mastodon 的 %{type} 吗？你可以随时在<a href="%{settings_path}">邮件通知设置</a>中重新订阅。
-      emails:
-        notification_emails:
-          favourite: 点赞通知邮件
-          follow: 关注通知邮件
-          follow_request: 关注请求邮件
-          mention: 提及通知邮件
-          reblog: 转发通知邮件
-      resubscribe_html: 如果你误操作取消了订阅，可以从你的<a href="%{settings_path}">邮件通知设置</a>中重新订阅。
-      success_html: 你将不会在你的邮箱 %{email} 收到来自 %{domain} 上 Mastodon 的%{type}。
-      title: 取消订阅
   media_attachments:
     validations:
       images_and_video: 无法将视频附加到已经包含图片的贴文中
@@ -1785,6 +1808,8 @@ zh-CN:
     posting_defaults: 默认发帖设置
     public_timelines: 公共时间线
   privacy:
+    email_subscriptions: Send posts via email
+    email_subscriptions_hint_html: Add an email sign-up form to your profile that appears for logged-out users. When visitors enter their email address and opt in, Mastodon will send email updates for your public posts.
     hint_html: "<strong>自定义你的账户和贴文被发现的方式。</strong>启用 Mastodon 的各种功能可以帮助你覆盖更广泛的受众。请花点时间查看这些设置，以确保它们符合你的使用需求。"
     privacy: 隐私
     privacy_hint_html: 控制你希望向它人披露多少信息。用户通过浏览他人的关注列表以及查看对方使用的应用来发现有趣的账户和酷炫的应用，但你可能更愿意将其隐藏起来。
@@ -2044,6 +2069,28 @@ zh-CN:
     resume_app_authorization: 恢复应用授权
     role_requirement: "%{domain} 要求你在使用 Mastodon 之前设置双因素身份验证。"
     webauthn: 安全密钥
+  unsubscriptions:
+    create:
+      action: Go to server homepage
+      email_subscription:
+        confirmation_html: You'll no longer receive emails from %{name}.
+      title: You are unsubscribed
+      user:
+        confirmation_html: You'll no longer receive %{type} from Mastodon on %{domain}.
+    notification_emails:
+      favourite: favorite notification emails
+      follow: follow notification emails
+      follow_request: follow request emails
+      mention: mention notification emails
+      reblog: boost notification emails
+    show:
+      action: Unsubscribe
+      email_subscription:
+        confirmation_html: You'll stop receiving emails when this account publishes new posts.
+        title: Unsubscribe from %{name}?
+      user:
+        confirmation_html: You'll stop receiving %{type} from Mastodon on %{domain}.
+        title: Unsubscribe from %{type}?
   user_mailer:
     announcement_published:
       description: '%{domain} 的管理员发布了一则公告：'
