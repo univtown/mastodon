@@ -1464,11 +1464,11 @@ en:
         one: Interact with this post and discover more like it.
         other: Interact with these posts and discover more.
       subject:
-        plural: New posts from %{name}
-        singular: 'New post: "%{excerpt}"'
+        one: 'New post: "%{excerpt}"'
+        other: New posts from %{name}
       title:
-        plural: New posts from %{name}
-        singular: 'New post: "%{excerpt}"'
+        one: 'New post: "%{excerpt}"'
+        other: New posts from %{name}
   email_subscriptions:
     active: Active
     confirmations:
