@@ -1442,11 +1442,11 @@ zh-CN:
       interact_with_this_post:
         other: 与这些贴文互动，发现更多内容。
       subject:
-        plural: New posts from %{name}
-        singular: 'New post: "%{excerpt}"'
+        plural: 来自 %{name} 的新贴文
+        singular: '新贴文: “%{excerpt}”'
       title:
-        plural: New posts from %{name}
-        singular: 'New post: "%{excerpt}"'
+        plural: 来自 %{name} 的新贴文
+        singular: '新贴文: “%{excerpt}”'
   email_subscriptions:
     active: 已启用
     confirmations:
