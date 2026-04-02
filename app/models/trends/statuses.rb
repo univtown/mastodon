@@ -5,10 +5,12 @@ class Trends::Statuses < Trends::Base
 
   BATCH_SIZE = 100
 
+  SCORE_HALFLIFE = (ENV['TREND_STATUS_HALFLIFE_HOURS'] || 1).to_i
+
   self.default_options = {
     threshold: ENV.fetch('TRENDS_STATUSES_THRESHOLD', ENV.fetch('TRENDS_THRESHOLD', 5)).to_i,
     review_threshold: ENV.fetch('TRENDS_STATUSES_REVIEW_THRESHOLD', ENV.fetch('TRENDS_REVIEW_THRESHOLD', 3)).to_i,
-    score_halflife: TrendsSettingsParser.parse_duration(ENV.fetch('TRENDS_STATUSES_SCORE_HALFLIFE', ENV.fetch('TRENDS_SCORE_HALFLIFE', nil)), 2.hours).freeze,
+    score_halflife: TrendsSettingsParser.parse_duration(ENV.fetch('TRENDS_STATUSES_SCORE_HALFLIFE', ENV.fetch('TRENDS_SCORE_HALFLIFE', nil)), SCORE_HALFLIFE.hours).freeze,
     decay_threshold: ENV.fetch('TRENDS_STATUSES_DECAY_THRESHOLD', ENV.fetch('TRENDS_DECAY_THRESHOLD', 0.3)).to_f,
   }
 
