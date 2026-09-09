@@ -2,8 +2,8 @@
 zh-CN:
   admin:
     custom_emojis:
-      batch_copy_error: '复制部分选定的表情时发生错误：%{message}'
-      batch_error: '发生错误：%{message}'
+      batch_copy_error: 复制部分选定的表情时发生错误：%{message}
+      batch_error: 发生错误：%{message}
     settings:
       bubble_domains:
         all: 对所有人
