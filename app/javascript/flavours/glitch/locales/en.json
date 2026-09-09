@@ -108,7 +108,6 @@
   "settings.shared_settings_link": "user preferences",
   "settings.show_content_type_choice": "Show content-type choice when authoring toots",
   "settings.show_published_toast": "Display toast when publishing/saving a post",
-  "settings.show_reply_counter": "Display an estimate of the reply count",
   "settings.side_arm": "Secondary toot button:",
   "settings.side_arm.none": "None",
   "settings.side_arm_reply_mode": "When replying to a toot, the secondary toot button should:",
@@ -138,5 +137,6 @@
   "status.react": "React",
   "status.reactions": "{count, plural, one {reaction} other {reactions}}",
   "status.reactions.empty": "No one has reacted to this post yet. When someone does, they will show up here.",
+  "status.replies_count": "{count, plural, one {{counter} reply} other {{counter} replies}}",
   "status.show_filter_reason": "Show anyway"
 }

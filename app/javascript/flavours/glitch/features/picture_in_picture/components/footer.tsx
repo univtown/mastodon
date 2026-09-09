@@ -15,6 +15,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { BoostButton } from 'flavours/glitch/components/status/boost_button';
 import { useIdentity } from 'flavours/glitch/identity_context';
+import { showInteractionCounts } from 'flavours/glitch/initial_state';
 import type { Account } from 'flavours/glitch/models/account';
 import type { Status } from 'flavours/glitch/models/status';
 import { makeGetStatus } from 'flavours/glitch/selectors';
@@ -65,10 +66,6 @@ export const Footer: React.FC<{
   const askReplyConfirmation = useAppSelector(
     (state) => (state.compose.get('text') as string).trim().length !== 0,
   );
-  const showReplyCount = useAppSelector(
-    (state) => state.local_settings.get('show_reply_count', false) as boolean,
-  );
-
   const handleReplyClick = useCallback(() => {
     if (!status) {
       return;
@@ -151,6 +148,10 @@ export const Footer: React.FC<{
     replyTitle = intl.formatMessage(messages.replyAll);
   }
 
+  const replyCount = status.get('replies_count') as number;
+  const favouriteCount = status.get('favourites_count') as number;
+  const countTitle = (title: string, count: number) =>
+    showInteractionCounts ? `${title} · ${intl.formatNumber(count)}` : title;
   const favouriteTitle = intl.formatMessage(
     status.get('favourited') ? messages.removeFavourite : messages.favourite,
   );
@@ -159,7 +160,7 @@ export const Footer: React.FC<{
     <div className='picture-in-picture__footer'>
       <IconButton
         className='status__action-bar-button'
-        title={replyTitle}
+        title={countTitle(replyTitle, replyCount)}
         icon={
           status.get('in_reply_to_account_id') ===
           status.getIn(['account', 'id'])
@@ -174,22 +175,25 @@ export const Footer: React.FC<{
         }
         onClick={handleReplyClick}
         counter={
-          showReplyCount ? (status.get('replies_count') as number) : undefined
+          showInteractionCounts && replyCount > 0 ? replyCount : undefined
         }
-        obfuscateCount={!showReplyCount}
       />
 
-      <BoostButton counters statusId={statusId} />
+      <BoostButton statusId={statusId} />
 
       <IconButton
         className='status__action-bar-button star-icon'
         animate
         active={status.get('favourited') as boolean}
-        title={favouriteTitle}
+        title={countTitle(favouriteTitle, favouriteCount)}
         icon='star'
         iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon}
         onClick={handleFavouriteClick}
-        counter={status.get('favourites_count') as number}
+        counter={
+          showInteractionCounts && favouriteCount > 0
+            ? favouriteCount
+            : undefined
+        }
       />
 
       {withOpenButton && (

@@ -23,7 +23,7 @@ import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import { Dropdown } from 'flavours/glitch/components/dropdown_menu';
 import EmojiPickerDropdown from '../../features/compose/containers/emoji_picker_dropdown_container';
-import { me, maxReactions, quickBoosting } from '../../initial_state';
+import { me, maxReactions, quickBoosting, showInteractionCounts } from '../../initial_state';
 
 import { IconButton } from '../icon_button';
 import { injectIntl } from '../intl';
@@ -104,7 +104,6 @@ class StatusActionBar extends ImmutablePureComponent {
     onInteractionModal: PropTypes.func,
     withDismiss: PropTypes.bool,
     withCounters: PropTypes.bool,
-    showReplyCount: PropTypes.bool,
     scrollKey: PropTypes.string,
     intl: PropTypes.object.isRequired,
     ...WithRouterPropTypes,
@@ -115,7 +114,6 @@ class StatusActionBar extends ImmutablePureComponent {
   updateOnProps = [
     'status',
     'quotedAccountId',
-    'showReplyCount',
     'withCounters',
     'withDismiss',
   ];
@@ -230,7 +228,7 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   render () {
-    const { status, statusQuoteState, quotedAccountId, contextType, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
+    const { status, statusQuoteState, quotedAccountId, contextType, intl, withDismiss, withCounters, scrollKey } = this.props;
     const { signedIn, permissions } = this.props.identity;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
@@ -353,6 +351,8 @@ class StatusActionBar extends ImmutablePureComponent {
     );
 
     const canReact = permissions && status.get('reactions').filter(r => r.get('count') > 0 && r.get('me')).size < maxReactions;
+    const showCounters = showInteractionCounts && withCounters !== false;
+    const countTitle = (title, count) => showCounters ? `${title} · ${intl.formatNumber(count)}` : title;
     const bookmarkTitle = intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark);
     const favouriteTitle = intl.formatMessage(status.get('favourited') ? messages.removeFavourite : messages.favourite);
 
@@ -363,19 +363,18 @@ class StatusActionBar extends ImmutablePureComponent {
         <div className='status__action-bar__button-wrapper'>
           <IconButton
             className='status__action-bar-button'
-            title={replyTitle}
+            title={countTitle(replyTitle, status.get('replies_count'))}
             icon={replyIcon}
             iconComponent={replyIconComponent}
             onClick={this.handleReplyClick}
-            counter={showReplyCount ? status.get('replies_count') : undefined}
-            obfuscateCount
+            counter={showCounters && status.get('replies_count') > 0 ? status.get('replies_count') : undefined}
           />
         </div>
         <div className='status__action-bar__button-wrapper'>
           <BoostButton statusId={status.get('id')} counters={withCounters} />
         </div>
         <div className='status__action-bar__button-wrapper'>
-          <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+          <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={countTitle(favouriteTitle, status.get('favourites_count'))} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={showCounters && status.get('favourites_count') > 0 ? status.get('favourites_count') : undefined} />
         </div>
         <div className='status__action-bar__button-wrapper'>
           <EmojiPickerDropdown className='status__action-bar-button react-icon' onPickEmoji={this.handleEmojiPick} react={true} disabled={!canReact} counter={withCounters ? status.get('reactions_count') : undefined} />

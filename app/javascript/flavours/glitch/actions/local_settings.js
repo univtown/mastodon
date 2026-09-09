@@ -9,7 +9,12 @@ export function checkDeprecatedLocalSettings() {
   return (dispatch, getState) => {
     const local_auto_unfold = getState().getIn(['local_settings', 'content_warnings', 'auto_unfold']);
     const local_swipe_to_change_columns = getState().getIn(['local_settings', 'swipe_to_change_columns']);
+    const local_show_reply_count = getState().getIn(['local_settings', 'show_reply_count']);
     let changed_settings = [];
+
+    if (local_show_reply_count !== undefined) {
+      dispatch(deleteLocalSetting(['show_reply_count']));
+    }
 
     if (local_auto_unfold !== null && local_auto_unfold !== undefined) {
       if (local_auto_unfold === expandSpoilers) {

@@ -49,14 +49,6 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.general' defaultMessage='General' /></h1>
         <LocalSettingsPageItem
           settings={settings}
-          item={['show_reply_count']}
-          id='mastodon-settings--reply-count'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.show_reply_counter' defaultMessage='Display an estimate of the reply count' />
-        </LocalSettingsPageItem>
-        <LocalSettingsPageItem
-          settings={settings}
           item={['hicolor_privacy_icons']}
           id='mastodon-settings--hicolor_privacy_icons'
           onChange={onChange}

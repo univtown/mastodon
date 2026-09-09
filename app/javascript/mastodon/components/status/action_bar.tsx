@@ -32,7 +32,7 @@ import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useStatus } from '@/mastodon/hooks/useStatus';
 import { useIdentity } from '@/mastodon/identity_context';
-import { quickBoosting } from '@/mastodon/initial_state';
+import { quickBoosting, showInteractionCounts } from '@/mastodon/initial_state';
 import type { Account } from '@/mastodon/models/account';
 import type { MenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Relationship } from '@/mastodon/models/relationship';
@@ -54,6 +54,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { Button, IconButton } from '../button/redesign';
 import { Dropdown } from '../dropdown_menu';
+import { ShortNumber } from '../short_number';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
 import { quoteItemState } from './boost_button_utils';
@@ -77,6 +78,7 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
+  reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   share: { id: 'status.share', defaultMessage: 'Share' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
@@ -195,6 +197,10 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
     ? intl.formatMessage(messages.reply)
     : intl.formatMessage(messages.replyAll);
 
+  const showCounters = showInteractionCounts && withCounters !== false;
+  const propagationCount = status.reblogs_count + status.quotes_count;
+  const countTitle = (title: string, count: number) =>
+    showCounters ? `${title} · ${intl.formatNumber(count)}` : title;
   const favouriteTitle = intl.formatMessage(
     status.favourited ? messages.removeFavourite : messages.favourite,
   );
@@ -208,31 +214,47 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       <Button
         size='sm'
         variant='ghost'
-        title={replyTitle}
+        title={countTitle(replyTitle, status.replies_count)}
+        aria-label={countTitle(replyTitle, status.replies_count)}
         leadingIcon={ChatCircleTextIcon}
         onClick={handleReplyClick}
       >
-        {withCounters && status.replies_count}
+        {showCounters && status.replies_count > 0 && (
+          <ShortNumber value={status.replies_count} />
+        )}
       </Button>
 
       <Button
         size='sm'
         variant='ghost'
+        title={countTitle(
+          intl.formatMessage(messages.reblog),
+          propagationCount,
+        )}
+        aria-label={countTitle(
+          intl.formatMessage(messages.reblog),
+          propagationCount,
+        )}
         leadingIcon={ArrowsClockwiseIcon}
         onClick={handleBoostClick}
       >
-        {withCounters && status.reblogs_count}
+        {showCounters && propagationCount > 0 && (
+          <ShortNumber value={propagationCount} />
+        )}
       </Button>
 
       <Button
         size='sm'
         variant='ghost'
-        title={favouriteTitle}
+        title={countTitle(favouriteTitle, status.favourites_count)}
+        aria-label={countTitle(favouriteTitle, status.favourites_count)}
         leadingIcon={HeartIcon}
         onClick={handleFavouriteClick}
         className={classes.actionsButtonGap}
       >
-        {withCounters && status.favourites_count}
+        {showCounters && status.favourites_count > 0 && (
+          <ShortNumber value={status.favourites_count} />
+        )}
       </Button>
 
       {isPublic && (
