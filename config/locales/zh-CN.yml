@@ -4,7 +4,7 @@ zh-CN:
     about_mastodon_html: '来自未来的社交网络：没有广告、没有企业监视、符合道德的设计、架构去中心化！使用 Mastodon 掌控你的数据！'
     contact_missing: 未设置
     contact_unavailable: 不适用
-    default_thumbnail_description: Two smiling cartoon mastodons (who look like elephants) toss a paper plane between them. They're surrounded by a bright blue sky and floating planets with trees and more mastodons on them.
+    default_thumbnail_description: 两只面带微笑的卡通Mastodon（看起来像大象）在它们之间抛着纸飞机。它们被明朗的蓝天、漂浮的行星、树木以及更多Mastodon所环绕。
     hosted_on: '%{domain} 托管的 Mastodon'
     title: 关于
   accounts:
@@ -61,8 +61,8 @@ zh-CN:
       custom: 自定义
       delete: 删除数据
       deleted: 已删除
-      deletion_irreversible: The data of this account has been irreversibly deleted.
-      deletion_reversible_hint_html: This account is pending deletion, and the data will be fully removed on %{date}.
+      deletion_irreversible: 此账户的数据已被永久删除。
+      deletion_reversible_hint_html: 此账户正等待删除，数据将在 %{date} 被彻底删除。
       demote: 降权
       destroyed_msg: "%{username} 的数据已进入队列，即将被删除"
       disable: 冻结
@@ -70,9 +70,9 @@ zh-CN:
       disable_two_factor_authentication: 禁用双因素认证
       disabled: 已冻结
       discoverable:
-        disabled: Author has not opted-in to being discoverable
-        enabled: Author has opted-in to being discoverable
-        title: Discoverable
+        disabled: 作者尚未将自己的账户设为可被发现
+        enabled: 作者已将自己的账户设为可被发现
+        title: 可被发现
       display_name: 昵称
       domain: 域名
       edit: 编辑
@@ -83,11 +83,11 @@ zh-CN:
       enabled: 已启用
       enabled_msg: 已成功解冻 %{username} 的账户
       follow_recommendations:
-        allowed: Allowed
-        suppress: Suppress any follow recommendation
-        suppressed: Suppressed
-        title: Follow recommendations
-        unsuppress: Restore any follow recommendation
+        allowed: 允许
+        suppress: 隐藏关注推荐
+        suppressed: 已隐藏
+        title: 关注推荐
+        unsuppress: 恢复关注推荐
       followers: 粉丝
       follows: 关注
       header: 资料卡头图
@@ -172,11 +172,11 @@ zh-CN:
       suspension_reversible_hint_html: 该账户已被封禁，其数据将于 %{date} 被完全删除。在此之前，该账户可以被恢复而不会有任何不良影响。如果你希望立即删除该账户的所有数据，可以在下方操作。
       title: 账户
       trends:
-        allow: Allow
-        allowed: Allowed
-        disallow: Disallow
-        disallowed: Disallowed
-        title: Treding posts
+        allow: 允许
+        allowed: 已允许
+        disallow: 禁止
+        disallowed: 已禁止
+        title: 热门贴文
       unblock_email: 解除屏蔽邮件地址
       unblocked_email_msg: 已解除屏蔽 %{username} 的邮件地址
       unconfirmed_email: 未确认的邮件地址
@@ -303,11 +303,11 @@ zh-CN:
         enable_relay_html: "%{name} 启用了中继 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 为 %{target} 启用了邮件令牌认证"
         enable_user_html: "%{name} 启用了用户 %{target} 的登录"
-        listable_tag_html: can be suggested
+        listable_tag_html: 可被推荐
         memorialize_account_html: "%{name} 将 %{target} 的账户设为纪念账户"
-        not_listable_tag_html: won't be suggested
-        not_trendable_tag_html: won't appear under trends
-        not_usable_tag_html: cannot be used
+        not_listable_tag_html: 不可推荐
+        not_trendable_tag_html: 不会出现在热门中
+        not_usable_tag_html: 无法使用
         promote_user_html: "%{name} 提权了用户 %{target}"
         publish_terms_of_service_html: "%{name} 发布了服务条款的更新"
         reject_appeal_html: "%{name} 驳回了 %{target} 对管理措施的申诉"
@@ -320,7 +320,7 @@ zh-CN:
         sensitive_account_html: "%{name} 将 %{target} 的媒体文件标记为敏感内容"
         silence_account_html: "%{name} 限制了 %{target} 的账户"
         suspend_account_html: "%{name} 封禁了 %{target} 的账户"
-        trendable_tag_html: can appear under trends
+        trendable_tag_html: 可以进入热门
         unassigned_report_html: "%{name} 取消了对举报 %{target} 的指派"
         unblock_email_account_html: "%{name} 解除了对 %{target} 邮箱地址的屏蔽"
         unsensitive_account_html: "%{name} 将 %{target} 的媒体内容标记为非敏感"
@@ -333,10 +333,10 @@ zh-CN:
         update_ip_block_html: "%{name} 更改了 IP %{target} 的规则"
         update_report_html: "%{name} 更新了举报 %{target}"
         update_status_html: "%{name} 更新了 %{target} 的贴文"
-        update_tag_html: "%{name} changed %{target} settings to: "
+        update_tag_html: "%{name} 更改了 %{target} 设置为: "
         update_user_role_html: "%{name} 更改了 %{target} 的身份组"
         update_username_block_html: "%{name} 更新了有关包含 %{target} 的用户名的规则"
-        usable_tag_html: can be used;
+        usable_tag_html: 可以被使用；
       deleted_account: 已删除账户
       empty: 未找到日志。
       filter_by_action: 按操作筛选
@@ -377,19 +377,19 @@ zh-CN:
       title: 精选站点
     collections:
       accounts: 账户
-      back_to_account: Back to account page
-      back_to_report: Back to report page
+      back_to_account: 返回账户页面
+      back_to_report: 返回举报页面
       batch:
-        add_to_report: 'Add to report #%{id}'
-        remove_from_report: Remove from report
-        report: Report
+        add_to_report: '添加到举报 #%{id}'
+        remove_from_report: 从举报中移除
+        report: 举报
       collection_title: '%{name} 创建的合集'
       contents: 内容
-      no_collection_selected: No collections were changed as none were selected
+      no_collection_selected: 未选中任何合集，因此没有合集被更改
       number_of_accounts:
         other: "%{count} 个账户"
       open: 打开
-      title: Account collections - @%{name}
+      title: 账户合集 - @%{name}
       view_publicly: 从公开渠道查看
     critical_update_pending: 有紧急更新
     custom_emojis:
@@ -518,89 +518,89 @@ zh-CN:
         title: 屏蔽新的邮件域名
       no_email_domain_block_selected: 未选择任何邮件域名黑名单条目，因此未作任何更改
       not_permitted: 不允许
-      reset: Reset
+      reset: 重置
       resolved_dns_records_hint_html: 该域名解析到以下 MX 域名，这些域名负责最终接收邮件。屏蔽一个 MX 域名将阻止任何使用相同 MX 域名的邮件地址进行注册，即使可见的域名不同。<strong>请注意不要屏蔽主要的邮件提供者。</strong>
       resolved_through_html: 通过 %{domain} 解析
-      search: Search
+      search: 搜索
       title: 已屏蔽的邮件域名
     email_subscriptions:
       accounts:
-        account: Account
+        account: 账户
         empty:
-          hint: No accounts have subscribers yet.
-          no_lists_yet: No lists yet
-        last_email: Last email
-        lead: Accounts who have enabled the feature and have subscribers will show below.
+          hint: 尚无账户拥有订阅者。
+          no_lists_yet: 尚无列表
+        last_email: 最后发送的邮件
+        lead: 已启用此功能并拥有订阅者的账户将显示在下方。
         show:
-          confirm_disable_feature: Disable email newsletters for %{name}? Email updates will no longer be sent for this account. The user will still be able to re-enable the feature in their account settings. To permanently remove access to this feature, edit the account’s permission in Roles.
-          confirm_remove_subscriber: "%{email} will no longer receive emails from %{name}. This action cannot be undone."
-          consent: Subscribers have only consented to receiving posts via email. Do not use this list for other purposes.
-          date: Date of sign-up
-          disable_feature: Disable feature
-          disabled: The feature was disabled and emails are no longer being sent to this list.
-          email: Email address
+          confirm_disable_feature: 要为 %{name} 禁用电子邮件简报吗？此账户将不再发送电子邮件更新。用户仍然可以在其账户设置中重新启用此功能。若要永久移除对此功能的访问权限，请在“身份组”中编辑该账户的权限。
+          confirm_remove_subscriber: "%{email} 将不再接收来自 %{name} 的电子邮件。此操作无法撤销。"
+          consent: 订阅者仅同意通过电子邮件接收贴文。请勿将此列表用于其他目的。
+          date: 注册日期
+          disable_feature: 禁用功能
+          disabled: 此功能已被禁用，且不再向该列表发送电子邮件。
+          email: 邮件地址
           empty:
-            hint: Nobody has subscribed to this account yet.
-            no_subscribers_yet: No subscribers yet
-          enable_feature: Enable feature
-          no_access_html: This account no longer has the permissions required to enable the feature. Change this in <a href="%{roles_path}">Roles</a>.
-          title: Email newsletters of %{name}
-          view_account: View account
-        status: Status
-        subscribers: Subscribers
-        title: Mailing lists
+            hint: 尚无人订阅此账户。
+            no_subscribers_yet: 尚无订阅者
+          enable_feature: 启用功能
+          no_access_html: 此账户不再拥有启用该功能所需的权限。请在<a href="%{roles_path}">身份组</a>中进行更改。
+          title: '%{name} 的电子邮件简报'
+          view_account: 查看账户
+        status: 状态
+        subscribers: 订阅者
+        title: 邮件列表
       additional_footer_texts:
         show:
-          title: Additional footer text
+          title: 附加页脚文本
       compliance_settings:
         additional_footer_text:
-          action: Manage
-          hint: Optional text that appears in the footer of newsletter emails only
-          title: Additional footer text
-        lead: Email newsletters may be considered marketing emails, depending on the jurisdictions where you operate.
+          action: 管理
+          hint: 仅显示在简报邮件页脚中的可选文本
+          title: 附加页脚文本
+        lead: 根据你所在的司法管辖区，电子邮件简报可能会被视为营销邮件。
         privacy_policy:
-          action: Manage
-          hint: This policy is linked in the footer of every email
-          title: Privacy policy
-        title: Compliance settings
+          action: 管理
+          hint: 此政策链接于每封电子邮件的页脚中
+          title: 隐私政策
+        title: 合规设置
       danger_zone:
         disable_feature:
-          action: Disable
-          hint: Turn off feature for all accounts
-          title: Disable feature
+          action: 禁用
+          hint: 为所有账户关闭功能
+          title: 禁用功能
         erase_all_data:
-          action: Erase data
-          hint: Permanently deletes all emails in all mailing lists
-          title: Erase all data
-        title: Danger zone
-      disabled_msg: Email subscriptions have been successfully disabled.
+          action: 抹除数据
+          hint: 永久删除所有邮件列表中的所有电子邮件
+          title: 抹除所有数据
+        title: 危险区域
+      disabled_msg: 电子邮件订阅已成功禁用。
       index:
         disabled:
-          cannot_be_enabled: Your technical provider has not enabled this feature for your server.
-          description: This feature allows specified accounts to add a widget to their profiles, enabling visitors without a Mastodon account to receive their posts via email.
-          get_started: Get started
-        lead: Allow visitors to receive posts via email from dedicated accounts on this server.
-        title: Email newsletters
-      purged_msg: All email subscriptions data is being erased.
+          cannot_be_enabled: 你的技术提供商尚未为你的站点启用此功能。
+          description: 此功能允许指定的账户在其个人资料中添加一个小组件，使没有 Mastodon 账户的访客能够通过电子邮件接收其发布的贴文。
+          get_started: 开始使用
+        lead: 允许访客通过电子邮件接收来自本站专属账户的贴文。
+        title: 电子邮件简报
+      purged_msg: 所有电子邮件订阅数据正在被抹除。
       roles:
-        accounts: Accounts
-        edit_role: Edit role
+        accounts: 账户
+        edit_role: 编辑身份组
         empty:
-          hint: No one has permission to use this feature.
-          no_roles_added: No roles added
-        lead: Accounts with the following roles can enable this feature on their profiles.
-        manage_roles: Manage roles
-        role_name: Role name
-        title: Roles
+          hint: 无人拥有使用此功能的权限。
+          no_roles_added: 未添加身份组
+        lead: 拥有以下身份组的账户可以在其账户页上启用此功能。
+        manage_roles: 管理身份组
+        role_name: 身份组名称
+        title: 身份组
       setups:
         show:
-          enable_feature: Enable feature
-          important_information: Important information
+          enable_feature: 启用功能
+          important_information: 重要信息
           list:
-            1_permission_explanation: When this feature is enabled, accounts with the designated permissions can add an email collection form to their profiles.
-            2_feature_explanation: When visitors sign up on an account’s profile page and confirm their subscription, they’ll begin to receive email updates when the account creates new public posts.
-            3_privacy_policy_warning: Server admins will have access to PII (email addresses) collected. As such, the privacy policy and Terms of Service for the server must be updated before using this feature.
-            4_cost_warning: Emails may incur a fee depending on hosting setup. Discuss with your hosting provider before enabling, as this feature could drastically increase the amount of emails sent from your server.
+            1_permission_explanation: 启用此功能后，具有指定权限的账户可以在其账户页上添加电子邮件合集表单。
+            2_feature_explanation: 当访客在账户的账户页上注册并确认订阅后，他们将在该账户创建新的公开贴文时开始收到电子邮件更新。
+            3_privacy_policy_warning: 站点管理员将能够访问收集到的 PII（电子邮件地址）。因此，在使用此功能之前，必须更新站点的隐私政策和服务条款。
+            4_cost_warning: 根据托管设置，电子邮件可能会产生费用。在启用之前，请与你的托管提供商商讨，因为此功能可能会大幅增加你的站点发送的电子邮件数量。
     export_domain_allows:
       new:
         title: 导入站点白名单条目
@@ -752,8 +752,8 @@ zh-CN:
       new:
         title: 创建新 IP 规则
       no_ip_block_selected: 未选中任何 IP 规则，因此没有规则被更改
-      reset: Reset
-      search: Search
+      reset: 重置
+      search: 搜索
       title: IP 规则
     relationships:
       title: "%{acct} 的关系"
@@ -784,7 +784,7 @@ zh-CN:
       action_log: 审计日志
       action_taken_by: 操作者
       actions:
-        delete_description_html: The reported posts and/or collections will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
+        delete_description_html: 被举报的贴文和/或合集将被删除，并会记一次违规，以帮助你在未来处理同一账户的违规行为时采取更严厉的措施。
         mark_as_sensitive_description_html: 被举报贴文中的媒体将被标记为敏感，并会记一次违规，以帮助你在未来处理该账户的违规行为时采取更严厉的措施。
         other_description_html: 查看更多选项以控制该账户的行为，并自定义与被举报账户的通信。
         resolve_description_html: 不会对被举报的账户采取任何措施，不记录违规，举报将被关闭。
@@ -811,7 +811,7 @@ zh-CN:
       confirm: 确认
       confirm_action: 确认对 @%{acct} 的管理操作
       created_at: 举报于
-      delete_and_resolve: Delete content
+      delete_and_resolve: 删除内容
       forwarded: 已转发到对方站点
       forwarded_replies_explanation: 此举报来自外站用户，内容也来自外站。由于被举报内容是对你站点上一位用户的回复，因此该举报被转发给你。
       forwarded_to: 已转发至 %{domain}
@@ -903,7 +903,7 @@ zh-CN:
         manage_custom_emojis: 管理自定义表情
         manage_custom_emojis_description: 允许用户管理站点上的自定义表情
         manage_email_subscriptions: 管理邮件订阅
-        manage_email_subscriptions_description: Allow users with this permission to enable the email newsletter feature for their account
+        manage_email_subscriptions_description: 允许拥有此权限的用户为其账户启用电子邮件简报功能
         manage_federation: 管理联合
         manage_federation_description: 允许用户阻止或允许与其它域名的联合，并控制投递
         manage_invites: 管理邀请
@@ -993,15 +993,15 @@ zh-CN:
           public: 每个人
       landing_page:
         hints:
-          about_html: A page with the description, contact information, rules and other information regarding this server.
-          local_feed_html: A live feed featuring most recent posts by users on this server.
-          overview_html: A page showcasing the description of your server alongside the most recent local posts by users on this server.
-          trends_html: A page featuring what's popular on this server right now.
+          about_html: 包含本站的描述、联系方式、规则及其他相关信息的页面。
+          local_feed_html: 展示本站用户最新贴文的实时动态。
+          overview_html: 一个展示你的站点描述以及本站用户最新本地贴文的页面。
+          trends_html: 展示本站当前热门内容的页面。
         values:
           about: 关于
-          local_feed: Local live feed
-          overview: Overview
-          trends: Trending
+          local_feed: 本站实时动态
+          overview: 概览
+          trends: 热门
       others:
         activitypub: ActivityPub
         preamble: 其它设置，包括自定义行为
@@ -1031,22 +1031,22 @@ zh-CN:
     site_uploads:
       delete: 删除已上传的文件
       destroyed_msg: 站点上传文件已成功删除！
-    skip_to_content: Skip to content
+    skip_to_content: 跳转到主要内容
     software_updates:
       critical_update: 严重 — 请尽快更新
       description: 建议你将你的 Mastodon 保持在最新状态，以便享受最新的修复和功能。此外，及时更新 Mastodon 有时对于避免安全问题至关重要。因此，Mastodon 会每 30 分钟检查一次更新，并根据你的邮件通知设置通知你。
       documentation_link: 了解更多
-      nearing_eol: Support for the branch you are currently running will stop on %{date}, please consider updating.
+      nearing_eol: 你当前运行的分支的支持将于 %{date} 终止，请考虑更新。
       release_notes: 发布说明
-      supported_until: Support ends on %{date}
+      supported_until: 支持于 %{date} 结束
       title: 可用更新
       type: 类型
       types:
         major: 大版本更新
         minor: 小版本更新
         patch: 补丁更新 — 错误修复和易于应用的更改
-      unsupported_branch: The branch you are currently running is unsupported, please update as soon as possible.
-      unsupported_since: Unsupported since %{date}
+      unsupported_branch: 你当前运行的分支不受支持，请尽快更新。
+      unsupported_since: 自 %{date} 起不受支持
       version: 版本
     statuses:
       account: 作者
@@ -1260,7 +1260,7 @@ zh-CN:
           other: 过去一周有 %{count} 人使用
       title: 推荐与热门
       trending: 热门
-    update_available: Update available
+    update_available: 有可用更新
     username_blocks:
       add_new: 新增
       block_registrations: 禁止注册
@@ -1310,14 +1310,14 @@ zh-CN:
       body: 由于近期缺乏管理员活动，%{instance} 的用户注册已被自动切换为需要手动审核，以防止 %{instance} 被用作潜在恶意行为者的平台。你可以随时将其切换回开放注册。
       subject: '%{instance} 的注册已自动切换为需要批准'
     end_of_support_out_of_support_warning:
-      body: The Mastodon version currently in use on your server is not supported anymore. We recommend you to update as soon as possible!
-      subject: Mastodon %{branch} used on %{instance} is now unsupported!
+      body: 你站点当前使用的Mastodon版本不再受支持。我们建议你尽快更新！
+      subject: '%{instance} 上使用的 Mastodon %{branch} 现已不受支持！'
     end_of_support_three_months_warning:
-      body: The Mastodon version currently in use on your server will stop being supported in 3 months. You may want to update to a newer branch ahead of time.
-      subject: Support for Mastodon %{branch} used on %{instance} to end in 3 months.
+      body: 你站点当前使用的Mastodon版本将在3个月后停止支持。你可能需要提前更新到较新的分支。
+      subject: '%{instance} 上使用的 Mastodon %{branch} 的支持将于 3 个月后结束。'
     end_of_support_two_weeks_warning:
-      body: The Mastodon version currently in use on your server will stop being supported in 2 weeks. We recommend you update to a newer branch ahead of time.
-      subject: Support for Mastodon %{branch} used on %{instance} to end in 2 weeks.
+      body: 你站点当前使用的Mastodon版本将在2周后停止支持。我们建议你提前更新到较新的分支。
+      subject: '%{instance} 上使用的 Mastodon %{branch} 的支持将于 2 周后结束。'
     new_appeal:
       actions:
         delete_statuses: 删除其贴文
@@ -1559,7 +1559,7 @@ zh-CN:
       your_appeal_rejected: 你的申诉已被驳回
   edit_profile:
     other: 其它
-    privacy_redesign_body: The choice to show your follows and followers is now made directly from your profile.
+    privacy_redesign_body: 现在可以直接从你的账户页中选择是否展示你的关注和粉丝。
     redesign_body: 现在可以直接从账户页编辑个人资料。
     redesign_button: 前往此处
     redesign_title: 现已推出全新的个人资料编辑体验
@@ -1591,9 +1591,9 @@ zh-CN:
         success_html: '%{name} 发布新帖文时，你将收到邮件。请将 %{sender} 添加到你的联系人列表中，以免这些贴文误入你的垃圾邮件文件夹。'
         title: 你已订阅
         unsubscribe: 取消订阅
-    disabled: Disabled
+    disabled: 已禁用
     inactive: 未启用
-    no_access: No access
+    no_access: 无访问权限
     status: 状态
     subscribers: 订阅者
   emoji_styles:
@@ -1614,7 +1614,7 @@ zh-CN:
       content: 很抱歉，我们的站点出现了一些问题。
       title: 出错了
     '503': 由于暂时的站点故障，无法提供此页面。
-    go_home: Go home
+    go_home: 回到首页
     noscript_html: 要使用 Mastodon 网页应用，请启用 JavaScript。或者，你也可以为你的平台尝试其中一款 <a href="%{apps_path}">原生 Mastodon 应用</a>。
   existing_username_validator:
     not_found: 找不到使用该用户名的本站用户
@@ -1630,7 +1630,7 @@ zh-CN:
     blocks: 你屏蔽的用户
     bookmarks: 收藏夹
     csv: CSV
-    custom_filters: Filters
+    custom_filters: 过滤规则
     domain_blocks: 站点屏蔽列表
     json: JSON
     lists: 列表
@@ -1703,9 +1703,9 @@ zh-CN:
       empty: 空的 CSV 文件
       incompatible_type: 与所选的导入类型不兼容
       invalid_csv_file: '无效的 CSV 文件。错误：%{error}'
-      invalid_json_file: 'Invalid JSON file. Error: %{error}'
+      invalid_json_file: '无效的 JSON 文件。错误：%{error}'
       over_rows_processing_limit: 包含超过 %{count} 行
-      status_not_found_warning: Some of your filters hide specific posts that are not known by this server. These posts will not be automatically filtered if they are discovered later by the server.
+      status_not_found_warning: 你的一些过滤规则隐藏了本站所不知道的特定贴文。如果这些贴文随后被本站发现，将不会被自动过滤。
       too_large: 文件太大
     failures: 失败
     imported: 已导入
@@ -1721,7 +1721,7 @@ zh-CN:
       bookmarks_html:
         other: 你将用 <strong>%{filename}</strong> 中的最多 <strong>%{count} 条贴文</strong>来 <strong>替换你的收藏夹</strong>。
       custom_filters_html:
-        other: You are about to <strong>replace your filters</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{count} filters</strong> will be added to new filters.
+        other: 你将用 <strong>%{filename}</strong> 的内容 <strong>替换你的过滤规则</strong>。最多 <strong>%{count} 条过滤规则</strong> 将被添加到新过滤规则中。
       domain_blocking_html:
         other: 你将用 <strong>%{filename}</strong> 中的最多 <strong>%{count} 个域名</strong>来 <strong>替换你的站点屏蔽列表</strong>。
       following_html:
@@ -1736,7 +1736,7 @@ zh-CN:
       bookmarks_html:
         other: 你即将从 <strong>%{filename}</strong> 中添加最多 <strong>%{count} 条贴文</strong>到你的<strong>收藏夹</strong>。
       custom_filters_html:
-        other: You are about to add up to <strong>%{count} filters</strong> from <strong>%{filename}</strong> to your <strong>filters</strong>.
+        other: 你即将从 <strong>%{filename}</strong> 中添加最多 <strong>%{count} 条过滤规则</strong>到你的<strong>过滤规则</strong>中。
       domain_blocking_html:
         other: 你即将从 <strong>%{filename}</strong> 中<strong>屏蔽</strong>最多 <strong>%{count} 个站点</strong>。
       following_html:
@@ -1769,7 +1769,7 @@ zh-CN:
     types:
       blocking: 屏蔽列表
       bookmarks: 收藏夹
-      custom_filters: Filters
+      custom_filters: 过滤规则
       domain_blocking: 站点屏蔽列表
       following: 关注列表
       lists: 列表
@@ -1865,24 +1865,24 @@ zh-CN:
     toggle_menu: 切换菜单
   notification_fallbacks:
     added_to_collection:
-      title_html: "%{name} added you to a collection"
+      title_html: "%{name} 把你添加到了一个合集"
     admin_report:
-      title_html: "%{name} reported %{target}"
+      title_html: "%{name} 举报了 %{target}"
     admin_sign_up:
       title_and_others_html:
-        other: "%{name} and %{count} others signed up"
-      title_html: "%{name} signed up"
+        other: "%{name} 和另外 %{count} 人注册了"
+      title_html: "%{name} 注册了"
     collection_update:
-      title_html: "%{name} updated a collection you are in"
+      title_html: "%{name} 更新了你所在的合集"
     generic:
-      sign_in: Sign in to the Mastodon web app
-      summary_html: You're on an app that does not support the most recent version of Mastodon. %{link} for full functionality.
+      sign_in: 登录 Mastodon 网络应用
+      summary_html: 你正在使用的应用不支持最新版本的 Mastodon。%{link}以获取完整功能。
     moderation_warning:
-      summary_html: You're on an app that does not support the most recent version of Mastodon. %{link}.
-      title: You have received a moderation warning.
+      summary_html: 你正在使用的应用不支持最新版本的 Mastodon。%{link}。
+      title: 你收到了一条管理警告。
     severed_relationships:
-      summary_html: An admin from %{from} has suspended %{target}, which means you can no longer receive updates from them or interact with them. %{link} to retrieve a list of the lost relationships.
-      title: Lost connections with %{name}
+      summary_html: '%{from} 的一名管理员已封禁 %{target}，这意味着你将无法再收到来自对方的更新，也无法与对方互动。%{link}以获取已丢失关系的列表。'
+      title: 已与 %{name} 断开连接
   notification_mailer:
     admin:
       report:
@@ -1931,7 +1931,7 @@ zh-CN:
     administration_emails: 管理员邮件通知
     email_events: 邮件通知事件
     email_events_hint: '选择你希望接收通知的事件：'
-    moderation_emails: Moderation email notifications
+    moderation_emails: 管理邮件通知
   number:
     human:
       decimal_units:
