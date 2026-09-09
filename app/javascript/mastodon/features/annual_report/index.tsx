@@ -50,7 +50,7 @@ export const AnnualReport: FC<{
 
   useEffect(() => {
     if (needsReport) {
-      void dispatch(getReport(yearOverride));
+      void dispatch(getReport({ yearOverride }));
     }
   }, [dispatch, needsReport, yearOverride]);
 
