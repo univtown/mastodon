@@ -66,6 +66,7 @@ zh-CN:
         setting_display_media_show_all: 显示所有媒体时不发出警告，包括被标为敏感的内容
         setting_emoji_style: 如何显示表情。“自动”会尝试使用系统原生表情，但对于旧版浏览器会回退到 Twemoji。
         setting_quick_boosting_html: 启用后，点击 %{boost_icon} 转发按钮将立即进行转发，而不是弹出转发/引用下拉菜单。这会将引用操作移至 %{options_icon} 更多选项菜单。
+        setting_show_interaction_counts: 在贴文下方显示回复、转发、引用和点赞计数
         setting_use_blurhash: 渐变效果基于被隐藏视觉元素的颜色，但会模糊掉所有细节
         setting_use_pending_items: 时间线的更新内容将需要点击才会显示，而不会自动滚动
         username: 你可以使用字母、数字和下划线
