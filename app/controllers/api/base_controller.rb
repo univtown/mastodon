@@ -101,7 +101,7 @@ class Api::BaseController < ApplicationController
   private
 
   def functional_endpoint_in_limited_federation_mode?
-    return false unless limited_federation_mode?
+    return true unless limited_federation_mode?
 
     allowed_paths = [
       '/api/v1/instance',
