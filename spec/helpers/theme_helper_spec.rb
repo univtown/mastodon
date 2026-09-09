@@ -118,7 +118,7 @@ RSpec.describe ThemeHelper do
       end
 
       context 'when theme is changed to invalid value' do
-        before { Setting.skin = 'fakethemename' }
+        before { allow(Setting).to receive(:skin).and_return('fakethemename') }
 
         it { is_expected.to eq(['glitch', 'default']) }
       end
