@@ -154,6 +154,18 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'with blank posting options' do
+        let(:user) { Fabricate(:user, settings: { default_privacy: 'unlisted', default_content_type: 'text/markdown', default_language: 'zh-CN' }) }
+        let(:params) { { status: 'Hello world', visibility: '', content_type: '', language: '' } }
+
+        it 'uses the requesting user defaults' do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(user.account.statuses.sole).to have_attributes(visibility: 'unlisted', content_type: 'text/markdown', language: 'zh-CN')
+        end
+      end
+
       context 'without a quote policy' do
         let(:user) do
           Fabricate(:user, settings: { default_quote_policy: 'followers' })
@@ -485,8 +497,8 @@ RSpec.describe '/api/v1/statuses' do
           end
         end
 
-        context 'with the local-only emoji' do
-          let(:params) { { status: 'hello world 匿了 👁' } }
+        context 'with the local-only parameter' do
+          let(:params) { { status: 'hello world 匿了', local_only: true } }
 
           it 'creates a local-only anonymous post' do
             subject
