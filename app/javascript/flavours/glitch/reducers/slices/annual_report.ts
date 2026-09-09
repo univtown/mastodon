@@ -112,7 +112,7 @@ export const generateReport = createDataLoadingThunk(
 
 export const getReport = createDataLoadingThunk(
   `${annualReportSlice.name}/getReport`,
-  async (yearOverride: number | undefined, { getState }) => {
+  async ({ yearOverride }: { yearOverride?: number }, { getState }) => {
     const { year } = getState().annualReport;
     const effectiveYear = yearOverride ?? year;
 
