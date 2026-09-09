@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
@@ -16,8 +16,8 @@ import { domain } from 'flavours/glitch/initial_state';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectBubbleStream } from '../../actions/streaming';
 import { expandBubbleTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
+import { Column } from '../../components/column';
+import { ColumnHeader } from '../../components/column/header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';

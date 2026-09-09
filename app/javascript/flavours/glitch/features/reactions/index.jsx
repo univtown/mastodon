@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -17,10 +17,10 @@ import { Account } from 'flavours/glitch/components/account';
 import { Icon }  from 'flavours/glitch/components/icon';
 
 import { fetchReactions, expandReactions } from '../../actions/interactions';
-import ColumnHeader from '../../components/column_header';
+import { ColumnHeader } from '../../components/column/header';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
-import Column from '../ui/components/column';
+import { Column } from '../../components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.reacted_by', defaultMessage: 'Reacted by' },

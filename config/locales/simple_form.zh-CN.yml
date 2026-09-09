@@ -318,6 +318,9 @@ zh-CN:
         trendable_by_default: 允许话题不经审核进入热门
         trends: 启用热门
         wrapstodon: 启用 Wrapstodon 年度回顾
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: 我已充分理解，启用此功能可能会显著增加服务器发送的电子邮件数量，且对所有因此产生的任何费用全权负责。
+        agreement_privacy_and_terms: 我已更新隐私政策及服务条款。
       interactions:
         must_be_follower: 屏蔽来自非粉丝的通知
         must_be_following: 屏蔽来自你未关注的人的通知
@@ -385,6 +388,7 @@ zh-CN:
         role: 身份组
         time_zone: 时区
       user_role:
+        collection_limit: 每个用户收藏列表的最大数量
         color: 徽章颜色
         highlighted: 在账户页上以徽章形式显示身份组
         name: 名称

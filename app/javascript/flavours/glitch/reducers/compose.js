@@ -1,14 +1,18 @@
-import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS, isList } from 'immutable';
 
 import {
   changeComposeVisibility,
   changeUploadCompose,
+  rearrangeComposeAttachments,
   quoteCompose,
   quoteComposeCancel,
   setComposeQuotePolicy,
   pasteLinkCompose,
   cancelPasteLinkCompose,
   setDragUploadEnabled,
+  addPollOption,
+  updatePollOption,
+  deletePollOption,
 } from '@/flavours/glitch/actions/compose_typed';
 import { timelineDelete } from 'flavours/glitch/actions/timelines_typed';
 
@@ -172,6 +176,10 @@ function apiStatusToTextHashtags (state, status) {
   )).join('');
 }
 
+/**
+ * @param {typeof initialState} state
+ * @returns {typeof initialState}
+ */
 function clearAll(state) {
   return state.withMutations(map => {
     map.set('id', null);
@@ -246,6 +254,10 @@ function appendMedia(state, media, file) {
 
     if (prevSize === 0 && (state.get('default_sensitive') || state.get('spoiler'))) {
       map.set('sensitive', true);
+
+      if (state.get('default_sensitive')) {
+        map.set('spoiler', true);
+      }
     }
   });
 }
@@ -433,6 +445,19 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('is_changing_upload', true);
   } else if (changeUploadCompose.rejected.match(action)) {
     return state.set('is_changing_upload', false);
+  } else if (rearrangeComposeAttachments.match(action)) {
+    return state.update('media_attachments', (attachments) => {
+      const newOrder = [];
+      for (const id of action.payload) {
+        const attachment = attachments.find((item) => item.get('id') === id);
+        if (attachment) {
+          newOrder.push(attachment);
+        }
+      }
+
+      return ImmutableList(newOrder);
+    });
+
   } else if (quoteCompose.match(action)) {
     const status = action.payload;
     const isDirect = state.get('privacy') === 'direct';
@@ -460,6 +485,40 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('fetching_link', null);
   } else if (setDragUploadEnabled.match(action)) {
     return state.set('isDragDisabled', !action.payload);
+  } else if (addPollOption.match(action)) {
+    return state.updateIn(['poll', 'options'], (options) => {
+      if (!isList(options)) {
+        return ImmutableList(['', '']);
+      }
+
+      if (options.size >= action.payload.maxOptions) {
+        return options;
+      }
+      return options.push('');
+    })
+  } else if (updatePollOption.match(action)) {
+    return state.updateIn(['poll', 'options'], (options) => {
+      const { index, text, maxOptions } = action.payload
+      if (index + 1 > maxOptions) {
+        return options;
+      }
+      if (!isList(options)) {
+        return ImmutableList([text]);
+      }
+      return options.set(index, text);
+    })
+  } else if (deletePollOption.match(action)) {
+    return state.updateIn(['poll', 'options'], (options) => {
+      if (!isList(options)) {
+        return options;
+      }
+
+      if (options.size === 1) {
+        return ImmutableList(['']);
+      }
+
+      return options.delete(action.payload.index);
+    });
   }
 
   switch(action.type) {
@@ -500,7 +559,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('spoiler', !state.get('spoiler'));
       map.set('idempotencyKey', uuid());
 
-      if (state.get('media_attachments').size >= 1 && !state.get('default_sensitive')) {
+      if (state.get('media_attachments').size >= 1) {
         map.set('sensitive', !state.get('spoiler'));
       }
     });
@@ -757,7 +816,10 @@ export const composeReducer = (state = initialState, action) => {
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
   case COMPOSE_FOCUS:
-    return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText);
+    return state
+      .set('focusDate', new Date())
+      .update('text', text => text.length > 0 ? text : action.defaultText)
+      .update('caretPosition', position => action.caretStart ? 0 : position);
   case COMPOSE_CHANGE_MEDIA_ORDER:
     return state.update('media_attachments', list => {
       const indexA = list.findIndex(x => x.get('id') === action.a);

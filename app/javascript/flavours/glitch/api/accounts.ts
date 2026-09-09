@@ -19,6 +19,11 @@ import type {
   ApiProfileUpdateParams,
 } from '../api_types/profile';
 
+export const apiGetAccounts = (ids: string[]) =>
+  apiRequestGet<ApiAccountJSON[]>('v1/accounts', {
+    id: ids,
+  });
+
 export const apiSubmitAccountNote = (id: string, value: string) =>
   apiRequestPost<ApiRelationshipJSON>(`v1/accounts/${id}/note`, {
     comment: value,
@@ -27,7 +32,8 @@ export const apiSubmitAccountNote = (id: string, value: string) =>
 export const apiFollowAccount = (
   id: string,
   params?: {
-    reblogs: boolean;
+    reblogs?: boolean;
+    ref?: string;
   },
 ) =>
   apiRequestPost<ApiRelationshipJSON>(`v1/accounts/${id}/follow`, {

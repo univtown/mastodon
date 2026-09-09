@@ -41,7 +41,7 @@ class UserSettings
     setting :missing_alt_text_modal, default: true
     setting :reduce_motion, default: false
     setting :expand_content_warnings, default: false
-    setting :display_media, default: 'default', in: %w(default show_all hide_all)
+    setting :display_media, default: 'default', in: %w(hide_all default show_all)
     setting :auto_play, default: true
     setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
     setting :color_scheme, default: 'auto', in: %w(auto light dark)
@@ -63,6 +63,7 @@ class UserSettings
     setting :status_trends, default: false
     setting :appeal, default: true
     setting :software_updates, default: 'critical', in: %w(none critical patch all)
+    setting :end_of_support, default: true
   end
 
   namespace :interactions do

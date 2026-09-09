@@ -32,6 +32,7 @@ import { UploadForm } from './upload_form';
 import { Warning } from './warning';
 import { ComposeQuotedStatus } from './quoted_post';
 import { VisibilityButton } from './visibility_button';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -80,10 +81,6 @@ class ComposeForm extends ImmutablePureComponent {
 
   static defaultProps = {
     autoFocus: false,
-  };
-
-  state = {
-    highlighted: false,
   };
 
   constructor(props) {
@@ -191,6 +188,9 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   componentDidUpdate (prevProps) {
+    if (isRedesignEnabled()) {
+      return;
+    }
     this._updateFocusAndSelection(prevProps);
   }
 
@@ -220,13 +220,13 @@ class ComposeForm extends ImmutablePureComponent {
       Promise.resolve().then(() => {
         this.textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
         this.textareaRef.current.focus();
-        this.setState({ highlighted: true });
-        this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
       }).catch(console.error);
     } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
       this.textareaRef.current.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
-      if (this.props.spoiler) {
+      const mediaJustAdded = this.props.anyMedia && !prevProps.anyMedia;
+
+      if (this.props.spoiler && !mediaJustAdded) {
         this.spoilerText.input.focus();
       } else if (prevProps.spoiler) {
         this.textareaRef.current.focus();
@@ -252,15 +252,22 @@ class ComposeForm extends ImmutablePureComponent {
 
   render () {
     const { intl, onPaste, onDrop, autoFocus, withoutNavigation, maxChars, isSubmitting } = this.props;
-    const { highlighted } = this.state;
 
     return (
-      <form className='compose-form' onSubmit={this.handleSubmit}>
+      <form
+        className='compose-form'
+        role='region'
+        aria-label={intl.formatMessage({
+          id: 'tabs_bar.publish',
+          defaultMessage: 'New Post'
+        })}
+        onSubmit={this.handleSubmit}
+      >
         <ReplyIndicator />
         {!withoutNavigation && <NavigationBar />}
         <Warning />
 
-        <div className={classNames('compose-form__highlightable', { active: highlighted })} ref={this.setRef}>
+        <div className='compose-form__highlightable' ref={this.setRef}>
           <EditIndicator />
 
           <div className='compose-form__dropdowns'>
@@ -313,8 +320,8 @@ class ComposeForm extends ImmutablePureComponent {
             className='compose-form__input'
           />
 
-          <UploadForm />
           <PollForm />
+          <UploadForm />
           <ComposeQuotedStatus />
 
           <div className='compose-form__footer'>

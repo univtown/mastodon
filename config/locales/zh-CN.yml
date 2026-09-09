@@ -66,6 +66,10 @@ zh-CN:
       disable_sign_in_token_auth: 禁用邮箱令牌认证
       disable_two_factor_authentication: 禁用双因素认证
       disabled: 已冻结
+      discoverable:
+        disabled: 作者选择不被发现
+        enabled: 作者选择被发现
+        title: 可发现
       display_name: 昵称
       domain: 域名
       edit: 编辑
@@ -353,6 +357,7 @@ zh-CN:
       accounts: 账户
       collection_title: '%{name} 创建的合集'
       contents: 内容
+      no_collection_selected: 因为没有选中任何收藏列表，所以没有更改
       number_of_accounts:
         other: "%{count} 个账户"
       open: 打开
@@ -876,10 +881,16 @@ zh-CN:
           disabled: 需要特定的用户身份组
           public: 每个人
       landing_page:
+        hints:
+          about_html: 关于此服务器的描述、联系信息、规则及其他信息的页面。
+          local_feed_html: 展示此服务器用户最新嘟文的实时动态。
+          overview_html: 展示你的服务器描述及本站用户最新嘟文的页面。
+          trends_html: 展示此服务器当前热门内容的页面。
         values:
-          about: 关于
-          local_feed: 本站动态
-          trends: 热门
+          about: 关于本站
+          local_feed: 本站实时动态
+          overview: 概览
+          trends: 当前热门
       others:
         activitypub: ActivityPub
         preamble: 其它设置，包括自定义行为
@@ -1489,7 +1500,9 @@ zh-CN:
     blocks: 你屏蔽的用户
     bookmarks: 收藏夹
     csv: CSV
+    custom_filters: 过滤器
     domain_blocks: 站点屏蔽列表
+    json: JSON
     lists: 列表
     mutes: 你隐藏的用户
     storage: 媒体存储
@@ -1787,7 +1800,7 @@ zh-CN:
     next: 下一页
     older: 较旧
     prev: 上一页
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: 你已经投过票了

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 import { withRouter } from 'react-router-dom';
 import { difference } from 'lodash';
 
@@ -13,6 +13,10 @@ import { connect } from 'react-redux';
 
 import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { Hotkeys }  from 'mastodon/components/hotkeys';
 import { Icon }  from 'mastodon/components/icon';
 import { injectIntl } from '@/mastodon/components/intl';
@@ -59,19 +63,19 @@ import {
   undoStatusTranslation,
 } from '../../actions/statuses';
 import { setStatusQuotePolicy } from '../../actions/statuses_typed';
-import ColumnHeader from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import { StatusQuoteManager } from '../../components/status_quoted';
 import { deleteModal } from '../../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
 import { getAncestorsIds, getDescendantsIds } from 'mastodon/selectors/contexts';
-import Column from '../ui/components/column';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 
 import ActionBar from './components/action_bar';
 import { DetailedStatus } from './components/detailed_status';
 import { RefreshController } from './components/refresh_controller';
 import { quoteComposeById } from '@/mastodon/actions/compose_typed';
+import { FOCUS_TARGET, NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 const messages = defineMessages({
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
@@ -554,6 +558,7 @@ class Status extends ImmutablePureComponent {
       descendants = <>{this.renderChildren(descendantsIds)}</>;
     }
 
+    const account = status.get('account');
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
     const isIndexable = !status.getIn(['account', 'noindex']);
 
@@ -572,20 +577,53 @@ class Status extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.detailedStatus)}>
-        <ColumnHeader
-          showBackButton
-          multiColumn={multiColumn}
-          extraButton={(
-            <button type='button' className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={status.get('hidden') ? 'eye' : 'eye-slash'} icon={status.get('hidden') ? VisibilityIcon : VisibilityOffIcon} /></button>
-          )}
-        />
+        {isRedesignEnabled() ? (
+          <ColumnHeader
+            withBackButton
+            title={
+              <FormattedMessage
+                id='status.title'
+                defaultMessage='Post by {name}'
+                values={{
+                  name: <DisplayNameSimple account={account} />
+                }}
+              />
+            }
+            extraButtons={
+              <ColumnSettingsMenu
+                label={
+                  <FormattedMessage
+                    id='status.options'
+                    defaultMessage='Post options'
+                  />
+                }
+              >
+                WIP: This menu will contain post actions from the new Status component
+              </ColumnSettingsMenu>
+            }
+          />
+        ) : (
+          <LegacyColumnHeader
+            showBackButton
+            multiColumn={multiColumn}
+            extraButton={(
+              <button type='button' className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={status.get('hidden') ? 'eye' : 'eye-slash'} icon={status.get('hidden') ? VisibilityIcon : VisibilityOffIcon} /></button>
+            )}
+          />
+        )}
 
         <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll} childRef={this.setContainerRef}>
           <div className={classNames('item-list scrollable scrollable--flex', { fullscreen })} ref={this.setContainerRef}>
             {ancestors}
 
             <Hotkeys handlers={handlers}>
-              <div className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)} tabIndex={0} aria-label={textForScreenReader({intl, status})} ref={this.setStatusRef}>
+              <NavigationFocusTarget
+                as='div'
+                focusTargetName={FOCUS_TARGET.POST}
+                className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)}
+                tabIndex={0}
+                aria-label={textForScreenReader({intl, status})} ref={this.setStatusRef}
+              >
                 <DetailedStatus
                   key={`details-${status.get('id')}`}
                   status={status}
@@ -626,7 +664,7 @@ class Status extends ImmutablePureComponent {
                   onPin={this.handlePin}
                   onEmbed={this.handleEmbed}
                 />
-              </div>
+              </NavigationFocusTarget>
             </Hotkeys>
 
             {descendants}

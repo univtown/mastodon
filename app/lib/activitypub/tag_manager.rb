@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'singleton'
-
 class ActivityPub::TagManager
   include Singleton
   include JsonLdHelper
@@ -31,6 +29,8 @@ class ActivityPub::TagManager
       short_account_status_url(target.account, target)
     when :flag
       target.uri
+    when :featured_collection
+      collection_url(target)
     end
   end
 

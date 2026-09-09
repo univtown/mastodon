@@ -173,7 +173,7 @@ class PostStatusService < BaseService
       raise ActiveRecord::RecordInvalid
     end
   rescue Antispam::SilentlyDrop
-    @status = @account.scheduled_status.new(scheduled_status_attributes).tap(&:delete)
+    @status = @account.scheduled_statuses.new(scheduled_status_attributes).tap(&:delete)
   end
 
   def postprocess_status!
@@ -188,7 +188,7 @@ class PostStatusService < BaseService
   end
 
   def process_email_subscriptions!
-    return unless Mastodon::Feature.email_subscriptions_enabled? &&
+    return unless Rails.application.config.x.email_subscriptions && Setting.email_subscriptions &&
                   @status.public_visibility? && (!@status.reply? || @status.in_reply_to_account_id == @status.account_id) &&
                   @status.account.user_can?(:manage_email_subscriptions) &&
                   @status.account.user_email_subscriptions_enabled?

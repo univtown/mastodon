@@ -462,20 +462,11 @@ class Status < ApplicationRecord
     end
   end
 
-  def marked_local_only?
-    # match both with and without U+FE0F (the emoji variation selector)
-    /#{local_only_emoji}\ufe0f?\z/.match?(content)
-  end
-
-  def local_only_emoji
-    '👁'
-  end
-
   def marked_anonymous?
     anon_config = Rails.configuration.x.anon
     return false unless anon_config.enabled && anon_config.tag.present?
 
-    pattern = /#{Regexp.escape(anon_config.tag)}\s*(?:#{Regexp.escape(local_only_emoji)}\ufe0f?)?\s*\z/
+    pattern = /#{Regexp.escape(anon_config.tag)}\s*(?:#{Regexp.escape('👁')}\ufe0f?)?\s*\z/
     pattern.match?(content)
   end
 
@@ -483,7 +474,7 @@ class Status < ApplicationRecord
     anon_config = Rails.configuration.x.anon
     return text unless anon_config.enabled && anon_config.tag.present?
 
-    pattern = /#{Regexp.escape(anon_config.tag)}\s*(?=(?:#{Regexp.escape(local_only_emoji)}\ufe0f?)?\s*\z)/
+    pattern = /#{Regexp.escape(anon_config.tag)}\s*(?=(?:#{Regexp.escape('👁')}\ufe0f?)?\s*\z)/
     text.gsub(pattern, '').strip
   end
 
@@ -549,7 +540,7 @@ class Status < ApplicationRecord
     if reblog?
       self.local_only = reblog.local_only
     elsif local_only.nil?
-      self.local_only = marked_local_only?
+      self.local_only = false
     end
   end
 
