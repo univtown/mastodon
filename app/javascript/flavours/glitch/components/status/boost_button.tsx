@@ -12,7 +12,10 @@ import { toggleReblog } from '@/flavours/glitch/actions/interactions';
 import { openModal } from '@/flavours/glitch/actions/modal';
 import { fetchStatus } from '@/flavours/glitch/actions/statuses';
 import { useStatus } from '@/flavours/glitch/hooks/useStatus';
-import { quickBoosting } from '@/flavours/glitch/initial_state';
+import {
+  quickBoosting,
+  showInteractionCounts,
+} from '@/flavours/glitch/initial_state';
 import type { ActionMenuItem } from '@/flavours/glitch/models/dropdown_menu';
 import { selectStatusConditions } from '@/flavours/glitch/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
@@ -38,6 +41,9 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({
     () => boostItemState(statusState),
     [statusState],
   );
+  const count = status ? status.reblogs_count + status.quotes_count : 0;
+  const showCounter = showInteractionCounts && counters !== false;
+  const buttonTitle = intl.formatMessage(meta ?? title);
 
   const handleClick: MouseEventHandler = useCallback(
     (event) => {
@@ -63,16 +69,16 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({
     <IconButton
       disabled={disabled}
       active={!!status?.reblogged}
-      title={intl.formatMessage(meta ?? title)}
+      title={
+        showCounter
+          ? `${buttonTitle} · ${intl.formatNumber(count)}`
+          : buttonTitle
+      }
       icon='retweet'
       iconComponent={iconComponent}
       className='status__action-bar__button'
       onClick={!disabled ? handleClick : undefined}
-      counter={
-        counters && status
-          ? status.reblogs_count + status.quotes_count
-          : undefined
-      }
+      counter={showCounter && count > 0 ? count : undefined}
     />
   );
 };
@@ -115,6 +121,8 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
 
   const wasBoosted = !!status?.reblogged;
   const quoteApproval = status?.quote_approval;
+  const count = status ? status.reblogs_count + status.quotes_count : 0;
+  const showCounter = showInteractionCounts && counters !== false;
 
   const showLoginPrompt = useCallback(() => {
     dispatch(
@@ -194,17 +202,13 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
       disabled={isMenuDisabled}
     >
       <IconButton
-        title={intl.formatMessage(
+        title={`${intl.formatMessage(
           isMenuDisabled ? messages.all_disabled : messages.reblog_or_quote,
-        )}
+        )}${showCounter ? ` · ${intl.formatNumber(count)}` : ''}`}
         icon='retweet'
         className='status__action-bar__button'
         iconComponent={boostIcon}
-        counter={
-          counters && status
-            ? status.reblogs_count + status.quotes_count
-            : undefined
-        }
+        counter={showCounter && count > 0 ? count : undefined}
         active={isBoosted}
       />
     </Dropdown>

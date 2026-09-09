@@ -19,6 +19,7 @@ interface InitialStateMeta {
   missing_alt_text_modal?: boolean;
   disable_swiping?: boolean;
   disable_hover_cards?: boolean;
+  show_interaction_counts?: boolean;
   disabled_account_id?: string;
   display_media: string;
   domain: string;
@@ -118,6 +119,7 @@ export const deleteModal = getMeta('delete_modal');
 export const missingAltTextModal = getMeta('missing_alt_text_modal');
 export const disableSwiping = getMeta('disable_swiping');
 export const disableHoverCards = getMeta('disable_hover_cards');
+export const showInteractionCounts = getMeta('show_interaction_counts') ?? true;
 export const disabledAccountId = getMeta('disabled_account_id');
 export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');

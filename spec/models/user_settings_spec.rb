@@ -12,13 +12,21 @@ RSpec.describe UserSettings do
       it 'returns default value' do
         expect(subject[:always_send_emails]).to be false
       end
+
+      it 'shows interaction counts by default' do
+        expect(subject[:'web.show_interaction_counts']).to be true
+      end
     end
 
     context 'when setting is set' do
-      let(:json) { { default_language: 'fr' } }
+      let(:json) { { default_language: 'fr', 'web.show_interaction_counts': false } }
 
       it 'returns value' do
         expect(subject[:default_language]).to eq 'fr'
+      end
+
+      it 'returns the explicit interaction count preference' do
+        expect(subject[:'web.show_interaction_counts']).to be false
       end
     end
 

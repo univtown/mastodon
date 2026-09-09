@@ -15,6 +15,7 @@ import { openModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
 import { BoostButton } from 'mastodon/components/status/boost_button';
 import { useIdentity } from 'mastodon/identity_context';
+import { showInteractionCounts } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import type { Status } from 'mastodon/models/status';
 import { makeGetStatus } from 'mastodon/selectors';
@@ -145,6 +146,10 @@ export const Footer: React.FC<{
     replyTitle = intl.formatMessage(messages.replyAll);
   }
 
+  const replyCount = status.get('replies_count') as number;
+  const favouriteCount = status.get('favourites_count') as number;
+  const countTitle = (title: string, count: number) =>
+    showInteractionCounts ? `${title} · ${intl.formatNumber(count)}` : title;
   const favouriteTitle = intl.formatMessage(
     status.get('favourited') ? messages.removeFavourite : messages.favourite,
   );
@@ -153,7 +158,7 @@ export const Footer: React.FC<{
     <div className='picture-in-picture__footer'>
       <IconButton
         className='status__action-bar-button'
-        title={replyTitle}
+        title={countTitle(replyTitle, replyCount)}
         icon={
           status.get('in_reply_to_account_id') ===
           status.getIn(['account', 'id'])
@@ -167,20 +172,26 @@ export const Footer: React.FC<{
             : replyIconComponent
         }
         onClick={handleReplyClick}
-        counter={status.get('replies_count') as number}
+        counter={
+          showInteractionCounts && replyCount > 0 ? replyCount : undefined
+        }
       />
 
-      <BoostButton counters statusId={statusId} />
+      <BoostButton statusId={statusId} />
 
       <IconButton
         className='status__action-bar-button star-icon'
         animate
         active={status.get('favourited') as boolean}
-        title={favouriteTitle}
+        title={countTitle(favouriteTitle, favouriteCount)}
         icon='star'
         iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon}
         onClick={handleFavouriteClick}
-        counter={status.get('favourites_count') as number}
+        counter={
+          showInteractionCounts && favouriteCount > 0
+            ? favouriteCount
+            : undefined
+        }
       />
 
       {withOpenButton && (

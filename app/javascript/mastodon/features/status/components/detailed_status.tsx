@@ -6,7 +6,7 @@
 import type { CSSProperties } from 'react';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -33,6 +33,7 @@ import { CollectionPreviewCard } from 'mastodon/features/collections/components/
 import scheduleIdleTask from 'mastodon/features/ui/util/schedule_idle_task';
 import { Video } from 'mastodon/features/video';
 import { useIdentity } from 'mastodon/identity_context';
+import { showInteractionCounts } from 'mastodon/initial_state';
 import type { CollectionAttachment } from 'mastodon/models/status';
 import { compareUrls } from 'mastodon/utils/compare_urls';
 
@@ -83,6 +84,7 @@ export const DetailedStatus: React.FC<{
   const nodeRef = useRef<HTMLDivElement>(null);
 
   const { signedIn } = useIdentity();
+  const intl = useIntl();
 
   const handleOpenVideo = useCallback(
     (options: VideoModalOptions) => {
@@ -321,6 +323,45 @@ export const DetailedStatus: React.FC<{
     </>
   );
 
+  const replyCount = status.get('replies_count') as number;
+  const replyLabel = intl.formatMessage(
+    {
+      id: 'status.replies_count',
+      defaultMessage:
+        '{count, plural, one {{counter} reply} other {{counter} replies}}',
+    },
+    { count: replyCount, counter: intl.formatNumber(replyCount) },
+  );
+  const replyStatistic = (
+    <span className='detailed-status__link' title={replyLabel}>
+      <span className='sr-only'>{replyLabel}</span>
+      <span aria-hidden='true'>
+        <FormattedMessage
+          id='status.replies_count'
+          defaultMessage='{count, plural, one {{counter} reply} other {{counter} replies}}'
+          values={{
+            count: replyCount,
+            counter: (
+              <span className='detailed-status__replies'>
+                <AnimatedNumber value={replyCount} />
+              </span>
+            ),
+          }}
+        />
+      </span>
+    </span>
+  );
+
+  const reblogCount = status.get('reblogs_count') as number;
+  const reblogLabel = intl.formatMessage(
+    {
+      id: 'status.reblogs_count',
+      defaultMessage:
+        '{count, plural, one {{counter} boost} other {{counter} boosts}}',
+    },
+    { count: reblogCount, counter: intl.formatNumber(reblogCount) },
+  );
+
   if (['private', 'direct'].includes(status.get('visibility') as string)) {
     reblogLink = '';
   } else {
@@ -328,6 +369,8 @@ export const DetailedStatus: React.FC<{
       <Link
         to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`}
         className='detailed-status__link'
+        title={reblogLabel}
+        aria-label={reblogLabel}
       >
         <FormattedMessage
           id='status.reblogs_count'
@@ -345,6 +388,16 @@ export const DetailedStatus: React.FC<{
     );
   }
 
+  const quoteCount = status.get('quotes_count') as number;
+  const quoteLabel = intl.formatMessage(
+    {
+      id: 'status.quotes_count',
+      defaultMessage:
+        '{count, plural, one {{counter} quote} other {{counter} quotes}}',
+    },
+    { count: quoteCount, counter: intl.formatNumber(quoteCount) },
+  );
+
   if (['private', 'direct'].includes(status.get('visibility') as string)) {
     quotesLink = '';
   } else if (signedIn) {
@@ -352,6 +405,8 @@ export const DetailedStatus: React.FC<{
       <Link
         to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/quotes`}
         className='detailed-status__link'
+        title={quoteLabel}
+        aria-label={quoteLabel}
       >
         <FormattedMessage
           id='status.quotes_count'
@@ -369,27 +424,41 @@ export const DetailedStatus: React.FC<{
     );
   } else {
     quotesLink = (
-      <span className='detailed-status__link'>
-        <FormattedMessage
-          id='status.quotes_count'
-          defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
-          values={{
-            count: status.get('quotes_count'),
-            counter: (
-              <span className='detailed-status__quotes'>
-                <AnimatedNumber value={status.get('quotes_count')} />
-              </span>
-            ),
-          }}
-        />
+      <span className='detailed-status__link' title={quoteLabel}>
+        <span className='sr-only'>{quoteLabel}</span>
+        <span aria-hidden='true'>
+          <FormattedMessage
+            id='status.quotes_count'
+            defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
+            values={{
+              count: status.get('quotes_count'),
+              counter: (
+                <span className='detailed-status__quotes'>
+                  <AnimatedNumber value={status.get('quotes_count')} />
+                </span>
+              ),
+            }}
+          />
+        </span>
       </span>
     );
   }
 
+  const favouriteCount = status.get('favourites_count') as number;
+  const favouriteLabel = intl.formatMessage(
+    {
+      id: 'status.favourites_count',
+      defaultMessage:
+        '{count, plural, one {{counter} favorite} other {{counter} favorites}}',
+    },
+    { count: favouriteCount, counter: intl.formatNumber(favouriteCount) },
+  );
   const favouriteLink = (
     <Link
       to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`}
       className='detailed-status__link'
+      title={favouriteLabel}
+      aria-label={favouriteLabel}
     >
       <FormattedMessage
         id='status.favourites_count'
@@ -533,13 +602,15 @@ export const DetailedStatus: React.FC<{
             </div>
           )}
 
-          <div className='detailed-status__meta__line'>
-            {reblogLink}
-            {reblogLink && <>·</>}
-            {quotesLink}
-            {quotesLink && <>·</>}
-            {favouriteLink}
-          </div>
+          {showInteractionCounts && (
+            <div className='detailed-status__meta__line'>
+              {replyStatistic}·{reblogLink}
+              {reblogLink && <>·</>}
+              {quotesLink}
+              {quotesLink && <>·</>}
+              {favouriteLink}
+            </div>
+          )}
         </div>
       </div>
     </div>

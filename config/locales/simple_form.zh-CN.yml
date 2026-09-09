@@ -262,6 +262,7 @@ zh-CN:
         setting_missing_alt_text_modal: 在发布没有替代文本的媒体前显示确认对话框
         setting_quick_boosting: 启用快速转发
         setting_reduce_motion: 减少动画中的动态效果
+        setting_show_interaction_counts: 显示互动计数
         setting_system_font_ui: 使用系统默认字体
         setting_system_scrollbars_ui: 使用系统默认滚动条
         setting_theme: 站点主题

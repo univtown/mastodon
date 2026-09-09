@@ -1,4 +1,50 @@
-import { parseTimelineKey, timelineKey } from './timelines_typed';
+import { Map as ImmutableMap } from 'immutable';
+
+import type { ApiStatusJSON } from '../api_types/statuses';
+import type { AppDispatch, RootState } from '../store/store';
+
+import { updateTimeline } from './timelines';
+import {
+  insertStatusIntoAccountTimelines,
+  parseTimelineKey,
+  timelineKey,
+} from './timelines_typed';
+
+vi.mock('./timelines', () => ({
+  updateTimeline: vi.fn(() => ({ type: 'test/updateTimeline' })),
+}));
+
+describe('insertStatusIntoAccountTimelines', () => {
+  test.each(['author', 'proxy'])(
+    'inserts a post into its %s account timeline',
+    (authorId) => {
+      const status = {
+        account: { id: authorId },
+        tags: [],
+      } as unknown as ApiStatusJSON;
+      const authorKey = timelineKey({ type: 'account', userId: authorId });
+      const state = {
+        meta: ImmutableMap({ me: 'author' }),
+        timelines: ImmutableMap({
+          [timelineKey({ type: 'account', userId: 'author' })]: ImmutableMap(),
+          [timelineKey({ type: 'account', userId: 'proxy' })]: ImmutableMap(),
+          [timelineKey({ type: 'account', userId: authorId, pinned: true })]:
+            ImmutableMap(),
+          [timelineKey({ type: 'account', userId: authorId, tagged: 'other' })]:
+            ImmutableMap(),
+        }),
+      } as unknown as RootState;
+
+      vi.mocked(updateTimeline).mockClear();
+      insertStatusIntoAccountTimelines(status)(
+        vi.fn() as AppDispatch,
+        () => state,
+      );
+
+      expect(updateTimeline).toHaveBeenCalledExactlyOnceWith(authorKey, status);
+    },
+  );
+});
 
 describe('timelineKey', () => {
   test('returns expected key for account timeline with filters', () => {

@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Map as ImmutableMap } from 'immutable';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn } from 'storybook/test';
+import { fn, expect } from 'storybook/test';
 
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import {
@@ -47,6 +47,7 @@ interface StatusStoryProps extends AttachmentArgs {
   showCounters?: boolean;
   favouriteCount?: number;
   reblogCount?: number;
+  quoteCount?: number;
   replyCount?: number;
   hidden?: boolean;
   muted?: boolean;
@@ -213,6 +214,7 @@ const meta = {
     showCounters: categoryDisplay,
     favouriteCount: categoryDisplay,
     reblogCount: categoryDisplay,
+    quoteCount: categoryDisplay,
     replyCount: categoryDisplay,
     showPrepend: categoryDisplay,
     showThread: {
@@ -265,6 +267,7 @@ const meta = {
     variant: 'feed',
     favouriteCount: 0,
     reblogCount: 0,
+    quoteCount: 0,
     replyCount: 0,
     showCounters: true,
     contextType: 'home',
@@ -310,6 +313,7 @@ const meta = {
       isReply,
       favouriteCount,
       reblogCount,
+      quoteCount,
       replyCount,
       showTranslate,
     }: StatusStoryProps) {
@@ -360,6 +364,7 @@ const meta = {
           : undefined,
         favourites_count: favouriteCount,
         reblogs_count: reblogCount,
+        quotes_count: quoteCount,
         replies_count: replyCount,
         language: showTranslate ? 'xx' : undefined,
       });
@@ -392,6 +397,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const BoostsAndQuotes: Story = {
+  args: {
+    reblogCount: 1200,
+    quoteCount: 34,
+  },
+  play: async ({ canvas }) => {
+    const boostButton = canvas.getByRole('button', { name: 'Boost · 1,234' });
+    await expect(boostButton).toHaveAttribute('title', 'Boost · 1,234');
+    await expect(boostButton).toHaveTextContent('1.2K');
+  },
+};
 
 export const Reply: Story = {
   args: {

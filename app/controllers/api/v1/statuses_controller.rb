@@ -3,7 +3,6 @@
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
   include Api::InteractionPoliciesConcern
-  include Redisable
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
@@ -29,96 +28,26 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-    original_text = status_params[:status]
-    transferred_media = []
-    sender_account = current_user.account
-    processed_text = original_text
-    application_to_use = doorkeeper_token.application
-    idempotency_account = current_user.account
-    effective_post_options = resolved_post_options
-
-    if should_post_anonymously?(original_text)
-      if status_params[:scheduled_at].present?
-        render json: { error: 'Anonymous posts cannot be scheduled' }, status: 422
-        return
-      end
-
-      anon_config = Rails.configuration.x.anon
-      proxy_account = Account.find_local(anon_config.account_username)
-
-      if proxy_account.nil?
-        Rails.logger.warn('Anonymous proxy account not found, rejecting anonymous post')
-        render json: { error: 'Anonymous posting is temporarily unavailable' }, status: 422
-        return
-      end
-
-      anonymous_name = normalize_anonymous_name(generate_anonymous_name(current_user.account))
-
-      if anonymous_name.blank?
-        Rails.logger.warn('Anonymous name generation returned blank, rejecting anonymous post')
-        render json: { error: 'Anonymous posting is temporarily unavailable' }, status: 422
-        return
-      end
-
-      cleaned_text = Status.new.clean_anonymous_tag(original_text)
-      effective_post_options[:local_only] = true if anonymous_post_local_only?(original_text)
-
-      if cleaned_text.blank?
-        Rails.logger.warn('Anonymous post content is empty after cleaning, rejecting anonymous post')
-        render json: { error: 'Anonymous post content cannot be empty' }, status: 422
-        return
-      end
-
-      processed_text = "#{anonymous_name}:\n\n#{cleaned_text}"
-      sender_account = proxy_account
-      application_to_use = nil
-    end
-
-    begin
-      if sender_account != current_user.account && status_params[:media_ids].present?
-        transferred_media = current_user.account.media_attachments
-          .where(status_id: nil)
-          .where(id: status_params[:media_ids])
-          .to_a
-
-        transferred_media.each do |media|
-          media.update!(account_id: sender_account.id)
-        end
-      end
-
-      @status = PostStatusService.new.call(
-        sender_account,
-        text: processed_text,
-        thread: @thread,
-        quoted_status: @quoted_status,
-        quote_approval_policy: quote_approval_policy,
-        media_ids: status_params[:media_ids],
-        sensitive: effective_post_options[:sensitive],
-        spoiler_text: status_params[:spoiler_text],
-        visibility: effective_post_options[:visibility],
-        language: effective_post_options[:language],
-        scheduled_at: status_params[:scheduled_at],
-        application: application_to_use,
-        poll: status_params[:poll],
-        content_type: effective_post_options[:content_type],
-        local_only: effective_post_options[:local_only],
-        allowed_mentions: status_params[:allowed_mentions],
-        idempotency: request.headers['Idempotency-Key'],
-        idempotency_account: idempotency_account,
-        with_rate_limit: true
-      )
-    rescue => e
-      transferred_media.each do |media|
-        begin
-          media.reload
-          media.update(account_id: current_user.account.id) if media.status_id.nil?
-        rescue => rollback_error
-          Rails.logger.error("Failed to rollback media ownership for media #{media.id}: #{rollback_error.message}")
-        end
-      end
-
-      raise e
-    end
+    @status = PostAnonymousStatusService.new.call(
+      current_user.account,
+      text: status_params[:status],
+      thread: @thread,
+      quoted_status: @quoted_status,
+      quote_approval_policy: quote_approval_policy,
+      media_ids: status_params[:media_ids],
+      sensitive: status_params[:sensitive],
+      spoiler_text: status_params[:spoiler_text],
+      visibility: status_params[:visibility].presence,
+      language: status_params[:language].presence,
+      scheduled_at: status_params[:scheduled_at],
+      application: doorkeeper_token.application,
+      poll: status_params[:poll],
+      content_type: status_params[:content_type].presence,
+      local_only: status_params[:local_only],
+      allowed_mentions: status_params[:allowed_mentions],
+      idempotency: request.headers['Idempotency-Key'],
+      with_rate_limit: true
+    )
 
     render json: @status, serializer: serializer_for_status
   rescue PostStatusService::UnexpectedMentionsError => e
@@ -247,87 +176,5 @@ class Api::V1::StatusesController < Api::BaseController
 
   def serialized_accounts(accounts)
     ActiveModel::Serializer::CollectionSerializer.new(accounts, serializer: REST::AccountSerializer, scope_name: :current_user, scope: current_user)
-  end
-
-  def resolved_post_options
-    {
-      content_type: status_params[:content_type].presence || current_user.setting_default_content_type,
-      visibility: status_params[:visibility].presence || current_user.setting_default_privacy,
-      language: status_params[:language].presence || current_user.preferred_posting_language,
-      sensitive: status_params[:sensitive].nil? ? current_user.setting_default_sensitive : status_params[:sensitive],
-      local_only: status_params[:local_only],
-    }
-  end
-
-  def normalize_anonymous_name(name)
-    name.to_s.gsub(/\R+/, ' ').strip
-  end
-
-  def should_post_anonymously?(text)
-    anon_config = Rails.configuration.x.anon
-    text.present? &&
-      anon_config.enabled &&
-      anon_config.account_username.present? &&
-      anon_config.tag.present? &&
-      text.strip.match?(/#{Regexp.escape(anon_config.tag)}(?:\s*#{Regexp.escape('👁')}\ufe0f?)?\s*\z/)
-  end
-
-  def anonymous_post_local_only?(text)
-    anon_config = Rails.configuration.x.anon
-    text.strip.match?(/#{Regexp.escape(anon_config.tag)}\s*#{Regexp.escape('👁')}\ufe0f?\s*\z/)
-  end
-
-  def generate_anonymous_name(account)
-    anon_config = Rails.configuration.x.anon
-    return nil unless anon_config.enabled && anon_config.account_username.present? && anon_config.name_list.any?
-
-    period_hours = anon_config.period_hours
-    current_time_utc = Time.current.utc
-    hours_since_epoch = current_time_utc.to_i / 3600
-    time_window = hours_since_epoch / period_hours
-
-    mapping_key = "anon_names:#{time_window}:mapping"
-    used_key = "anon_names:#{time_window}:used"
-
-    existing_name = with_redis { |redis_conn| redis_conn.hget(mapping_key, account.username) }
-    return existing_name if existing_name.present?
-
-    input = "#{account.username}#{anon_config.salt}#{time_window}"
-    start_index = Digest::SHA2.hexdigest(input).to_i(16) % anon_config.name_list.size
-
-    with_redis do |redis_conn|
-      name_list = anon_config.name_list
-
-      name_list.size.times do |offset|
-        index = (start_index + offset) % name_list.size
-        candidate_name = name_list[index]
-
-        next unless redis_conn.sadd(used_key, candidate_name) == 1
-
-        redis_conn.hset(mapping_key, account.username, candidate_name)
-        redis_conn.expire(mapping_key, (period_hours + 1) * 3600)
-        redis_conn.expire(used_key, (period_hours + 1) * 3600)
-        return candidate_name
-      end
-
-      base_name = name_list[start_index]
-      used_count = redis_conn.scard(used_key)
-      suffix_index = used_count % name_list.size
-      suffix_name = name_list[suffix_index]
-      combined_name = "#{base_name}#{suffix_name}"
-
-      redis_conn.sadd(used_key, combined_name)
-      redis_conn.hset(mapping_key, account.username, combined_name)
-      redis_conn.expire(mapping_key, (period_hours + 1) * 3600)
-      redis_conn.expire(used_key, (period_hours + 1) * 3600)
-
-      combined_name
-    end
-  rescue Redis::BaseError => e
-    Rails.logger.error("Anonymous name generation failed: #{e.message}")
-    Rails.logger.error(e.backtrace.join("\n"))
-    input = "#{account.username}#{anon_config.salt}#{time_window}"
-    name_index = Digest::SHA2.hexdigest(input).to_i(16) % anon_config.name_list.size
-    anon_config.name_list[name_index]
   end
 end

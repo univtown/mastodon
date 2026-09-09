@@ -10,6 +10,7 @@ interface StoryProps {
   quoteAllowed: boolean;
   alreadyBoosted: boolean;
   reblogCount: number;
+  quoteCount: number;
 }
 
 const meta = {
@@ -19,6 +20,7 @@ const meta = {
     quoteAllowed: true,
     alreadyBoosted: false,
     reblogCount: 0,
+    quoteCount: 0,
   },
   argTypes: {
     visibility: {
@@ -28,7 +30,10 @@ const meta = {
     },
     reblogCount: {
       name: 'Boost Count',
-      description: 'More than 0 will show the counter',
+    },
+    quoteCount: {
+      name: 'Quote Count',
+      description: 'The counter displays boosts and quotes combined',
     },
     quoteAllowed: {
       name: 'Quotes allowed',
@@ -37,12 +42,11 @@ const meta = {
       name: 'Already boosted',
     },
   },
-  render: (args) => (
-    <BoostButton statusId='1' counters={args.reblogCount > 0} />
-  ),
+  render: () => <BoostButton statusId='1' />,
   parameters: {
     stateFn({
       reblogCount,
+      quoteCount,
       visibility,
       quoteAllowed,
       alreadyBoosted,
@@ -51,6 +55,7 @@ const meta = {
         statuses: {
           '1': statusFactoryImmutable({
             reblogs_count: reblogCount,
+            quotes_count: quoteCount,
             visibility,
             reblogged: alreadyBoosted,
             quote_approval: {
@@ -70,6 +75,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const BoostsAndQuotes: Story = {
+  args: {
+    reblogCount: 7,
+    quoteCount: 5,
+  },
+};
 
 export const Mine: Story = {
   parameters: {

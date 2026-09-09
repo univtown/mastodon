@@ -6,36 +6,24 @@ Rails.application.configure do
   config.x.anon.account_username = ENV.fetch('ANON_ACCOUNT', nil)
   config.x.anon.namelist_path = ENV.fetch('ANON_NAMELIST_PATH', nil)
   config.x.anon.salt = ENV.fetch('ANON_SALT', nil)
-  config.x.anon.period_hours = ENV.fetch('ANON_PERIOD', '24').to_i
+  config.x.anon.period_hours = Integer(ENV.fetch('ANON_PERIOD', '24'), exception: false)
+  config.x.anon.name_list = []
+
+  raise ArgumentError, 'ANON_TAG must not be blank' if config.x.anon.tag.blank?
+  raise ArgumentError, 'ANON_TAG must not have surrounding whitespace' if config.x.anon.tag != config.x.anon.tag.strip
 
   if config.x.anon.enabled
-    config.x.anon.name_list = []
+    begin
+      raise ArgumentError, 'ANON_ACCOUNT must be configured' if config.x.anon.account_username.blank?
+      raise ArgumentError, 'ANON_SALT must be configured' if config.x.anon.salt.blank?
+      raise ArgumentError, 'ANON_PERIOD must be a positive integer' unless config.x.anon.period_hours&.positive?
+      raise ArgumentError, 'ANON_NAMELIST_PATH must be configured' if config.x.anon.namelist_path.blank?
 
-    if config.x.anon.account_username.blank?
-      Rails.logger.info('Anonymous posting disabled: ANON_ACCOUNT not configured')
-      config.x.anon.enabled = false
-    elsif config.x.anon.namelist_path.blank?
-      Rails.logger.info('Anonymous posting disabled: ANON_NAMELIST_PATH not configured')
-      config.x.anon.enabled = false
-    elsif config.x.anon.salt.blank?
-      Rails.logger.info('Anonymous posting disabled: ANON_SALT not configured')
-      config.x.anon.enabled = false
-    elsif !File.exist?(config.x.anon.namelist_path)
-      Rails.logger.info("Anonymous posting disabled: Name list file not found at #{config.x.anon.namelist_path}")
-      config.x.anon.enabled = false
-    else
-      begin
-        config.x.anon.name_list = File.readlines(config.x.anon.namelist_path).map(&:strip).compact_blank
-        if config.x.anon.name_list.empty?
-          Rails.logger.info('Anonymous posting disabled: Name list is empty')
-          config.x.anon.enabled = false
-        else
-          Rails.logger.info("Anonymous posting enabled with #{config.x.anon.name_list.size} names")
-        end
-      rescue => e
-        Rails.logger.info("Anonymous posting disabled: Failed to load name list - #{e.message}")
-        config.x.anon.enabled = false
-      end
+      config.x.anon.name_list = File.readlines(config.x.anon.namelist_path).map { |name| name.gsub(/\R+/, ' ').strip }.compact_blank.uniq
+      raise ArgumentError, 'Anonymous name list must not be empty' if config.x.anon.name_list.empty?
+    rescue ArgumentError, SystemCallError, IOError => e
+      config.x.anon.error = e.message
+      Rails.logger.error("Anonymous posting unavailable: #{e.message}")
     end
   end
 end

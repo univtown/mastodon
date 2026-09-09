@@ -123,6 +123,10 @@ module User::HasSettings
     settings['web.disable_hover_cards']
   end
 
+  def setting_show_interaction_counts
+    settings['web.show_interaction_counts']
+  end
+
   def setting_always_send_emails
     settings['always_send_emails']
   end
