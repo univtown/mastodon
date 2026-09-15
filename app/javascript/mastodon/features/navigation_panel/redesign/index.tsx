@@ -8,12 +8,13 @@ import {
   MagnifyingGlassIcon,
   RssSimpleIcon,
   BellIcon,
-  ChatCircleIcon,
+  ChatCircleDotsIcon,
   BookmarkSimpleIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchLists } from '@/mastodon/actions/lists';
+import { closeNavigation } from '@/mastodon/actions/navigation';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
@@ -70,6 +71,8 @@ function useFollowedHashtags() {
   return { followedHashtags: tags };
 }
 
+const MAX_HASHTAG_COUNT = 5;
+
 export const RedesignNavigationPanel: React.FC<{
   siteName?: string;
   /**
@@ -86,6 +89,7 @@ export const RedesignNavigationPanel: React.FC<{
   );
 
   const openComposer = useCallback(() => {
+    dispatch(closeNavigation());
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
 
@@ -151,6 +155,7 @@ export const RedesignNavigationPanel: React.FC<{
               />
             </NavigationLink>
             <ListSection
+              id='custom-feeds'
               title={
                 <FormattedMessage
                   id='tabs_bar.custom_feeds'
@@ -186,6 +191,7 @@ export const RedesignNavigationPanel: React.FC<{
 
             {followedHashtags.length > 0 && (
               <ListSection
+                id='followed-hashtags'
                 title={
                   <FormattedMessage
                     id='tabs_bar.followed_hashtags'
@@ -193,17 +199,19 @@ export const RedesignNavigationPanel: React.FC<{
                   />
                 }
               >
-                {followedHashtags.slice(0, 4).map((tag) => (
+                {followedHashtags.slice(0, MAX_HASHTAG_COUNT).map((tag) => (
                   <NavigationLink key={tag.name} to={`/tags/${tag.name}`}>
                     #{tag.name}
                   </NavigationLink>
                 ))}
-                <NavigationLink key='view-all' to='/followed_tags'>
-                  <FormattedMessage
-                    id='tabs_bar.followed_tags_view_all'
-                    defaultMessage='View all'
-                  />
-                </NavigationLink>
+                {followedHashtags.length > MAX_HASHTAG_COUNT && (
+                  <NavigationLink key='view-all' to='/followed_tags'>
+                    <FormattedMessage
+                      id='tabs_bar.followed_tags_view_all'
+                      defaultMessage='View all'
+                    />
+                  </NavigationLink>
+                )}
               </ListSection>
             )}
           </ul>
@@ -225,7 +233,7 @@ export const RedesignNavigationPanel: React.FC<{
                   <NavigationLink
                     stacked
                     to='/conversations'
-                    iconComponent={ChatCircleIcon}
+                    iconComponent={ChatCircleDotsIcon}
                   >
                     <FormattedMessage
                       id='tabs_bar.messages'
