@@ -8,6 +8,14 @@ zh-CN:
     hosted_on: '%{domain} 托管的 Mastodon'
     title: 关于
   accounts:
+    api_errors:
+      2fa_required: 在设置双因素认证方式前，你的账号无法使用
+      account_deleted: 你的账号已被删除
+      account_suspended: 你的账号已被封禁
+      login_disabled: 你的账号目前已被禁用
+      memorial: 你的账号已被转为纪念账号
+      pending_approval: 你的账号正在等待审核批准
+      pending_confirmation: 你的账号缺少已确认的电子邮件地址
     errors:
       cannot_be_added_to_collections: 此账户无法被添加到关注列表内。
     followers:
@@ -617,6 +625,11 @@ zh-CN:
         title: 导入域名黑名单
       no_file: 未选择文件
     fasp:
+      capabilities:
+        activation_msg: 能力已成功启用。
+        deactivation_msg: 能力已成功禁用。
+        disable: 禁用
+        enable: 启用
       debug:
         callbacks:
           created_at: 创建于
@@ -628,6 +641,7 @@ zh-CN:
         active: 活跃
         base_url: 基础 URL
         callback: 回调
+        capabilities: 能力
         delete: 删除
         edit: 编辑提供者
         finish_registration: 完成注册
@@ -978,7 +992,6 @@ zh-CN:
         privacy: 隐私
         profile_directory: 账户列表
         public_timelines: 公共时间线
-        publish_statistics: 发布统计数据
         title: 发现
         trends: 热门
         wrapstodon: Wrapstodon 年度回顾
@@ -986,6 +999,18 @@ zh-CN:
         all: 对每个人
         disabled: 不对任何人
         users: 对已登录的本站用户
+      external:
+        directory: 服务器目录
+        opt_in_server_directory:
+          description: 允许你的服务器被列入服务器目录，例如 https://joinmastodon.org/servers 上的服务器目录。
+          title: 允许你的服务器被列入服务器目录
+        opt_in_server_recommendation:
+          description: 允许用户在应用程序内注册时，比如官方 Mastodon 客户端等应用程序中，推荐你的服务器。
+          title: 允许你的服务器被列入服务器推荐
+        preamble: 控制服务器信息共享的程度及服务器的可发现性。
+        privacy: 隐私
+        publish_statistics: 发布统计数据
+        title: 外部发现
       feed_access:
         modes:
           authenticated: 仅已登录用户

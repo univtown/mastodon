@@ -66,6 +66,14 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
+          item={['show_status_reply_count']}
+          id='mastodon-settings--show-status-reply-count'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.show_status_reply_count' defaultMessage='Display reply counts' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['tag_misleading_links']}
           id='mastodon-settings--tag_misleading_links'
           onChange={onChange}

@@ -18,6 +18,7 @@ const initialState = ImmutableMap({
   inline_preview_cards: true,
   hicolor_privacy_icons: false,
   show_content_type_choice: false,
+  show_status_reply_count: true,
   tag_misleading_links: true,
   rewrite_mentions: 'no',
   content_warnings : ImmutableMap({
