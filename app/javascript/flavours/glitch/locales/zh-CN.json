@@ -10,6 +10,7 @@
   "boost_modal.missing_description": "此贴文包含一些没有替代描述文本的媒体内容",
   "bubble.column_settings.media_only": "仅媒体",
   "column.bubble": "精选时间线",
+  "column.bubble_servers": "Bubble Servers",
   "column.favourited_by": "点赞 -",
   "column.reacted_by": "回应 -",
   "column.reblogged_by": "转发 -",
@@ -108,6 +109,8 @@
   "settings.shared_settings_link": "用户设置",
   "settings.show_content_type_choice": "发布贴文时显示内容类型选项",
   "settings.show_published_toast": "发布/保存贴文时显示浮动提示",
+  "settings.show_status_reply_count": "Display reply counts",
+  "settings.show_reply_counter": "Display an estimate of the reply count",
   "settings.side_arm": "次要贴文按钮：",
   "settings.side_arm.none": "无",
   "settings.side_arm_reply_mode": "回复贴文时，次要贴文按钮应：",
@@ -138,5 +141,6 @@
   "status.reactions": "{count, plural, other {# 个回应}}",
   "status.reactions.empty": "还没有人回应此贴文。有人回应后，会在这里显示。",
   "status.replies_count": "{count, plural, other {{counter} 条回复}}",
+  "status.reactions_title": "Post Reactions",
   "status.show_filter_reason": "仍然显示"
 }
