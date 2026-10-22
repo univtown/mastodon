@@ -9,13 +9,13 @@ zh-CN:
     title: 关于
   accounts:
     api_errors:
-      2fa_required: 在设置双因素认证方式前，你的账号无法使用
-      account_deleted: 你的账号已被删除
-      account_suspended: 你的账号已被封禁
-      login_disabled: 你的账号目前已被禁用
-      memorial: 你的账号已被转为纪念账号
-      pending_approval: 你的账号正在等待审核批准
-      pending_confirmation: 你的账号缺少已确认的电子邮件地址
+      2fa_required: Your account cannot be used without a second authentification factor set up
+      account_deleted: Your account has been deleted
+      account_suspended: Your account has been suspended
+      login_disabled: Your account is currently disabled
+      memorial: Your account has been turned into a memorial
+      pending_approval: Your account is currently pending moderation approval
+      pending_confirmation: Your account is missing a confirmed e-mail address
     errors:
       cannot_be_added_to_collections: 此账户无法被添加到关注列表内。
     followers:
@@ -74,6 +74,7 @@ zh-CN:
       demote: 降权
       destroyed_msg: "%{username} 的数据已进入队列，即将被删除"
       disable: 冻结
+      disable_sign_in_token: Temporarily disable security code challenge
       disable_sign_in_token_auth: 禁用邮箱令牌认证
       disable_two_factor_authentication: 禁用双因素认证
       disabled: 已冻结
@@ -87,6 +88,7 @@ zh-CN:
       email: 邮箱
       email_status: 邮箱状态
       enable: 解冻
+      enable_sign_in_token: Enable security code challenge
       enable_sign_in_token_auth: 启用邮箱令牌认证
       enabled: 已启用
       enabled_msg: 已成功解冻 %{username} 的账户
@@ -140,6 +142,7 @@ zh-CN:
       push_subscription_expires: PuSH 订阅到期
       redownload: 刷新账户
       redownloaded_msg: 已成功从源站刷新 %{username} 的账户
+      registration_app: Registration app
       reject: 拒绝
       rejected_msg: 已拒绝 %{username} 的注册申请
       remote_suspension_irreversible: 此账户的数据已被永久删除。
@@ -184,7 +187,7 @@ zh-CN:
         allowed: 已允许
         disallow: 禁止
         disallowed: 已禁止
-        title: 热门贴文
+        title: Trending posts
       unblock_email: 解除屏蔽邮件地址
       unblocked_email_msg: 已解除屏蔽 %{username} 的邮件地址
       unconfirmed_email: 未确认的邮件地址
@@ -220,6 +223,7 @@ zh-CN:
         create_user_role: 创建身份组
         create_username_block: 新建用户名规则
         demote_user: 降权用户
+        destroy_account: Delete Account Data
         destroy_announcement: 删除公告
         destroy_canonical_email_block: 删除邮件黑名单条目
         destroy_custom_emoji: 删除自定义表情
@@ -288,6 +292,7 @@ zh-CN:
         create_user_role_html: "%{name} 创建了 %{target} 身份组"
         create_username_block_html: "%{name} 新增了有关包含 %{target} 的用户名的规则"
         demote_user_html: "%{name} 降权了用户 %{target}"
+        destroy_account_html: "%{name} deleted account data for %{target}"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解除了对哈希值为 %{target} 的邮件的屏蔽"
         destroy_collection_html: "%{name} 删除了 %{target} 的合集"
@@ -626,10 +631,10 @@ zh-CN:
       no_file: 未选择文件
     fasp:
       capabilities:
-        activation_msg: 能力已成功启用。
-        deactivation_msg: 能力已成功禁用。
-        disable: 禁用
-        enable: 启用
+        activation_msg: Capability successfully enabled.
+        deactivation_msg: Capability successfully disabled.
+        disable: Disable
+        enable: Enable
       debug:
         callbacks:
           created_at: 创建于
@@ -641,7 +646,7 @@ zh-CN:
         active: 活跃
         base_url: 基础 URL
         callback: 回调
-        capabilities: 能力
+        capabilities: Capabilities
         delete: 删除
         edit: 编辑提供者
         finish_registration: 完成注册
@@ -654,8 +659,6 @@ zh-CN:
           description: 你收到了一个 FASP 发起的注册请求。如果你没有发起此请求，请拒绝它。如果你发起了此请求，请在确认注册前仔细比较名称和密钥指纹。
           reject: 拒绝
           title: 确认 FASP 注册
-        save: 保存
-        select_capabilities: 选择能力
         sign_in: 登录
         status: 状态
         title: 联邦宇宙辅助服务提供者
@@ -989,7 +992,6 @@ zh-CN:
       discovery:
         follow_recommendations: 关注推荐
         preamble: 展示有趣的内容有助于吸引那些可能在 Mastodon 上不认识任何人的新用户。控制各种发现功能在你的站点上的工作方式。
-        privacy: 隐私
         profile_directory: 账户列表
         public_timelines: 公共时间线
         title: 发现
@@ -1000,17 +1002,17 @@ zh-CN:
         disabled: 不对任何人
         users: 对已登录的本站用户
       external:
-        directory: 服务器目录
+        directory: Server Directory
         opt_in_server_directory:
-          description: 允许你的服务器被列入服务器目录，例如 https://joinmastodon.org/servers 上的服务器目录。
-          title: 允许你的服务器被列入服务器目录
+          description: Allow your server to be listed in server directories such as the one featured on https://joinmastodon.org/servers.
+          title: Opt your server in for the server directory
         opt_in_server_recommendation:
-          description: 允许用户在应用程序内注册时，比如官方 Mastodon 客户端等应用程序中，推荐你的服务器。
-          title: 允许你的服务器被列入服务器推荐
-        preamble: 控制服务器信息共享的程度及服务器的可发现性。
-        privacy: 隐私
-        publish_statistics: 发布统计数据
-        title: 外部发现
+          description: Allow your server to be recommended at sign-up time in applications such as the official Mastodon clients.
+          title: Opt your server in for server recommendation
+        preamble: Control how much information about your server gets shared with other services and how discoverable your server should be.
+        privacy: Privacy
+        publish_statistics: Publish statistics
+        title: External Discovery
       feed_access:
         modes:
           authenticated: 仅已登录用户
@@ -1049,7 +1051,15 @@ zh-CN:
         title: 拒绝模式
       security:
         authorized_fetch: 要求外站进行身份验证
-        authorized_fetch_hint: 要求外站进行身份验证可以更严格地执行用户级别和站点级别的封锁。但是，这会带来性能损失，降低你回复的覆盖范围，并可能导致与某些联合服务的兼容性问题。此外，这无法阻止某些行为体抓取你的公开贴文和账户。
+        authorized_fetch_hint: Decide when remote servers are required to authenticate when fetching content from this server.
+        authorized_fetch_hints:
+          actors: Requiring authentication for profiles enables tracking of which server has ever discovered each of your local accounts, which can greatly reduce the number of unnecessary requests performed when notifying servers of an account deletion. This option comes at a slight performance cost when serving profiles due to said tracking and the inability for the reverse-proxy to cache responses for these requests. This might also introduce compatibility issues with some federated services.
+          all: In addition to the benefits and drawbacks of requiring authentication for profiles, unconditionally requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks, but and also prevents caching of most requests. It will also reduce the reach of your replies, as reply forwarding will be disabled.
+          none: Requiring authentication only when strictly necessary allows your reverse proxy to cache more requests. This option might get removed in the future. Only use it if the other options cause issues.
+        authorized_fetch_modes:
+          actors: For profiles and private content
+          all: For every request
+          none: For private content only
         authorized_fetch_overridden_hint: 你当前无法更改此设置，因为它已被环境变量覆盖。
         federation_authentication: 联合时强制要求身份验证
       title: 站点设置
@@ -1236,7 +1246,8 @@ zh-CN:
         shared_by_over_week:
           other: 上周有 %{count} 人分享
         title: 热门链接
-        usage_comparison: 今日被分享 %{today} 次，昨日被分享 %{yesterday} 次
+        usage_comparison:
+          other: Shared %{count} times today, compared to %{yesterday} yesterday
       not_allowed_to_trend: 不允许进入热门
       only_allowed: 仅允许
       pending_review: 待审核
@@ -1280,7 +1291,8 @@ zh-CN:
         trendable: 可以进入热门
         trending_rank: '热门 #%{rank}'
         usable: 可以被使用
-        usage_comparison: 今天被使用了 %{today} 次，昨天被使用了 %{yesterday} 次
+        usage_comparison:
+          other: Used %{count} times today, compared to %{yesterday} yesterday
         used_by_over_week:
           other: 过去一周有 %{count} 人使用
       title: 推荐与热门
@@ -1538,9 +1550,11 @@ zh-CN:
   deletes:
     challenge_not_passed: 你输入的信息不正确
     confirm_password: 输入你当前的密码以验证你的身份
-    confirm_username: 输入你的用户名以确认该操作
+    confirm_username: Confirm username
+    confirm_username_hint_html: Please type <code>%{username}</code> to confirm the account you want to delete
     proceed: 删除账户
     success_msg: 你的账户已成功删除
+    title: Delete account %{acct}
     warning:
       before: '在继续之前，请仔细阅读以下注意事项：'
       caches: 其它站点缓存的内容可能会继续存在
@@ -1729,7 +1743,9 @@ zh-CN:
       incompatible_type: 与所选的导入类型不兼容
       invalid_csv_file: '无效的 CSV 文件。错误：%{error}'
       invalid_json_file: '无效的 JSON 文件。错误：%{error}'
-      over_rows_processing_limit: 包含超过 %{count} 行
+      no_data: This file does not contain any data matching the given import type
+      over_rows_processing_limit:
+        other: contains more than %{count} rows
       status_not_found_warning: 你的一些过滤规则隐藏了本站所不知道的特定贴文。如果这些贴文随后被本站发现，将不会被自动过滤。
       too_large: 文件太大
     failures: 失败
@@ -1865,7 +1881,8 @@ zh-CN:
     incoming_migrations_html: 要将另一个账户迁移到此账户，你首先需要<a href="%{path}">创建一个账户别名</a>。
     moved_msg: 你的账户现已重定向至 %{acct}，你的粉丝正在被迁移。
     not_redirecting: 你的账户目前未重定向至任何其它账户。
-    on_cooldown: 你最近迁移了你的账户。此功能将在 %{count} 天后再次可用。
+    on_cooldown:
+      other: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: 迁移记录
     proceed_with_move: 迁移粉丝
     redirected_msg: 你的账户现已重定向至 %{acct}。
@@ -2053,8 +2070,10 @@ zh-CN:
       account: 来自 @%{acct} 的公开贴文
       tag: '话题 #%{hashtag} 下的公开贴文'
   scheduled_statuses:
-    over_daily_limit: 你已超过今日 %{limit} 条贴文的定时发布上限
-    over_total_limit: 你已超过 %{limit} 条贴文的定时发布总上限
+    over_daily_limit:
+      other: You have exceeded the limit of %{count} scheduled posts for today
+    over_total_limit:
+      other: You have exceeded the limit of %{count} scheduled posts
     too_soon: 时间必须是未来的时间点
   self_destruct:
     lead_html: 很遗憾，<strong>%{domain}</strong> 已永久关闭。如果你曾在此拥有账户，你将无法继续使用它，但仍然可以请求数据备份。
@@ -2112,7 +2131,6 @@ zh-CN:
     appearance: 外观
     authorized_apps: 已授权应用
     back: 返回 Mastodon
-    delete: 删除账户
     development: 开发
     edit_profile: 编辑个人资料
     export: 导出
@@ -2312,6 +2330,14 @@ zh-CN:
       further_actions_html: 如果这不是你本人的操作，我们建议你立即%{action}，因为你的账户可能已遭泄露。
       subject: 双因素身份验证失败
       title: 双因素身份验证失败
+    sign_in_token:
+      change_password: change your password
+      details: 'Here are details of the attempt:'
+      explanation: 'We detected an attempt to sign in to your account after a long time of inactivity. If this is you, please enter the security code below on the sign in challenge page:'
+      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Please confirm attempted sign in
+      title: Sign in attempt
     suspicious_sign_in:
       change_password: 更改你的密码
       details: '以下是登录详情：'
@@ -2400,8 +2426,12 @@ zh-CN:
       title: 欢迎加入，%{name}！
   users:
     follow_limit_reached: 你关注的用户不能超过 %{limit} 个
+    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     go_to_sso_account_settings: 前往你的身份提供者的账户设置
+    inactive_sign_in_confirmation: It's been a while since you logged in, so we're sending a security code to your e-mail address to confirm that it's you.
+    inactive_sign_in_title: Please confirm security code
     invalid_otp_token: 无效的双因素验证码
+    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: 如果你两者都无法访问，可以联系 %{email}
     rate_limited: 验证尝试次数过多，请稍后再试。
     seamless_external_login: 你正通过外部服务登录，因此密码和邮件地址设置不可用。
