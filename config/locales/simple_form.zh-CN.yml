@@ -257,8 +257,8 @@ zh-CN:
         setting_display_media_default: 默认
         setting_display_media_hide_all: 全部隐藏
         setting_display_media_show_all: 全部显示
-        setting_display_own_boosts: Show my own boosts in my main feed
-        setting_display_own_posts: Show my own posts in my main feed
+        setting_display_own_boosts: 在我的主时间线中显示我自己的转嘟
+        setting_display_own_posts: 在我的主时间线中显示我自己的贴文
         setting_emoji_style: Emoji 风格
         setting_expand_spoilers: 总是展开有内容警告的贴文
         setting_hide_network: 隐藏你的社交关系
@@ -275,7 +275,7 @@ zh-CN:
         setting_use_pending_items: 慢速模式
         severity: 严重程度
         sign_in_token_attempt: 安全码
-        sign_in_token_resend: Resend security code
+        sign_in_token_resend: 重新发送安全验证码
         title: 标题
         type: 导入类型
         username: 用户名
